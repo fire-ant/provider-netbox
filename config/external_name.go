@@ -9,7 +9,6 @@ import "github.com/upbound/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// Import requires using a randomly generated ID from provider: nl-2e21sda
 	"netbox_manufacturer": config.NameAsIdentifier,
 	"netbox_device":       config.NameAsIdentifier,
 	"netbox_role":         config.NameAsIdentifier,
