@@ -9,8 +9,8 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
-	device "github.com/fire-ant/provider-netbox/internal/controller/device/device"
-	manufacturer "github.com/fire-ant/provider-netbox/internal/controller/manufacturer/manufacturer"
+	device "github.com/fire-ant/provider-netbox/internal/controller/netbox/device"
+	manufacturer "github.com/fire-ant/provider-netbox/internal/controller/netbox/manufacturer"
 	providerconfig "github.com/fire-ant/provider-netbox/internal/controller/providerconfig"
 )
 

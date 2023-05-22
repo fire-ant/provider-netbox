@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
-  name: devices.device.netbox.upbound.io
+  name: manufacturers.netbox.netbox.upbound.io
 spec:
-  group: device.netbox.upbound.io
+  group: netbox.netbox.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - netbox
-    kind: Device
-    listKind: DeviceList
-    plural: devices
-    singular: device
+    kind: Manufacturer
+    listKind: ManufacturerList
+    plural: manufacturers
+    singular: manufacturer
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Device is the Schema for the Devices API. <no value>
+        description: Manufacturer is the Schema for the Manufacturers API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: DeviceSpec defines the desired state of Device
+            description: ManufacturerSpec defines the desired state of Manufacturer
             properties:
               deletionPolicy:
                 default: Delete
@@ -67,41 +67,8 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  clusterId:
-                    type: number
-                  comments:
+                  slug:
                     type: string
-                  customFields:
-                    additionalProperties:
-                      type: string
-                    type: object
-                  deviceTypeId:
-                    type: number
-                  locationId:
-                    type: number
-                  platformId:
-                    type: number
-                  rackFace:
-                    type: string
-                  rackId:
-                    type: number
-                  rackPosition:
-                    type: number
-                  roleId:
-                    type: number
-                  serial:
-                    type: string
-                  siteId:
-                    type: number
-                  status:
-                    description: Defaults to `active`.
-                    type: string
-                  tags:
-                    items:
-                      type: string
-                    type: array
-                  tenantId:
-                    type: number
                 type: object
               managementPolicy:
                 default: FullControl
@@ -289,59 +256,15 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: deviceTypeId is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.deviceTypeId)
-            - message: roleId is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.roleId)
-            - message: siteId is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.siteId)
           status:
-            description: DeviceStatus defines the observed state of Device.
+            description: ManufacturerStatus defines the observed state of Manufacturer.
             properties:
               atProvider:
                 properties:
-                  clusterId:
-                    type: number
-                  comments:
-                    type: string
-                  customFields:
-                    additionalProperties:
-                      type: string
-                    type: object
-                  deviceTypeId:
-                    type: number
                   id:
                     type: string
-                  locationId:
-                    type: number
-                  platformId:
-                    type: number
-                  primaryIpv4:
-                    type: number
-                  primaryIpv6:
-                    type: number
-                  rackFace:
+                  slug:
                     type: string
-                  rackId:
-                    type: number
-                  rackPosition:
-                    type: number
-                  roleId:
-                    type: number
-                  serial:
-                    type: string
-                  siteId:
-                    type: number
-                  status:
-                    description: Defaults to `active`.
-                    type: string
-                  tags:
-                    items:
-                      type: string
-                    type: array
-                  tenantId:
-                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.
