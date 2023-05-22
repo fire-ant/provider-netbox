@@ -1,9 +1,700 @@
-name: hashicorp/null
+name: e-breuninger/netbox
 resources:
-    null_resource Resource - terraform-provider-null:
-        subCategory: ""
-        description: The null_resource resource implements the standard resource lifecycle but takes no further action. The triggers argument allows specifying an arbitrary set of values that, when changed, will cause the resource to be replaced.
-        name: null_resource Resource - terraform-provider-null
-        title: null_resource Resource - terraform-provider-null
+    netbox_aggregate Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/ipam/#aggregates: NetBox allows us to specify the portions of IP space that are interesting to us by defining aggregates. Typically, an aggregate will correspond to either an allocation of public (globally routable) IP space granted by a regional authority, or a private (internally-routable) designation.'
+        name: netbox_aggregate Resource - terraform-provider-netbox
+        title: netbox_aggregate Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            prefix: (String)
+            rir_id: (Number)
+            tags: (Set of String)
+            tenant_id: (Number)
+        importStatements: []
+    netbox_asn Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/ipam/#asn:'
+        name: netbox_asn Resource - terraform-provider-netbox
+        title: netbox_asn Resource - terraform-provider-netbox
+        argumentDocs:
+            asn: (Number)
+            id: (String) The ID of this resource.
+            rir_id: (Number)
+            tags: (Set of String)
+        importStatements: []
+    netbox_available_ip_address Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'Per the docs https://netbox.readthedocs.io/en/stable/models/ipam/ipaddress/: An IP address comprises a single host address (either IPv4 or IPv6) and its subnet mask. Its mask should match exactly how the IP address is configured on an interface in the real world. Like a prefix, an IP address can optionally be assigned to a VRF (otherwise, it will appear in the "global" table). IP addresses are automatically arranged under parent prefixes within their respective VRFs according to the IP hierarchya. Each IP address can also be assigned an operational status and a functional role. Statuses are hard-coded in NetBox and include the following:'
+        name: netbox_available_ip_address Resource - terraform-provider-netbox
+        title: netbox_available_ip_address Resource - terraform-provider-netbox
         argumentDocs: {}
+        importStatements: []
+    netbox_available_prefix Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        name: netbox_available_prefix Resource - terraform-provider-netbox
+        title: netbox_available_prefix Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            is_pool: (Boolean)
+            mark_utilized: (Boolean)
+            parent_prefix_id: (Number)
+            prefix: (String)
+            prefix_length: (Number)
+            role_id: (Number)
+            site_id: (Number)
+            status: (String)
+            tags: (Set of String)
+            tenant_id: (Number)
+            vlan_id: (Number)
+            vrf_id: (Number)
+        importStatements: []
+    netbox_circuit Resource - terraform-provider-netbox:
+        subCategory: Circuits
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/circuits/#circuits_1: A communications circuit represents a single physical link connecting exactly two endpoints, commonly referred to as its A and Z terminations. A circuit in NetBox may have zero, one, or two terminations defined. It is common to have only one termination defined when you don''t necessarily care about the details of the provider side of the circuit, e.g. for Internet access circuits. Both terminations would likely be modeled for circuits which connect one customer site to another. Each circuit is associated with a provider and a user-defined type. For example, you might have Internet access circuits delivered to each site by one provider, and private MPLS circuits delivered by another. Each circuit must be assigned a circuit ID, each of which must be unique per provider.'
+        name: netbox_circuit Resource - terraform-provider-netbox
+        title: netbox_circuit Resource - terraform-provider-netbox
+        argumentDocs:
+            cid: (String)
+            id: (String) The ID of this resource.
+            provider_id: (Number)
+            status: (String)
+            tenant_id: (Number)
+            type_id: (Number)
+        importStatements: []
+    netbox_circuit_provider Resource - terraform-provider-netbox:
+        subCategory: Circuits
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/circuits/#providers: A circuit provider is any entity which provides some form of connectivity of among sites or organizations within a site. While this obviously includes carriers which offer Internet and private transit service, it might also include Internet exchange (IX) points and even organizations with whom you peer directly. Each circuit within NetBox must be assigned a provider and a circuit ID which is unique to that provider. Each provider may be assigned an autonomous system number (ASN), an account number, and contact information.'
+        name: netbox_circuit_provider Resource - terraform-provider-netbox
+        title: netbox_circuit_provider Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+        importStatements: []
+    netbox_circuit_termination Resource - terraform-provider-netbox:
+        subCategory: Circuits
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/circuits/#circuit-terminations: The association of a circuit with a particular site and/or device is modeled separately as a circuit termination. A circuit may have up to two terminations, labeled A and Z. A single-termination circuit can be used when you don''t know (or care) about the far end of a circuit (for example, an Internet access circuit which connects to a transit provider). A dual-termination circuit is useful for tracking circuits which connect two sites. Each circuit termination is attached to either a site or to a provider network. Site terminations may optionally be connected via a cable to a specific device interface or port within that site. Each termination must be assigned a port speed, and can optionally be assigned an upstream speed if it differs from the downstream speed (a common scenario with e.g. DOCSIS cable modems). Fields are also available to track cross-connect and patch panel details.'
+        name: netbox_circuit_termination Resource - terraform-provider-netbox
+        title: netbox_circuit_termination Resource - terraform-provider-netbox
+        argumentDocs:
+            circuit_id: (Number)
+            custom_fields: (Map of String)
+            id: (String) The ID of this resource.
+            port_speed: (Number)
+            site_id: (Number)
+            tags: (Set of String)
+            term_side: (String)
+            upstream_speed: (Number)
+        importStatements: []
+    netbox_circuit_type Resource - terraform-provider-netbox:
+        subCategory: Circuits
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/circuits/#circuit-types: Circuits are classified by functional type. These types are completely customizable, and are typically used to convey the type of service being delivered over a circuit.'
+        name: netbox_circuit_type Resource - terraform-provider-netbox
+        title: netbox_circuit_type Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+        importStatements: []
+    netbox_cluster Resource - terraform-provider-netbox:
+        subCategory: Virtualization
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/virtualization/#clusters: A cluster is a logical grouping of physical resources within which virtual machines run. A cluster must be assigned a type (technological classification), and may optionally be assigned to a cluster group, site, and/or tenant. Each cluster must have a unique name within its assigned group and/or site, if any. Physical devices may be associated with clusters as hosts. This allows users to track on which host(s) a particular virtual machine may reside. However, NetBox does not support pinning a specific VM within a cluster to a particular host device.'
+        name: netbox_cluster Resource - terraform-provider-netbox
+        title: netbox_cluster Resource - terraform-provider-netbox
+        argumentDocs:
+            cluster_group_id: (Number)
+            cluster_type_id: (Number)
+            id: (String) The ID of this resource.
+            name: (String)
+            site_id: (Number)
+            tags: (Set of String)
+            tenant_id: (Number)
+        importStatements: []
+    netbox_cluster_group Resource - terraform-provider-netbox:
+        subCategory: Virtualization
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/virtualization/#cluster-groups: Cluster groups may be created for the purpose of organizing clusters. The arrangement of clusters into groups is optional.'
+        name: netbox_cluster_group Resource - terraform-provider-netbox
+        title: netbox_cluster_group Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+        importStatements: []
+    netbox_cluster_type Resource - terraform-provider-netbox:
+        subCategory: Virtualization
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/virtualization/#cluster-types: A cluster type represents a technology or mechanism by which a cluster is formed. For example, you might create a cluster type named "VMware vSphere" for a locally hosted cluster or "DigitalOcean NYC3" for one hosted by a cloud provider.'
+        name: netbox_cluster_type Resource - terraform-provider-netbox
+        title: netbox_cluster_type Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+        importStatements: []
+    netbox_contact Resource - terraform-provider-netbox:
+        subCategory: Tenancy
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/contacts/#contacts_1: A contact should represent an individual or permanent point of contact. Each contact must define a name, and may optionally include a title, phone number, email address, and related details. Contacts are reused for assignments, so each unique contact must be created only once and can be assigned to any number of NetBox objects, and there is no limit to the number of assigned contacts an object may have. Most core objects in NetBox can have contacts assigned to them.'
+        name: netbox_contact Resource - terraform-provider-netbox
+        title: netbox_contact Resource - terraform-provider-netbox
+        argumentDocs:
+            email: (String)
+            group_id: (Number)
+            id: (String) The ID of this resource.
+            name: (String)
+            phone: (String)
+            tags: (Set of String)
+        importStatements: []
+    netbox_contact_assignment Resource - terraform-provider-netbox:
+        subCategory: Tenancy
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/contacts#contactassignments_1: Much like tenancy, contact assignment enables you to track ownership of resources modeled in NetBox.'
+        name: netbox_contact_assignment Resource - terraform-provider-netbox
+        title: netbox_contact_assignment Resource - terraform-provider-netbox
+        argumentDocs:
+            contact_id: (Number)
+            content_type: (String)
+            id: (String) The ID of this resource.
+            object_id: (Number)
+            role_id: (Number)
+        importStatements: []
+    netbox_contact_group Resource - terraform-provider-netbox:
+        subCategory: Tenancy
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/contacts/#contact-groups: Contacts can be grouped arbitrarily into a recursive hierarchy, and a contact can be assigned to a group at any level within the hierarchy.'
+        name: netbox_contact_group Resource - terraform-provider-netbox
+        title: netbox_contact_group Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            parent_id: (Number)
+            slug: (String)
+        importStatements: []
+    netbox_contact_role Resource - terraform-provider-netbox:
+        subCategory: Tenancy
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/contacts/#contactroles: A contact role defines the relationship of a contact to an assigned object. For example, you might define roles for administrative, operational, and emergency contacts'
+        name: netbox_contact_role Resource - terraform-provider-netbox
+        title: netbox_contact_role Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+        importStatements: []
+    netbox_custom_field Resource - terraform-provider-netbox:
+        subCategory: Extras
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/customization/custom-fields/#custom-fields: Each model in NetBox is represented in the database as a discrete table, and each attribute of a model exists as a column within its table. For example, sites are stored in the dcimsite table, which has columns named name, facility, physicaladdress, and so on. As new attributes are added to objects throughout the development of NetBox, tables are expanded to include new rows. However, some users might want to store additional object attributes that are somewhat esoteric in nature, and that would not make sense to include in the core NetBox database schema. For instance, suppose your organization needs to associate each device with a ticket number correlating it with an internal support system record. This is certainly a legitimate use for NetBox, but it''s not a common enough need to warrant including a field for every NetBox installation. Instead, you can create a custom field to hold this data.'
+        name: netbox_custom_field Resource - terraform-provider-netbox
+        title: netbox_custom_field Resource - terraform-provider-netbox
+        argumentDocs:
+            choices: (Set of String)
+            content_types: (Set of String)
+            default: (String)
+            description: (String)
+            group_name: (String)
+            id: (String) The ID of this resource.
+            label: (String)
+            name: (String)
+            required: (Boolean)
+            type: (String)
+            validation_maximum: (Number)
+            validation_minimum: (Number)
+            validation_regex: (String)
+            weight: (Number)
+        importStatements: []
+    netbox_device Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/devices/#devices: Every piece of hardware which is installed within a site or rack exists in NetBox as a device. Devices are measured in rack units (U) and can be half depth or full depth. A device may have a height of 0U: These devices do not consume vertical rack space and cannot be assigned to a particular rack unit. A common example of a 0U device is a vertically-mounted PDU.'
+        name: netbox_device Resource - terraform-provider-netbox
+        title: netbox_device Resource - terraform-provider-netbox
+        argumentDocs:
+            cluster_id: (Number)
+            comments: (String)
+            custom_fields: (Map of String)
+            device_type_id: (Number)
+            id: (String) The ID of this resource.
+            location_id: (Number)
+            name: (String)
+            platform_id: (Number)
+            primary_ipv4: (Number)
+            primary_ipv6: (Number)
+            rack_face: (String)
+            rack_id: (Number)
+            rack_position: (Number)
+            role_id: (Number)
+            serial: (String)
+            site_id: (Number)
+            status: (String) Defaults to active.
+            tags: (Set of String)
+            tenant_id: (Number)
+        importStatements: []
+    netbox_device_interface Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/device/#interface: Interfaces in NetBox represent network interfaces used to exchange data with connected devices. On modern networks, these are most commonly Ethernet, but other types are supported as well. IP addresses and VLANs can be assigned to interfaces.'
+        name: netbox_device_interface Resource - terraform-provider-netbox
+        title: netbox_device_interface Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            device_id: (Number)
+            enabled: (Boolean) Defaults to true.
+            id: (String) The ID of this resource.
+            mac_address: (String)
+            mgmtonly: (Boolean)
+            mode: (String)
+            mtu: (Number)
+            name: (String)
+            tagged_vlans: (Set of Number)
+            tags: (Set of String)
+            type: (String)
+            untagged_vlan: (Number)
+        importStatements: []
+    netbox_device_role Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/devices/#device-roles: Devices can be organized by functional roles, which are fully customizable by the user. For example, you might create roles for core switches, distribution switches, and access switches within your network.'
+        name: netbox_device_role Resource - terraform-provider-netbox
+        title: netbox_device_role Resource - terraform-provider-netbox
+        argumentDocs:
+            color_hex: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+            tags: (Set of String)
+            vm_role: (Boolean) Defaults to true.
+        importStatements: []
+    netbox_device_type Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/device-types/#device-types_1: A device type represents a particular make and model of hardware that exists in the real world. Device types define the physical attributes of a device (rack height and depth) and its individual components (console, power, network interfaces, and so on).'
+        name: netbox_device_type Resource - terraform-provider-netbox
+        title: netbox_device_type Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            manufacturer_id: (Number)
+            model: (String)
+            part_number: (String)
+            slug: (String)
+            tags: (Set of String)
+            u_height: (Number) Defaults to 1.0.
+        importStatements: []
+    netbox_interface Resource - terraform-provider-netbox:
+        subCategory: Virtualization
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/virtualization/#interfaces: Virtual machine interfaces behave similarly to device interfaces, and can be assigned to VRFs, and may have IP addresses, VLANs, and services attached to them. However, given their virtual nature, they lack properties pertaining to physical attributes. For example, VM interfaces do not have a physical type and cannot have cables attached to them.'
+        name: netbox_interface Resource - terraform-provider-netbox
+        title: netbox_interface Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            enabled: (Boolean) Defaults to true.
+            id: (String) The ID of this resource.
+            mac_address: (String)
+            mode: (String)
+            mtu: (Number)
+            name: (String)
+            tagged_vlans: (Set of Number)
+            tags: (Set of String)
+            type: (String, Deprecated)
+            untagged_vlan: (Number)
+            virtual_machine_id: (Number)
+        importStatements: []
+    netbox_ip_address Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/ipam/#ip-addresses: An IP address comprises a single host address (either IPv4 or IPv6) and its subnet mask. Its mask should match exactly how the IP address is configured on an interface in the real world. Like a prefix, an IP address can optionally be assigned to a VRF (otherwise, it will appear in the "global" table). IP addresses are automatically arranged under parent prefixes within their respective VRFs according to the IP hierarchy.'
+        name: netbox_ip_address Resource - terraform-provider-netbox
+        title: netbox_ip_address Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            dns_name: (String)
+            id: (String) The ID of this resource.
+            interface_id: (Number)
+            ip_address: (String)
+            object_type: (String) Defaults to virtualization.vminterface.
+            role: (String)
+            status: (String)
+            tags: (Set of String)
+            tenant_id: (Number)
+            vrf_id: (Number)
+        importStatements: []
+    netbox_ip_range Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/ipam/#ip-ranges: This model represents an arbitrary range of individual IPv4 or IPv6 addresses, inclusive of its starting and ending addresses. For instance, the range 192.0.2.10 to 192.0.2.20 has eleven members. (The total member count is available as the size property on an IPRange instance.) Like prefixes and IP addresses, each IP range may optionally be assigned to a VRF and/or tenant.'
+        name: netbox_ip_range Resource - terraform-provider-netbox
+        title: netbox_ip_range Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            end_address: (String)
+            id: (String) The ID of this resource.
+            role_id: (Number)
+            start_address: (String)
+            status: (String) Defaults to active.
+            tags: (Set of String)
+            tenant_id: (Number)
+            vrf_id: (Number)
+        importStatements: []
+    netbox_ipam_role Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/ipam/#prefixvlan-roles: A role indicates the function of a prefix or VLAN. For example, you might define Data, Voice, and Security roles. Generally, a prefix will be assigned the same functional role as the VLAN to which it is assigned (if any).'
+        name: netbox_ipam_role Resource - terraform-provider-netbox
+        title: netbox_ipam_role Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+            weight: (Number)
+        importStatements: []
+    netbox_location Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/sites-and-racks/#locations: Racks and devices can be grouped by location within a site. A location may represent a floor, room, cage, or similar organizational unit. Locations can be nested to form a hierarchy. For example, you may have floors within a site, and rooms within a floor. Each location must have a name that is unique within its parent site and location, if any.'
+        name: netbox_location Resource - terraform-provider-netbox
+        title: netbox_location Resource - terraform-provider-netbox
+        argumentDocs:
+            custom_fields: (Map of String)
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            site_id: (Number)
+            slug: (String)
+            tags: (Set of String)
+            tenant_id: (Number)
+        importStatements: []
+    netbox_manufacturer Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/device-types/#manufacturers: A manufacturer represents the "make" of a device; e.g. Cisco or Dell. Each device type must be assigned to a manufacturer. (Inventory items and platforms may also be associated with manufacturers.) Each manufacturer must have a unique name and may have a description assigned to it.'
+        name: netbox_manufacturer Resource - terraform-provider-netbox
+        title: netbox_manufacturer Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+        importStatements: []
+    netbox_permission Resource - terraform-provider-netbox:
+        subCategory: Authentication
+        description: This resource manages the object-based permissions for Netbox users, built into the application. Object-based permissions enable an administrator to grant users or groups the ability to perform an action on arbitrary subsets of objects in NetBox, rather than all objects of a certain type. For more information, see the Netbox Object-Based Permissions Docs. https://docs.netbox.dev/en/stable/administration/permissions/
+        name: netbox_permission Resource - terraform-provider-netbox
+        title: netbox_permission Resource - terraform-provider-netbox
+        argumentDocs:
+            actions: (Set of String) A list actions that are allowed on the object types. Acceptable values are view, add, change, or delete.
+            constraints: (String) A JSON string of an arbitrary filter used to limit the granted action(s) to a specific subset of objects. For more information on correct syntax, see https://docs.netbox.dev/en/stable/administration/permissions/#constraints.
+            description: (String) The description of the permission object.
+            enabled: (Boolean) Whether the permission object is enabled or not. Defaults to true.
+            groups: (Set of Number) A list of group IDs that have been assigned to this permission object.
+            id: (String) The ID of this resource.
+            name: (String) The name of the permission object.
+            object_types: '(Set of String) A list of object types that the permission object allows access to. Should be in a form the API can accept. For example: circuits.provider, dcim.inventoryitem, etc.'
+            users: (Set of Number) A list of user IDs that have been assigned to this permission object.
+        importStatements: []
+    netbox_platform Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/devices/#platforms: A platform defines the type of software running on a device or virtual machine. This can be helpful to model when it is necessary to distinguish between different versions or feature sets. Note that two devices of the same type may be assigned different platforms: For example, one Juniper MX240 might run Junos 14 while another runs Junos 15.'
+        name: netbox_platform Resource - terraform-provider-netbox
+        title: netbox_platform Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+        importStatements: []
+    netbox_prefix Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/ipam/#prefixes: A prefix is an IPv4 or IPv6 network and mask expressed in CIDR notation (e.g. 192.0.2.0/24). A prefix entails only the "network portion" of an IP address: All bits in the address not covered by the mask must be zero. (In other words, a prefix cannot be a specific IP address.) Prefixes are automatically organized by their parent aggregates. Additionally, each prefix can be assigned to a particular site and virtual routing and forwarding instance (VRF). Each VRF represents a separate IP space or routing table. All prefixes not assigned to a VRF are considered to be in the "global" table.'
+        name: netbox_prefix Resource - terraform-provider-netbox
+        title: netbox_prefix Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            is_pool: (Boolean)
+            mark_utilized: (Boolean)
+            prefix: (String)
+            role_id: (Number)
+            site_id: (Number)
+            status: (String)
+            tags: (Set of String)
+            tenant_id: (Number)
+            vlan_id: (Number)
+            vrf_id: (Number)
+        importStatements: []
+    netbox_primary_ip Resource - terraform-provider-netbox:
+        subCategory: Virtualization
+        description: This resource is used to define the primary IP for a given virtual machine. The primary IP is reflected in the Virtual machine Netbox UI, which identifies the Primary IPv4 and IPv6 addresses.
+        name: netbox_primary_ip Resource - terraform-provider-netbox
+        title: netbox_primary_ip Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            ip_address_id: (Number)
+            ip_address_version: (Number) Defaults to 4.
+            virtual_machine_id: (Number)
+        importStatements: []
+    netbox_rack Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/models/dcim/rack/: The rack model represents a physical two- or four-post equipment rack in which devices can be installed. Each rack must be assigned to a site, and may optionally be assigned to a location within that site. Racks can also be organized by user-defined functional roles. The name and facility ID of each rack within a location must be unique. Rack height is measured in rack units (U); racks are commonly between 42U and 48U tall, but NetBox allows you to define racks of arbitrary height. A toggle is provided to indicate whether rack units are in ascending (from the ground up) or descending order. Each rack is assigned a name and (optionally) a separate facility ID. This is helpful when leasing space in a data center your organization does not own: The facility will often assign a seemingly arbitrary ID to a rack (for example, "M204.313") whereas internally you refer to is simply as "R113." A unique serial number and asset tag may also be associated with each rack.'
+        name: netbox_rack Resource - terraform-provider-netbox
+        title: netbox_rack Resource - terraform-provider-netbox
+        argumentDocs:
+            asset_tag: (String)
+            comments: (String)
+            custom_fields: (Map of String)
+            desc_units: (Boolean) If rack units are descending. Defaults to false.
+            description: (String)
+            facility_id: (String)
+            id: (String) The ID of this resource.
+            location_id: (Number)
+            max_weight: (Number)
+            mounting_depth: (Number)
+            name: (String)
+            outer_depth: (Number)
+            outer_unit: (String) One of [mm, in].
+            outer_width: (Number)
+            role_id: (Number)
+            serial: (String)
+            site_id: (Number)
+            status: (String) One of [reserved available planned active deprecated].
+            tags: (Set of String)
+            tenant_id: (Number)
+            type: (String) One of [2-post-frame 4-post-frame 4-post-cabinet wall-frame wall-frame-vertical wall-cabinet wall-cabinet-vertical].
+            u_height: (Number)
+            weight: (Number)
+            weight_unit: (String) One of [kg, g, lb, oz].
+            width: (Number) One of [10, 19, 21, 23].
+        importStatements: []
+    netbox_rack_reservation Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/models/dcim/rackreservation/: Users can reserve specific units within a rack for future use. An arbitrary set of units within a rack can be associated with a single reservation, but reservations cannot span multiple racks. A description is required for each reservation, reservations may optionally be associated with a specific tenant.'
+        name: netbox_rack_reservation Resource - terraform-provider-netbox
+        title: netbox_rack_reservation Resource - terraform-provider-netbox
+        argumentDocs:
+            comments: (String)
+            description: (String)
+            id: (String) The ID of this resource.
+            rack_id: (Number)
+            tags: (Set of String)
+            tenant_id: (Number)
+            units: (Set of Number)
+            user_id: (Number)
+        importStatements: []
+    netbox_rack_role Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/models/dcim/rackrole/: Each rack can optionally be assigned a user-defined functional role. For example, you might designate a rack for compute or storage resources, or to house colocated customer devices.'
+        name: netbox_rack_role Resource - terraform-provider-netbox
+        title: netbox_rack_role Resource - terraform-provider-netbox
+        argumentDocs:
+            color_hex: (String)
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+            tags: (Set of String)
+        importStatements: []
+    netbox_region Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/sites-and-racks/#regions: Sites can be arranged geographically using regions. A region might represent a continent, country, city, campus, or other area depending on your use case. Regions can be nested recursively to construct a hierarchy. For example, you might define several country regions, and within each of those several state or city regions to which sites are assigned. Each region must have a name that is unique within its parent region, if any.'
+        name: netbox_region Resource - terraform-provider-netbox
+        title: netbox_region Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            parent_region_id: (Number)
+            slug: (String)
+        importStatements: []
+    netbox_rir Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/ipam/#regional-internet-registries-rirs: Regional Internet registries are responsible for the allocation of globally-routable address space. The five RIRs are ARIN, RIPE, APNIC, LACNIC, and AFRINIC. However, some address space has been set aside for internal use, such as defined in RFCs 1918 and 6598. NetBox considers these RFCs as a sort of RIR as well; that is, an authority which "owns" certain address space. There also exist lower-tier registries which serve particular geographic areas.'
+        name: netbox_rir Resource - terraform-provider-netbox
+        title: netbox_rir Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+        importStatements: []
+    netbox_route_target Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/models/ipam/routetarget/: A route target is a particular type of extended BGP community used to control the redistribution of routes among VRF tables in a network. Route targets can be assigned to individual VRFs in NetBox as import or export targets (or both) to model this exchange in an L3VPN. Each route target must be given a unique name, which should be in a format prescribed by RFC 4364, similar to a VR route distinguisher.'
+        name: netbox_route_target Resource - terraform-provider-netbox
+        title: netbox_route_target Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            tags: (Set of String)
+            tenant_id: (Number)
+        importStatements: []
+    netbox_service Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/services/#services: A service represents a layer four TCP or UDP service available on a device or virtual machine. For example, you might want to document that an HTTP service is running on a device. Each service includes a name, protocol, and port number; for example, "SSH (TCP/22)" or "DNS (UDP/53)." A service may optionally be bound to one or more specific IP addresses belonging to its parent device or VM. (If no IP addresses are bound, the service is assumed to be reachable via any assigned IP address.'
+        name: netbox_service Resource - terraform-provider-netbox
+        title: netbox_service Resource - terraform-provider-netbox
+        argumentDocs:
+            id: (String) The ID of this resource.
+            name: (String)
+            port: (Number, Deprecated)
+            ports: (Set of Number)
+            protocol: (String)
+            virtual_machine_id: (Number)
+        importStatements: []
+    netbox_site Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/sites-and-racks/#sites: How you choose to employ sites when modeling your network may vary depending on the nature of your organization, but generally a site will equate to a building or campus. For example, a chain of banks might create a site to represent each of its branches, a site for its corporate headquarters, and two additional sites for its presence in two colocation facilities. Each site must be assigned a unique name and may optionally be assigned to a region and/or tenant.'
+        name: netbox_site Resource - terraform-provider-netbox
+        title: netbox_site Resource - terraform-provider-netbox
+        argumentDocs:
+            asn_ids: (Set of Number)
+            custom_fields: (Map of String)
+            description: (String)
+            facility: (String)
+            group_id: (Number)
+            id: (String) The ID of this resource.
+            latitude: (Number)
+            longitude: (Number)
+            name: (String)
+            physical_address: (String)
+            region_id: (Number)
+            shipping_address: (String)
+            slug: (String)
+            status: (String) Defaults to active.
+            tags: (Set of String)
+            tenant_id: (Number)
+            timezone: (String)
+        importStatements: []
+    netbox_site_group Resource - terraform-provider-netbox:
+        subCategory: Data Center Inventory Management (DCIM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/facilities/#site-groups: Like regions, site groups can be arranged in a recursive hierarchy for grouping sites. However, whereas regions are intended for geographic organization, site groups may be used for functional grouping. For example, you might classify sites as corporate, branch, or customer sites in addition to where they are physically located. The use of both regions and site groups affords to independent but complementary dimensions across which sites can be organized.'
+        name: netbox_site_group Resource - terraform-provider-netbox
+        title: netbox_site_group Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            parent_id: (Number)
+            slug: (String)
+        importStatements: []
+    netbox_tag Resource - terraform-provider-netbox:
+        subCategory: Extras
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/models/extras/tag/:'
+        name: netbox_tag Resource - terraform-provider-netbox
+        title: netbox_tag Resource - terraform-provider-netbox
+        argumentDocs:
+            color_hex: (String) Defaults to 9e9e9e.
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+            tags: (Set of String)
+        importStatements: []
+    netbox_tenant Resource - terraform-provider-netbox:
+        subCategory: Tenancy
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/tenancy/#tenants: A tenant represents a discrete grouping of resources used for administrative purposes. Typically, tenants are used to represent individual customers or internal departments within an organization. Tenant assignment is used to signify the ownership of an object in NetBox. As such, each object may only be owned by a single tenant. For example, if you have a firewall dedicated to a particular customer, you would assign it to the tenant which represents that customer. However, if the firewall serves multiple customers, it doesn''t belong to any particular customer, so tenant assignment would not be appropriate.'
+        name: netbox_tenant Resource - terraform-provider-netbox
+        title: netbox_tenant Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            group_id: (Number)
+            id: (String) The ID of this resource.
+            name: (String)
+            slug: (String)
+            tags: (Set of String)
+        importStatements: []
+    netbox_tenant_group Resource - terraform-provider-netbox:
+        subCategory: Tenancy
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/tenancy/#tenant-groups: Tenants can be organized by custom groups. For instance, you might create one group called "Customers" and one called "Departments." The assignment of a tenant to a group is optional. Tenant groups may be nested recursively to achieve a multi-level hierarchy. For example, you might have a group called "Customers" containing subgroups of individual tenants grouped by product or account team.'
+        name: netbox_tenant_group Resource - terraform-provider-netbox
+        title: netbox_tenant_group Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            parent_id: (Number)
+            slug: (String)
+        importStatements: []
+    netbox_token Resource - terraform-provider-netbox:
+        subCategory: Authentication
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/rest-api/authentication/#tokens: A token is a unique identifier mapped to a NetBox user account. Each user may have one or more tokens which he or she can use for authentication when making REST API requests. To create a token, navigate to the API tokens page under your user profile.'
+        name: netbox_token Resource - terraform-provider-netbox
+        title: netbox_token Resource - terraform-provider-netbox
+        argumentDocs:
+            allowed_ips: (List of String)
+            expires: (String)
+            id: (String) The ID of this resource.
+            key: (String, Sensitive)
+            last_used: (String)
+            user_id: (Number)
+            write_enabled: (Boolean)
+        importStatements: []
+    netbox_user Resource - terraform-provider-netbox:
+        subCategory: Authentication
+        description: This resource is used to manage users.
+        name: netbox_user Resource - terraform-provider-netbox
+        title: netbox_user Resource - terraform-provider-netbox
+        argumentDocs:
+            active: (Boolean) Defaults to true.
+            id: (String) The ID of this resource.
+            password: (String, Sensitive)
+            staff: (Boolean) Defaults to false.
+            username: (String)
+        importStatements: []
+    netbox_virtual_machine Resource - terraform-provider-netbox:
+        subCategory: Virtualization
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/virtualization/#virtual-machines: A virtual machine is a virtualized compute instance. These behave in NetBox very similarly to device objects, but without any physical attributes. For example, a VM may have interfaces assigned to it with IP addresses and VLANs, however its interfaces cannot be connected via cables (because they are virtual). Each VM may also define its compute, memory, and storage resources as well.'
+        name: netbox_virtual_machine Resource - terraform-provider-netbox
+        title: netbox_virtual_machine Resource - terraform-provider-netbox
+        argumentDocs:
+            cluster_id: (Number) At least one of site_id or cluster_id must be given.
+            comments: (String)
+            custom_fields: (Map of String)
+            device_id: (Number)
+            disk_size_gb: (Number)
+            id: (String) The ID of this resource.
+            memory_mb: (Number)
+            name: (String)
+            platform_id: (Number)
+            primary_ipv4: (Number)
+            primary_ipv6: (Number)
+            role_id: (Number)
+            site_id: (Number) At least one of site_id or cluster_id must be given.
+            status: (String) Valid values are offline, active, planned, staged, failed and decommissioning. Defaults to active.
+            tags: (Set of String)
+            tenant_id: (Number)
+            vcpus: (Number)
+        importStatements: []
+    netbox_vlan Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/vlans/#vlans: A VLAN represents an isolated layer two domain, identified by a name and a numeric ID (1-4094) as defined in IEEE 802.1Q. VLANs are arranged into VLAN groups to define scope and to enforce uniqueness.'
+        name: netbox_vlan Resource - terraform-provider-netbox
+        title: netbox_vlan Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String) Defaults to "".
+            group_id: (Number)
+            id: (String) The ID of this resource.
+            name: (String)
+            role_id: (Number)
+            site_id: (Number)
+            status: (String) Defaults to active.
+            tags: (Set of String)
+            tenant_id: (Number)
+            vid: (Number)
+        importStatements: []
+    netbox_vlan_group Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: A VLAN Group represents a collection of VLANs. Generally, these are limited by one of a number of scopes such as "Site" or "Virtualization Cluster".
+        name: netbox_vlan_group Resource - terraform-provider-netbox
+        title: netbox_vlan_group Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String) Defaults to "".
+            id: (String) The ID of this resource.
+            max_vid: (Number)
+            min_vid: (Number)
+            name: (String)
+            scope_id: (Number)
+            scope_type: (String)
+            slug: (String)
+            tags: (Set of String)
+        importStatements: []
+    netbox_vrf Resource - terraform-provider-netbox:
+        subCategory: IP Address Management (IPAM)
+        description: 'From the official documentation https://docs.netbox.dev/en/stable/features/ipam/#virtual-routing-and-forwarding-vrf: A VRF object in NetBox represents a virtual routing and forwarding (VRF) domain. Each VRF is essentially a separate routing table. VRFs are commonly used to isolate customers or organizations from one another within a network, or to route overlapping address space (e.g. multiple instances of the 10.0.0.0/8 space). Each VRF may be assigned to a specific tenant to aid in organizing the available IP space by customer or internal user.'
+        name: netbox_vrf Resource - terraform-provider-netbox
+        title: netbox_vrf Resource - terraform-provider-netbox
+        argumentDocs:
+            description: (String)
+            id: (String) The ID of this resource.
+            name: (String)
+            tags: (Set of String)
+            tenant_id: (Number)
         importStatements: []
