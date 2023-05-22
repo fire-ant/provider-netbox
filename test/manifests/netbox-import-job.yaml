@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: netbox-import
+  namespace: netbox-system
+spec:
+  backoffLimit: 5
+  activeDeadlineSeconds: 100
+  template:
+    spec:
+      containers:
+      - name: netbox-import
+        image: ghcr.io/minitriga/netbox-device-type-library-import@sha256:360e49b7406473c15c8ce3df1d8936a110ba59680afa9e21602c9614a367dea4
+        env:
+        - name: NETBOX_URL
+          value: "http://netbox/"
+        - name: NETBOX_TOKEN
+          value: "0123456789abcdef0123456789abcdef01234567"
+        - name: VENDORS
+          value: "edgecore,dell"
+      restartPolicy: Never
