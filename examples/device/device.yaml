@@ -1,0 +1,12 @@
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Device
+metadata:
+  name: test-device
+spec:
+  forProvider:
+    deviceTypeId: 1
+    roleId: 1
+    siteId: 1
+    comments: "this is a test-device"
+  providerConfigRef:
+    name: default

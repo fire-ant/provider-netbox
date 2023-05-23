@@ -1,0 +1,9 @@
+apiVersion: device.netbox.upbound.io/v1alpha1
+kind: Role
+metadata:
+  name: test-role
+spec:
+  forProvider:
+    colorHex: ff00ff
+  providerConfigRef:
+    name: default

@@ -20,9 +20,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"netbox_rack":             config.NameAsIdentifier,
 	"netbox_rack_reservation": config.NameAsIdentifier,
 	"netbox_rack_role":        config.NameAsIdentifier,
-	"netbox_rack_region":      config.NameAsIdentifier,
-	"netbox_rack_site":        config.NameAsIdentifier,
-	"netbox_rack_group":       config.NameAsIdentifier,
+	"netbox_region":           config.NameAsIdentifier,
+	"netbox_site":             config.NameAsIdentifier,
+	"netbox_site_group":       config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

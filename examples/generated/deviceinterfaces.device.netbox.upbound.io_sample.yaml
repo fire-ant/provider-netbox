@@ -1,0 +1,62 @@
+apiVersion: device.netbox.upbound.io/v1alpha1
+kind: DeviceInterface
+metadata: {}
+spec:
+  deletionPolicy: string
+  forProvider:
+    description: string
+    deviceId: number
+    enabled: true
+    macAddress: string
+    mgmtonly: true
+    mode: string
+    mtu: number
+    taggedVlans: [number]
+    tags: ["string"]
+    type: string
+    untaggedVlan: number
+  managementPolicy: string
+  providerConfigRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  providerRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  publishConnectionDetailsTo:
+    configRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    metadata:
+      annotations:
+      labels:
+      type: string
+    name: string
+  writeConnectionSecretToRef:
+    name: string
+    namespace: string
+status:
+  atProvider:
+    description: string
+    deviceId: number
+    enabled: true
+    id: string
+    macAddress: string
+    mgmtonly: true
+    mode: string
+    mtu: number
+    taggedVlans: [number]
+    tags: ["string"]
+    type: string
+    untaggedVlan: number
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string

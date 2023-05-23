@@ -10,19 +10,21 @@ import (
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
-	"github.com/fire-ant/provider-netbox/config/device"
-	"github.com/fire-ant/provider-netbox/config/device_interface"
-	"github.com/fire-ant/provider-netbox/config/device_role"
-	"github.com/fire-ant/provider-netbox/config/device_type"
-	"github.com/fire-ant/provider-netbox/config/location"
-	"github.com/fire-ant/provider-netbox/config/manufacturer"
-	"github.com/fire-ant/provider-netbox/config/platform"
-	"github.com/fire-ant/provider-netbox/config/rack"
-	"github.com/fire-ant/provider-netbox/config/rack_group"
-	"github.com/fire-ant/provider-netbox/config/rack_region"
-	"github.com/fire-ant/provider-netbox/config/rack_reservation"
-	"github.com/fire-ant/provider-netbox/config/rack_role"
-	"github.com/fire-ant/provider-netbox/config/rack_site"
+	"github.com/fire-ant/provider-netbox/config/dcim/device"
+	"github.com/fire-ant/provider-netbox/config/dcim/device_interface"
+	"github.com/fire-ant/provider-netbox/config/dcim/device_role"
+	"github.com/fire-ant/provider-netbox/config/dcim/device_type"
+	"github.com/fire-ant/provider-netbox/config/dcim/location"
+	"github.com/fire-ant/provider-netbox/config/dcim/manufacturer"
+	"github.com/fire-ant/provider-netbox/config/dcim/platform"
+	"github.com/fire-ant/provider-netbox/config/dcim/rack"
+	"github.com/fire-ant/provider-netbox/config/dcim/rack_reservation"
+	"github.com/fire-ant/provider-netbox/config/dcim/rack_role"
+	"github.com/fire-ant/provider-netbox/config/dcim/region"
+	"github.com/fire-ant/provider-netbox/config/dcim/site"
+	"github.com/fire-ant/provider-netbox/config/dcim/site_group"
+	"github.com/fire-ant/provider-netbox/config/extras/custom_field"
+	"github.com/fire-ant/provider-netbox/config/extras/tag"
 )
 
 const (
@@ -57,9 +59,11 @@ func GetProvider() *ujconfig.Provider {
 		rack.Configure,
 		rack_reservation.Configure,
 		rack_role.Configure,
-		rack_region.Configure,
-		rack_site.Configure,
-		rack_group.Configure,
+		region.Configure,
+		site.Configure,
+		site_group.Configure,
+		custom_field.Configure,
+		tag.Configure,
 	} {
 		configure(pc)
 	}

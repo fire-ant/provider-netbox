@@ -25,6 +25,8 @@ const (
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal netbox credentials as JSON"
+	ServerURL               = "server_url"
+	Token                   = "api_token"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -63,9 +65,12 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		// Set credentials in Terraform provider configuration.
-		ps.Configuration = map[string]any{
-			"server_url": creds["server_url"],
-			"api_token":  creds["api_token"],
+		ps.Configuration = map[string]any{}
+		if v, ok := creds[ServerURL]; ok {
+			ps.Configuration[ServerURL] = v
+		}
+		if v, ok := creds[Token]; ok {
+			ps.Configuration[Token] = v
 		}
 		return ps, nil
 	}
