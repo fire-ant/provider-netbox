@@ -88,6 +88,8 @@ spec:
                     type: number
                   mountingDepth:
                     type: number
+                  name:
+                    type: string
                   outerDepth:
                     type: number
                   outerUnit:
@@ -312,6 +314,8 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
+            - message: name is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
             - message: siteId is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.siteId)
             - message: status is a required parameter
@@ -348,6 +352,8 @@ spec:
                     type: number
                   mountingDepth:
                     type: number
+                  name:
+                    type: string
                   outerDepth:
                     type: number
                   outerUnit:

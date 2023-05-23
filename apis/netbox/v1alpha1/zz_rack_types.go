@@ -35,6 +35,8 @@ type RackObservation struct {
 
 	MountingDepth *float64 `json:"mountingDepth,omitempty" tf:"mounting_depth,omitempty"`
 
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	OuterDepth *float64 `json:"outerDepth,omitempty" tf:"outer_depth,omitempty"`
 
 	// One of [mm, in].
@@ -98,6 +100,9 @@ type RackParameters struct {
 
 	// +kubebuilder:validation:Optional
 	MountingDepth *float64 `json:"mountingDepth,omitempty" tf:"mounting_depth,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	OuterDepth *float64 `json:"outerDepth,omitempty" tf:"outer_depth,omitempty"`
@@ -171,6 +176,7 @@ type RackStatus struct {
 type Rack struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.siteId)",message="siteId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.status)",message="status is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.uHeight)",message="uHeight is a required parameter"

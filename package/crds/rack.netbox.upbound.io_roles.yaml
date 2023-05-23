@@ -71,6 +71,8 @@ spec:
                     type: string
                   description:
                     type: string
+                  name:
+                    type: string
                   slug:
                     type: string
                   tags:
@@ -267,6 +269,8 @@ spec:
             x-kubernetes-validations:
             - message: colorHex is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.colorHex)
+            - message: name is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
           status:
             description: RoleStatus defines the observed state of Role.
             properties:
@@ -277,6 +281,8 @@ spec:
                   description:
                     type: string
                   id:
+                    type: string
+                  name:
                     type: string
                   slug:
                     type: string

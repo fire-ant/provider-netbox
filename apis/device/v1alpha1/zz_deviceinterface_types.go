@@ -31,6 +31,8 @@ type DeviceInterfaceObservation struct {
 
 	Mtu *float64 `json:"mtu,omitempty" tf:"mtu,omitempty"`
 
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	TaggedVlans []*float64 `json:"taggedVlans,omitempty" tf:"tagged_vlans,omitempty"`
 
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -63,6 +65,9 @@ type DeviceInterfaceParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Mtu *float64 `json:"mtu,omitempty" tf:"mtu,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	TaggedVlans []*float64 `json:"taggedVlans,omitempty" tf:"tagged_vlans,omitempty"`
@@ -102,6 +107,7 @@ type DeviceInterface struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.deviceId)",message="deviceId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)",message="type is a required parameter"
 	Spec   DeviceInterfaceSpec   `json:"spec"`
 	Status DeviceInterfaceStatus `json:"status,omitempty"`
