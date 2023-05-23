@@ -1,7 +1,7 @@
 apiVersion: netbox.github.upbound.io/v1alpha1
-kind: Device
+kind: Manufacturer
 metadata:
-  name: test-device
+  name: test-manufacturer
 spec:
   forProvider:
     device_type_id: 1

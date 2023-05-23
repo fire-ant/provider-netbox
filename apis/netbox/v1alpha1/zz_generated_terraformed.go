@@ -87,6 +87,80 @@ func (tr *Device) GetTerraformSchemaVersion() int {
 	return 0
 }
 
+// GetTerraformResourceType returns Terraform resource type for this Location
+func (mg *Location) GetTerraformResourceType() string {
+	return "netbox_location"
+}
+
+// GetConnectionDetailsMapping for this Location
+func (tr *Location) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this Location
+func (tr *Location) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this Location
+func (tr *Location) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this Location
+func (tr *Location) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this Location
+func (tr *Location) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this Location
+func (tr *Location) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// LateInitialize this Location using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *Location) LateInitialize(attrs []byte) (bool, error) {
+	params := &LocationParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *Location) GetTerraformSchemaVersion() int {
+	return 0
+}
+
 // GetTerraformResourceType returns Terraform resource type for this Manufacturer
 func (mg *Manufacturer) GetTerraformResourceType() string {
 	return "netbox_manufacturer"
@@ -158,5 +232,153 @@ func (tr *Manufacturer) LateInitialize(attrs []byte) (bool, error) {
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
 func (tr *Manufacturer) GetTerraformSchemaVersion() int {
+	return 0
+}
+
+// GetTerraformResourceType returns Terraform resource type for this Platform
+func (mg *Platform) GetTerraformResourceType() string {
+	return "netbox_platform"
+}
+
+// GetConnectionDetailsMapping for this Platform
+func (tr *Platform) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this Platform
+func (tr *Platform) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this Platform
+func (tr *Platform) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this Platform
+func (tr *Platform) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this Platform
+func (tr *Platform) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this Platform
+func (tr *Platform) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// LateInitialize this Platform using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *Platform) LateInitialize(attrs []byte) (bool, error) {
+	params := &PlatformParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *Platform) GetTerraformSchemaVersion() int {
+	return 0
+}
+
+// GetTerraformResourceType returns Terraform resource type for this Rack
+func (mg *Rack) GetTerraformResourceType() string {
+	return "netbox_rack"
+}
+
+// GetConnectionDetailsMapping for this Rack
+func (tr *Rack) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this Rack
+func (tr *Rack) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this Rack
+func (tr *Rack) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this Rack
+func (tr *Rack) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this Rack
+func (tr *Rack) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this Rack
+func (tr *Rack) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// LateInitialize this Rack using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *Rack) LateInitialize(attrs []byte) (bool, error) {
+	params := &RackParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *Rack) GetTerraformSchemaVersion() int {
 	return 0
 }
