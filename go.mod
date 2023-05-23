@@ -1,4 +1,4 @@
-module github.com/upbound/upjet-provider-template
+module github.com/fire-ant/provider-netbox
 
 go 1.19
 

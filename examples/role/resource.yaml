@@ -1,0 +1,13 @@
+apiVersion: netbox.github.upbound.io/v1alpha1
+kind: Manufacturer
+metadata:
+  name: test-manufacturer
+spec:
+  forProvider:
+    device_type_id: 1
+    name: test-device
+    role_id: 12
+    site_id: 24
+    comments: "this is a test-device"
+  providerConfigRef:
+    name: default
