@@ -22,10 +22,10 @@ def netbox():
         repo_url='https://charts.boo.tc'
         )
     k8s_resource(workload='netbox',
-        port_forwards='8080:8080',
+        port_forwards='8888:8080',
         links=[
                 'netbox',
-                link('localhost:8080', 'netbox portal ui')
+                link('localhost:8888', 'http://localhost:8888')
             ]
             )
     k8s_yaml('test/manifests/netbox-import-job.yaml')
@@ -108,8 +108,8 @@ def gitops_ui():
                 link('localhost:9001', 'weave-gitops ui')
             ]
         )
+crossplane()
 netbox()
 zot()
 # flux_install()
 # gitops_ui()
-crossplane()

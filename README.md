@@ -61,6 +61,8 @@ open an [issue](https://github.com/fire-ant/provider-netbox/issues).
 
 Devcontainer Setup:
 
+The repository includes a devcontainer setup which can act as the sandbox environment required for developing. 
+
 deploy a cluster:
 ```
 kind create cluster
