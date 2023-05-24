@@ -8,8 +8,6 @@ func Configure(p *config.Provider) {
 		// r.ExternalName = config.NameAsIdentifier
 		r.Kind = "IPRange"
 		// r.ShortGroup = "IPRange"
-		r.ExternalName.OmittedFields = []string{
-			"id",
-		}
+
 	})
 }

@@ -8,8 +8,6 @@ func Configure(p *config.Provider) {
 		// r.ExternalName = config.NameAsIdentifier
 		r.Kind = "VirtInterface"
 		r.ExternalName = config.NameAsIdentifier
-		r.ExternalName.OmittedFields = []string{
-			"id",
-		}
+
 	})
 }

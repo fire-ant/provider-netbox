@@ -9,8 +9,6 @@ func Configure(p *config.Provider) {
 		// this resource, which would be "netbox"
 		// r.ExternalName = config.NameAsIdentifier
 		r.Kind = "DeviceInterface"
-		r.ExternalName.OmittedFields = []string{
-			"id",
-		}
+
 	})
 }

@@ -10,8 +10,6 @@ func Configure(p *config.Provider) {
 		// r.ExternalName = config.NameAsIdentifier
 		r.Kind = "DeviceType"
 		// r.ShortGroup = "DeviceType"
-		r.ExternalName.OmittedFields = []string{
-			"id",
-		}
+
 	})
 }
