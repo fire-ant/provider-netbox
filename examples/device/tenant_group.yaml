@@ -1,0 +1,8 @@
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Group
+metadata:
+  name:  TenantGroup1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    description: A new tenant turn up

@@ -1,0 +1,13 @@
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: test-site
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    description: a test site
+    facility: test-colo
+    status: active
+    tags:
+      - new
+      - test
