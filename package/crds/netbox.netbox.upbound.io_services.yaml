@@ -67,8 +67,6 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  name:
-                    type: string
                   port:
                     type: number
                   ports:
@@ -267,8 +265,6 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
             - message: protocol is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.protocol)
             - message: virtualMachineId is a required parameter
@@ -279,8 +275,6 @@ spec:
               atProvider:
                 properties:
                   id:
-                    type: string
-                  name:
                     type: string
                   port:
                     type: number

@@ -30,8 +30,6 @@ type MachineObservation struct {
 
 	MemoryMb *float64 `json:"memoryMb,omitempty" tf:"memory_mb,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	PlatformID *float64 `json:"platformId,omitempty" tf:"platform_id,omitempty"`
 
 	PrimaryIPv4 *float64 `json:"primaryIpv4,omitempty" tf:"primary_ipv4,omitempty"`
@@ -73,9 +71,6 @@ type MachineParameters struct {
 
 	// +kubebuilder:validation:Optional
 	MemoryMb *float64 `json:"memoryMb,omitempty" tf:"memory_mb,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	PlatformID *float64 `json:"platformId,omitempty" tf:"platform_id,omitempty"`
@@ -125,9 +120,8 @@ type MachineStatus struct {
 type Machine struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   MachineSpec   `json:"spec"`
-	Status MachineStatus `json:"status,omitempty"`
+	Spec              MachineSpec   `json:"spec"`
+	Status            MachineStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

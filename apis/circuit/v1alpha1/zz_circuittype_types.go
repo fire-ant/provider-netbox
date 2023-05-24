@@ -16,15 +16,10 @@ import (
 type CircuitTypeObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
 }
 
 type CircuitTypeParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
@@ -54,9 +49,8 @@ type CircuitTypeStatus struct {
 type CircuitType struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   CircuitTypeSpec   `json:"spec"`
-	Status CircuitTypeStatus `json:"status,omitempty"`
+	Spec              CircuitTypeSpec   `json:"spec"`
+	Status            CircuitTypeStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

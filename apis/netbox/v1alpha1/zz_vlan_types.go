@@ -22,8 +22,6 @@ type VlanObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
 
 	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
@@ -46,9 +44,6 @@ type VlanParameters struct {
 
 	// +kubebuilder:validation:Optional
 	GroupID *float64 `json:"groupId,omitempty" tf:"group_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
@@ -94,7 +89,6 @@ type VlanStatus struct {
 type Vlan struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.vid)",message="vid is a required parameter"
 	Spec   VlanSpec   `json:"spec"`
 	Status VlanStatus `json:"status,omitempty"`

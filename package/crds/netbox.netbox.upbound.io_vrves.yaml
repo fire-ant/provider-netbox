@@ -69,8 +69,6 @@ spec:
                 properties:
                   description:
                     type: string
-                  name:
-                    type: string
                   tags:
                     items:
                       type: string
@@ -264,9 +262,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
           status:
             description: VrfStatus defines the observed state of Vrf.
             properties:
@@ -275,8 +270,6 @@ spec:
                   description:
                     type: string
                   id:
-                    type: string
-                  name:
                     type: string
                   tags:
                     items:

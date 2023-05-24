@@ -20,8 +20,6 @@ type ContactObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	Phone *string `json:"phone,omitempty" tf:"phone,omitempty"`
 
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -34,9 +32,6 @@ type ContactParameters struct {
 
 	// +kubebuilder:validation:Optional
 	GroupID *float64 `json:"groupId,omitempty" tf:"group_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Phone *string `json:"phone,omitempty" tf:"phone,omitempty"`
@@ -69,9 +64,8 @@ type ContactStatus struct {
 type Contact struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   ContactSpec   `json:"spec"`
-	Status ContactStatus `json:"status,omitempty"`
+	Spec              ContactSpec   `json:"spec"`
+	Status            ContactStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

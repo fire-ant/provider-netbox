@@ -69,8 +69,6 @@ spec:
                 properties:
                   description:
                     type: string
-                  name:
-                    type: string
                   parentId:
                     type: number
                   slug:
@@ -262,9 +260,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
           status:
             description: GroupStatus defines the observed state of Group.
             properties:
@@ -273,8 +268,6 @@ spec:
                   description:
                     type: string
                   id:
-                    type: string
-                  name:
                     type: string
                   parentId:
                     type: number

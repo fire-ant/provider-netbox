@@ -20,8 +20,6 @@ type RoleObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
 
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -34,9 +32,6 @@ type RoleParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
@@ -70,7 +65,6 @@ type Role struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.colorHex)",message="colorHex is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
 	Spec   RoleSpec   `json:"spec"`
 	Status RoleStatus `json:"status,omitempty"`
 }

@@ -83,8 +83,6 @@ spec:
                     type: string
                   mtu:
                     type: number
-                  name:
-                    type: string
                   taggedVlans:
                     items:
                       type: number
@@ -287,8 +285,6 @@ spec:
             x-kubernetes-validations:
             - message: deviceId is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.deviceId)
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
             - message: type is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)
           status:
@@ -313,8 +309,6 @@ spec:
                     type: string
                   mtu:
                     type: number
-                  name:
-                    type: string
                   taggedVlans:
                     items:
                       type: number

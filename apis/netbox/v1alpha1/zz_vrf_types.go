@@ -18,8 +18,6 @@ type VrfObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
@@ -29,9 +27,6 @@ type VrfParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -64,9 +59,8 @@ type VrfStatus struct {
 type Vrf struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   VrfSpec   `json:"spec"`
-	Status VrfStatus `json:"status,omitempty"`
+	Spec              VrfSpec   `json:"spec"`
+	Status            VrfStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

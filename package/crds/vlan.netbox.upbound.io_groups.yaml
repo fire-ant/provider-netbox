@@ -74,8 +74,6 @@ spec:
                     type: number
                   minVid:
                     type: number
-                  name:
-                    type: string
                   scopeId:
                     type: number
                   scopeType:
@@ -278,8 +276,6 @@ spec:
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.maxVid)
             - message: minVid is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.minVid)
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
             - message: slug is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.slug)
           status:
@@ -296,8 +292,6 @@ spec:
                     type: number
                   minVid:
                     type: number
-                  name:
-                    type: string
                   scopeId:
                     type: number
                   scopeType:

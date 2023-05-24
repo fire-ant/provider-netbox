@@ -71,8 +71,6 @@ spec:
                     type: string
                   groupId:
                     type: number
-                  name:
-                    type: string
                   phone:
                     type: string
                   tags:
@@ -266,9 +264,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
           status:
             description: ContactStatus defines the observed state of Contact.
             properties:
@@ -279,8 +274,6 @@ spec:
                   groupId:
                     type: number
                   id:
-                    type: string
-                  name:
                     type: string
                   phone:
                     type: string

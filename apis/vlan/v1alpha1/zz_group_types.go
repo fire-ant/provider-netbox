@@ -24,8 +24,6 @@ type GroupObservation struct {
 
 	MinVid *float64 `json:"minVid,omitempty" tf:"min_vid,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	ScopeID *float64 `json:"scopeId,omitempty" tf:"scope_id,omitempty"`
 
 	ScopeType *string `json:"scopeType,omitempty" tf:"scope_type,omitempty"`
@@ -46,9 +44,6 @@ type GroupParameters struct {
 
 	// +kubebuilder:validation:Optional
 	MinVid *float64 `json:"minVid,omitempty" tf:"min_vid,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	ScopeID *float64 `json:"scopeId,omitempty" tf:"scope_id,omitempty"`
@@ -89,7 +84,6 @@ type Group struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.maxVid)",message="maxVid is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.minVid)",message="minVid is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.slug)",message="slug is a required parameter"
 	Spec   GroupSpec   `json:"spec"`
 	Status GroupStatus `json:"status,omitempty"`

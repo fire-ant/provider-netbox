@@ -122,11 +122,6 @@ func (in *FieldObservation) DeepCopyInto(out *FieldObservation) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.Required != nil {
 		in, out := &in.Required, &out.Required
 		*out = new(bool)
@@ -211,11 +206,6 @@ func (in *FieldParameters) DeepCopyInto(out *FieldParameters) {
 	}
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
-		*out = new(string)
-		**out = **in
-	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

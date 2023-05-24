@@ -72,8 +72,6 @@ spec:
                     type: string
                   groupId:
                     type: number
-                  name:
-                    type: string
                   roleId:
                     type: number
                   siteId:
@@ -277,8 +275,6 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
             - message: vid is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.vid)
           status:
@@ -292,8 +288,6 @@ spec:
                   groupId:
                     type: number
                   id:
-                    type: string
-                  name:
                     type: string
                   roleId:
                     type: number

@@ -312,11 +312,6 @@ func (in *RoleObservation) DeepCopyInto(out *RoleObservation) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.Slug != nil {
 		in, out := &in.Slug, &out.Slug
 		*out = new(string)
@@ -355,11 +350,6 @@ func (in *RoleParameters) DeepCopyInto(out *RoleParameters) {
 	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
-		*out = new(string)
-		**out = **in
-	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

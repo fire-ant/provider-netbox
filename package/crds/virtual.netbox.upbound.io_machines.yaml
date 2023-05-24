@@ -83,8 +83,6 @@ spec:
                     type: number
                   memoryMb:
                     type: number
-                  name:
-                    type: string
                   platformId:
                     type: number
                   roleId:
@@ -292,9 +290,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
           status:
             description: MachineStatus defines the observed state of Machine.
             properties:
@@ -318,8 +313,6 @@ spec:
                     type: string
                   memoryMb:
                     type: number
-                  name:
-                    type: string
                   platformId:
                     type: number
                   primaryIpv4:

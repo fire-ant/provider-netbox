@@ -115,11 +115,6 @@ func (in *DeviceInterfaceObservation) DeepCopyInto(out *DeviceInterfaceObservati
 		*out = new(float64)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.TaggedVlans != nil {
 		in, out := &in.TaggedVlans, &out.TaggedVlans
 		*out = make([]*float64, len(*in))
@@ -200,11 +195,6 @@ func (in *DeviceInterfaceParameters) DeepCopyInto(out *DeviceInterfaceParameters
 	if in.Mtu != nil {
 		in, out := &in.Mtu, &out.Mtu
 		*out = new(float64)
-		**out = **in
-	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
 		**out = **in
 	}
 	if in.TaggedVlans != nil {

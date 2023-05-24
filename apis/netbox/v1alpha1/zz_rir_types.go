@@ -18,8 +18,6 @@ type RirObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
 }
 
@@ -27,9 +25,6 @@ type RirParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
@@ -59,9 +54,8 @@ type RirStatus struct {
 type Rir struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   RirSpec   `json:"spec"`
-	Status RirStatus `json:"status,omitempty"`
+	Spec              RirSpec   `json:"spec"`
+	Status            RirStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

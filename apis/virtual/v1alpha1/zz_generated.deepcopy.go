@@ -120,11 +120,6 @@ func (in *MachineObservation) DeepCopyInto(out *MachineObservation) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.PlatformID != nil {
 		in, out := &in.PlatformID, &out.PlatformID
 		*out = new(float64)
@@ -229,11 +224,6 @@ func (in *MachineParameters) DeepCopyInto(out *MachineParameters) {
 	if in.MemoryMb != nil {
 		in, out := &in.MemoryMb, &out.MemoryMb
 		*out = new(float64)
-		**out = **in
-	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
 		**out = **in
 	}
 	if in.PlatformID != nil {

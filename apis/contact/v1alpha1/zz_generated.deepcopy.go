@@ -253,11 +253,6 @@ func (in *GroupObservation) DeepCopyInto(out *GroupObservation) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.ParentID != nil {
 		in, out := &in.ParentID, &out.ParentID
 		*out = new(float64)
@@ -285,11 +280,6 @@ func (in *GroupParameters) DeepCopyInto(out *GroupParameters) {
 	*out = *in
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
-		*out = new(string)
-		**out = **in
-	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

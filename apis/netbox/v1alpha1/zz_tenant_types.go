@@ -20,8 +20,6 @@ type TenantObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
 
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -34,9 +32,6 @@ type TenantParameters struct {
 
 	// +kubebuilder:validation:Optional
 	GroupID *float64 `json:"groupId,omitempty" tf:"group_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
@@ -69,9 +64,8 @@ type TenantStatus struct {
 type Tenant struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   TenantSpec   `json:"spec"`
-	Status TenantStatus `json:"status,omitempty"`
+	Spec              TenantSpec   `json:"spec"`
+	Status            TenantStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

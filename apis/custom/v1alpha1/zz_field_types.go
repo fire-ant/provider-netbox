@@ -28,8 +28,6 @@ type FieldObservation struct {
 
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	Required *bool `json:"required,omitempty" tf:"required,omitempty"`
 
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -62,9 +60,6 @@ type FieldParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Required *bool `json:"required,omitempty" tf:"required,omitempty"`
@@ -110,7 +105,6 @@ type Field struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.contentTypes)",message="contentTypes is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)",message="type is a required parameter"
 	Spec   FieldSpec   `json:"spec"`
 	Status FieldStatus `json:"status,omitempty"`

@@ -83,8 +83,6 @@ spec:
                     type: string
                   label:
                     type: string
-                  name:
-                    type: string
                   required:
                     type: boolean
                   type:
@@ -287,8 +285,6 @@ spec:
             x-kubernetes-validations:
             - message: contentTypes is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.contentTypes)
-            - message: name is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)
             - message: type is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)
           status:
@@ -313,8 +309,6 @@ spec:
                   id:
                     type: string
                   label:
-                    type: string
-                  name:
                     type: string
                   required:
                     type: boolean

@@ -16,15 +16,10 @@ import (
 type ProviderObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
 }
 
 type ProviderParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
@@ -54,9 +49,8 @@ type ProviderStatus struct {
 type Provider struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   ProviderSpec   `json:"spec"`
-	Status ProviderStatus `json:"status,omitempty"`
+	Spec              ProviderSpec   `json:"spec"`
+	Status            ProviderStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

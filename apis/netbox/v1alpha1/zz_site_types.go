@@ -30,8 +30,6 @@ type SiteObservation struct {
 
 	Longitude *float64 `json:"longitude,omitempty" tf:"longitude,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	PhysicalAddress *string `json:"physicalAddress,omitempty" tf:"physical_address,omitempty"`
 
 	RegionID *float64 `json:"regionId,omitempty" tf:"region_id,omitempty"`
@@ -72,9 +70,6 @@ type SiteParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Longitude *float64 `json:"longitude,omitempty" tf:"longitude,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	PhysicalAddress *string `json:"physicalAddress,omitempty" tf:"physical_address,omitempty"`
@@ -126,9 +121,8 @@ type SiteStatus struct {
 type Site struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   SiteSpec   `json:"spec"`
-	Status SiteStatus `json:"status,omitempty"`
+	Spec              SiteSpec   `json:"spec"`
+	Status            SiteStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
