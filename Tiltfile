@@ -9,6 +9,9 @@ def netbox():
         "postgresql.auth.postgresPassword=mypgsecret!",
         "postgresql.auth.Password=mypgsecret!",
         "redis.auth.password=myredissecret!",
+        "image.tag=v3.5.2",
+        "timeZone=GMT",
+        "dateTimeFormat=H:i:s",
     ]
         # "superuser.name=admin",
         # "superuser.password=admin",
