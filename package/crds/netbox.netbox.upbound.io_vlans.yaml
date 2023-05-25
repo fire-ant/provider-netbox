@@ -70,12 +70,6 @@ spec:
                   description:
                     description: Defaults to `""`.
                     type: string
-                  groupId:
-                    type: number
-                  roleId:
-                    type: number
-                  siteId:
-                    type: number
                   status:
                     description: Defaults to `active`.
                     type: string
@@ -83,8 +77,6 @@ spec:
                     items:
                       type: string
                     type: array
-                  tenantId:
-                    type: number
                   vid:
                     type: number
                 type: object
@@ -286,13 +278,13 @@ spec:
                     description: Defaults to `""`.
                     type: string
                   groupId:
-                    type: number
+                    type: string
                   id:
                     type: string
                   roleId:
-                    type: number
+                    type: string
                   siteId:
-                    type: number
+                    type: string
                   status:
                     description: Defaults to `active`.
                     type: string
@@ -301,7 +293,7 @@ spec:
                       type: string
                     type: array
                   tenantId:
-                    type: number
+                    type: string
                   vid:
                     type: number
                 type: object

@@ -75,8 +75,6 @@ spec:
                     additionalProperties:
                       type: string
                     type: object
-                  deviceTypeId:
-                    type: number
                   locationId:
                     type: number
                   platformId:
@@ -87,12 +85,8 @@ spec:
                     type: number
                   rackPosition:
                     type: number
-                  roleId:
-                    type: number
                   serial:
                     type: string
-                  siteId:
-                    type: number
                   status:
                     description: Defaults to `active`.
                     type: string
@@ -289,13 +283,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: deviceTypeId is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.deviceTypeId)
-            - message: roleId is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.roleId)
-            - message: siteId is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.siteId)
           status:
             description: DeviceStatus defines the observed state of Device.
             properties:
@@ -310,7 +297,7 @@ spec:
                       type: string
                     type: object
                   deviceTypeId:
-                    type: number
+                    type: string
                   id:
                     type: string
                   locationId:
@@ -328,11 +315,11 @@ spec:
                   rackPosition:
                     type: number
                   roleId:
-                    type: number
+                    type: string
                   serial:
                     type: string
                   siteId:
-                    type: number
+                    type: string
                   status:
                     description: Defaults to `active`.
                     type: string
