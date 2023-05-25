@@ -18,20 +18,20 @@ type VlanObservation struct {
 	// Defaults to `""`.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	GroupID *float64 `json:"groupId,omitempty" tf:"group_id,omitempty"`
+	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
+	RoleID *string `json:"roleId,omitempty" tf:"role_id,omitempty"`
 
-	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
+	SiteID *string `json:"siteId,omitempty" tf:"site_id,omitempty"`
 
 	// Defaults to `active`.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
+	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
 	Vid *float64 `json:"vid,omitempty" tf:"vid,omitempty"`
 }
@@ -42,24 +42,12 @@ type VlanParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	GroupID *float64 `json:"groupId,omitempty" tf:"group_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
-
 	// Defaults to `active`.
 	// +kubebuilder:validation:Optional
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Vid *float64 `json:"vid,omitempty" tf:"vid,omitempty"`

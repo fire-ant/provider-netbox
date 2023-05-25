@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -171,6 +172,16 @@ func (in *DeviceInterfaceParameters) DeepCopyInto(out *DeviceInterfaceParameters
 		in, out := &in.DeviceID, &out.DeviceID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.DeviceIDRef != nil {
+		in, out := &in.DeviceIDRef, &out.DeviceIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DeviceIDSelector != nil {
+		in, out := &in.DeviceIDSelector, &out.DeviceIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Enabled != nil {
 		in, out := &in.Enabled, &out.Enabled

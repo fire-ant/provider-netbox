@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -155,6 +156,16 @@ func (in *GroupParameters) DeepCopyInto(out *GroupParameters) {
 		in, out := &in.ScopeID, &out.ScopeID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.ScopeIDRef != nil {
+		in, out := &in.ScopeIDRef, &out.ScopeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ScopeIDSelector != nil {
+		in, out := &in.ScopeIDSelector, &out.ScopeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.ScopeType != nil {
 		in, out := &in.ScopeType, &out.ScopeType

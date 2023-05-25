@@ -45,8 +45,18 @@ type GroupParameters struct {
 	// +kubebuilder:validation:Optional
 	MinVid *float64 `json:"minVid,omitempty" tf:"min_vid,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ScopeID *float64 `json:"scopeId,omitempty" tf:"scope_id,omitempty"`
+
+	// Reference to a Site in netbox to populate scopeId.
+	// +kubebuilder:validation:Optional
+	ScopeIDRef *v1.Reference `json:"scopeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Site in netbox to populate scopeId.
+	// +kubebuilder:validation:Optional
+	ScopeIDSelector *v1.Selector `json:"scopeIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	ScopeType *string `json:"scopeType,omitempty" tf:"scope_type,omitempty"`

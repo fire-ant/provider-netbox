@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -171,15 +172,45 @@ func (in *IPAddressParameters) DeepCopyInto(out *IPAddressParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.IPRangeIDRef != nil {
+		in, out := &in.IPRangeIDRef, &out.IPRangeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.IPRangeIDSelector != nil {
+		in, out := &in.IPRangeIDSelector, &out.IPRangeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.InterfaceID != nil {
 		in, out := &in.InterfaceID, &out.InterfaceID
 		*out = new(float64)
 		**out = **in
 	}
+	if in.InterfaceIDRef != nil {
+		in, out := &in.InterfaceIDRef, &out.InterfaceIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.InterfaceIDSelector != nil {
+		in, out := &in.InterfaceIDSelector, &out.InterfaceIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.PrefixID != nil {
 		in, out := &in.PrefixID, &out.PrefixID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.PrefixIDRef != nil {
+		in, out := &in.PrefixIDRef, &out.PrefixIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PrefixIDSelector != nil {
+		in, out := &in.PrefixIDSelector, &out.PrefixIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Role != nil {
 		in, out := &in.Role, &out.Role
@@ -206,6 +237,16 @@ func (in *IPAddressParameters) DeepCopyInto(out *IPAddressParameters) {
 		in, out := &in.TenantID, &out.TenantID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.TenantIDRef != nil {
+		in, out := &in.TenantIDRef, &out.TenantIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TenantIDSelector != nil {
+		in, out := &in.TenantIDSelector, &out.TenantIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.VrfID != nil {
 		in, out := &in.VrfID, &out.VrfID
@@ -441,10 +482,30 @@ func (in *PrefixParameters) DeepCopyInto(out *PrefixParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.RoleIDRef != nil {
+		in, out := &in.RoleIDRef, &out.RoleIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RoleIDSelector != nil {
+		in, out := &in.RoleIDSelector, &out.RoleIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SiteID != nil {
 		in, out := &in.SiteID, &out.SiteID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.SiteIDRef != nil {
+		in, out := &in.SiteIDRef, &out.SiteIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SiteIDSelector != nil {
+		in, out := &in.SiteIDSelector, &out.SiteIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
@@ -467,15 +528,45 @@ func (in *PrefixParameters) DeepCopyInto(out *PrefixParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.TenantIDRef != nil {
+		in, out := &in.TenantIDRef, &out.TenantIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TenantIDSelector != nil {
+		in, out := &in.TenantIDSelector, &out.TenantIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VlanID != nil {
 		in, out := &in.VlanID, &out.VlanID
 		*out = new(float64)
 		**out = **in
 	}
+	if in.VlanIDRef != nil {
+		in, out := &in.VlanIDRef, &out.VlanIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VlanIDSelector != nil {
+		in, out := &in.VlanIDSelector, &out.VlanIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VrfID != nil {
 		in, out := &in.VrfID, &out.VrfID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.VrfIDRef != nil {
+		in, out := &in.VrfIDRef, &out.VrfIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VrfIDSelector != nil {
+		in, out := &in.VrfIDSelector, &out.VrfIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 

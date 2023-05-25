@@ -45,8 +45,18 @@ type DeviceInterfaceParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Device
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	DeviceID *float64 `json:"deviceId,omitempty" tf:"device_id,omitempty"`
+
+	// Reference to a Device in netbox to populate deviceId.
+	// +kubebuilder:validation:Optional
+	DeviceIDRef *v1.Reference `json:"deviceIdRef,omitempty" tf:"-"`
+
+	// Selector for a Device in netbox to populate deviceId.
+	// +kubebuilder:validation:Optional
+	DeviceIDSelector *v1.Selector `json:"deviceIdSelector,omitempty" tf:"-"`
 
 	// Defaults to `true`.
 	// +kubebuilder:validation:Optional
@@ -101,7 +111,6 @@ type DeviceInterfaceStatus struct {
 type DeviceInterface struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.deviceId)",message="deviceId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)",message="type is a required parameter"
 	Spec   DeviceInterfaceSpec   `json:"spec"`
 	Status DeviceInterfaceStatus `json:"status,omitempty"`

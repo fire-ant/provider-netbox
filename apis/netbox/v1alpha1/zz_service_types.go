@@ -36,8 +36,18 @@ type ServiceParameters struct {
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/virtual/v1alpha1.Machine
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VirtualMachineID *float64 `json:"virtualMachineId,omitempty" tf:"virtual_machine_id,omitempty"`
+
+	// Reference to a Machine in virtual to populate virtualMachineId.
+	// +kubebuilder:validation:Optional
+	VirtualMachineIDRef *v1.Reference `json:"virtualMachineIdRef,omitempty" tf:"-"`
+
+	// Selector for a Machine in virtual to populate virtualMachineId.
+	// +kubebuilder:validation:Optional
+	VirtualMachineIDSelector *v1.Selector `json:"virtualMachineIdSelector,omitempty" tf:"-"`
 }
 
 // ServiceSpec defines the desired state of Service
@@ -65,7 +75,6 @@ type Service struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.protocol)",message="protocol is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.virtualMachineId)",message="virtualMachineId is a required parameter"
 	Spec   ServiceSpec   `json:"spec"`
 	Status ServiceStatus `json:"status,omitempty"`
 }

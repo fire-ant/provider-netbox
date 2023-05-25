@@ -49,8 +49,18 @@ type AddressParameters struct {
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.VirtInterface
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	InterfaceID *float64 `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
+
+	// Reference to a VirtInterface in netbox to populate interfaceId.
+	// +kubebuilder:validation:Optional
+	InterfaceIDRef *v1.Reference `json:"interfaceIdRef,omitempty" tf:"-"`
+
+	// Selector for a VirtInterface in netbox to populate interfaceId.
+	// +kubebuilder:validation:Optional
+	InterfaceIDSelector *v1.Selector `json:"interfaceIdSelector,omitempty" tf:"-"`
 
 	// Defaults to `virtualization.vminterface`.
 	// +kubebuilder:validation:Optional
@@ -68,8 +78,18 @@ type AddressParameters struct {
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Vrf
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VrfID *float64 `json:"vrfId,omitempty" tf:"vrf_id,omitempty"`
+
+	// Reference to a Vrf in netbox to populate vrfId.
+	// +kubebuilder:validation:Optional
+	VrfIDRef *v1.Reference `json:"vrfIdRef,omitempty" tf:"-"`
+
+	// Selector for a Vrf in netbox to populate vrfId.
+	// +kubebuilder:validation:Optional
+	VrfIDSelector *v1.Selector `json:"vrfIdSelector,omitempty" tf:"-"`
 }
 
 // AddressSpec defines the desired state of Address

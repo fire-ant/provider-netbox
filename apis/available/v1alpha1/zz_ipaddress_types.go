@@ -48,14 +48,44 @@ type IPAddressParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/ip/v1alpha1.IPRange
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	IPRangeID *float64 `json:"ipRangeId,omitempty" tf:"ip_range_id,omitempty"`
 
+	// Reference to a IPRange in ip to populate ipRangeId.
+	// +kubebuilder:validation:Optional
+	IPRangeIDRef *v1.Reference `json:"ipRangeIdRef,omitempty" tf:"-"`
+
+	// Selector for a IPRange in ip to populate ipRangeId.
+	// +kubebuilder:validation:Optional
+	IPRangeIDSelector *v1.Selector `json:"ipRangeIdSelector,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Vrf
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	InterfaceID *float64 `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
 
+	// Reference to a Vrf in netbox to populate interfaceId.
+	// +kubebuilder:validation:Optional
+	InterfaceIDRef *v1.Reference `json:"interfaceIdRef,omitempty" tf:"-"`
+
+	// Selector for a Vrf in netbox to populate interfaceId.
+	// +kubebuilder:validation:Optional
+	InterfaceIDSelector *v1.Selector `json:"interfaceIdSelector,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Prefix
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	PrefixID *float64 `json:"prefixId,omitempty" tf:"prefix_id,omitempty"`
+
+	// Reference to a Prefix in netbox to populate prefixId.
+	// +kubebuilder:validation:Optional
+	PrefixIDRef *v1.Reference `json:"prefixIdRef,omitempty" tf:"-"`
+
+	// Selector for a Prefix in netbox to populate prefixId.
+	// +kubebuilder:validation:Optional
+	PrefixIDSelector *v1.Selector `json:"prefixIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
@@ -67,8 +97,18 @@ type IPAddressParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Tenant
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
+
+	// Reference to a Tenant in netbox to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDRef *v1.Reference `json:"tenantIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tenant in netbox to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	VrfID *float64 `json:"vrfId,omitempty" tf:"vrf_id,omitempty"`

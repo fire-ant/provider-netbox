@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -1010,7 +1011,7 @@ func (in *DeviceObservation) DeepCopyInto(out *DeviceObservation) {
 	}
 	if in.DeviceTypeID != nil {
 		in, out := &in.DeviceTypeID, &out.DeviceTypeID
-		*out = new(float64)
+		*out = new(string)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -1055,7 +1056,7 @@ func (in *DeviceObservation) DeepCopyInto(out *DeviceObservation) {
 	}
 	if in.RoleID != nil {
 		in, out := &in.RoleID, &out.RoleID
-		*out = new(float64)
+		*out = new(string)
 		**out = **in
 	}
 	if in.Serial != nil {
@@ -1065,7 +1066,7 @@ func (in *DeviceObservation) DeepCopyInto(out *DeviceObservation) {
 	}
 	if in.SiteID != nil {
 		in, out := &in.SiteID, &out.SiteID
-		*out = new(float64)
+		*out = new(string)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -1129,11 +1130,6 @@ func (in *DeviceParameters) DeepCopyInto(out *DeviceParameters) {
 			(*out)[key] = outVal
 		}
 	}
-	if in.DeviceTypeID != nil {
-		in, out := &in.DeviceTypeID, &out.DeviceTypeID
-		*out = new(float64)
-		**out = **in
-	}
 	if in.LocationID != nil {
 		in, out := &in.LocationID, &out.LocationID
 		*out = new(float64)
@@ -1159,19 +1155,9 @@ func (in *DeviceParameters) DeepCopyInto(out *DeviceParameters) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.RoleID != nil {
-		in, out := &in.RoleID, &out.RoleID
-		*out = new(float64)
-		**out = **in
-	}
 	if in.Serial != nil {
 		in, out := &in.Serial, &out.Serial
 		*out = new(string)
-		**out = **in
-	}
-	if in.SiteID != nil {
-		in, out := &in.SiteID, &out.SiteID
-		*out = new(float64)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -1394,6 +1380,16 @@ func (in *LocationParameters) DeepCopyInto(out *LocationParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.SiteIDRef != nil {
+		in, out := &in.SiteIDRef, &out.SiteIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SiteIDSelector != nil {
+		in, out := &in.SiteIDSelector, &out.SiteIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Slug != nil {
 		in, out := &in.Slug, &out.Slug
 		*out = new(string)
@@ -1414,6 +1410,16 @@ func (in *LocationParameters) DeepCopyInto(out *LocationParameters) {
 		in, out := &in.TenantID, &out.TenantID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.TenantIDRef != nil {
+		in, out := &in.TenantIDRef, &out.TenantIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TenantIDSelector != nil {
+		in, out := &in.TenantIDSelector, &out.TenantIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -1905,10 +1911,30 @@ func (in *PrefixParameters) DeepCopyInto(out *PrefixParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.RoleIDRef != nil {
+		in, out := &in.RoleIDRef, &out.RoleIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RoleIDSelector != nil {
+		in, out := &in.RoleIDSelector, &out.RoleIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SiteID != nil {
 		in, out := &in.SiteID, &out.SiteID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.SiteIDRef != nil {
+		in, out := &in.SiteIDRef, &out.SiteIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SiteIDSelector != nil {
+		in, out := &in.SiteIDSelector, &out.SiteIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
@@ -1931,15 +1957,45 @@ func (in *PrefixParameters) DeepCopyInto(out *PrefixParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.TenantIDRef != nil {
+		in, out := &in.TenantIDRef, &out.TenantIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TenantIDSelector != nil {
+		in, out := &in.TenantIDSelector, &out.TenantIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VlanID != nil {
 		in, out := &in.VlanID, &out.VlanID
 		*out = new(float64)
 		**out = **in
 	}
+	if in.VlanIDRef != nil {
+		in, out := &in.VlanIDRef, &out.VlanIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VlanIDSelector != nil {
+		in, out := &in.VlanIDSelector, &out.VlanIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VrfID != nil {
 		in, out := &in.VrfID, &out.VrfID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.VrfIDRef != nil {
+		in, out := &in.VrfIDRef, &out.VrfIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VrfIDSelector != nil {
+		in, out := &in.VrfIDSelector, &out.VrfIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -2817,6 +2873,16 @@ func (in *ServiceParameters) DeepCopyInto(out *ServiceParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.VirtualMachineIDRef != nil {
+		in, out := &in.VirtualMachineIDRef, &out.VirtualMachineIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VirtualMachineIDSelector != nil {
+		in, out := &in.VirtualMachineIDSelector, &out.VirtualMachineIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ServiceParameters.
@@ -3483,6 +3549,16 @@ func (in *TenantParameters) DeepCopyInto(out *TenantParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.GroupIDRef != nil {
+		in, out := &in.GroupIDRef, &out.GroupIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.GroupIDSelector != nil {
+		in, out := &in.GroupIDSelector, &out.GroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Slug != nil {
 		in, out := &in.Slug, &out.Slug
 		*out = new(string)
@@ -3866,7 +3942,7 @@ func (in *VlanObservation) DeepCopyInto(out *VlanObservation) {
 	}
 	if in.GroupID != nil {
 		in, out := &in.GroupID, &out.GroupID
-		*out = new(float64)
+		*out = new(string)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -3876,12 +3952,12 @@ func (in *VlanObservation) DeepCopyInto(out *VlanObservation) {
 	}
 	if in.RoleID != nil {
 		in, out := &in.RoleID, &out.RoleID
-		*out = new(float64)
+		*out = new(string)
 		**out = **in
 	}
 	if in.SiteID != nil {
 		in, out := &in.SiteID, &out.SiteID
-		*out = new(float64)
+		*out = new(string)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -3902,7 +3978,7 @@ func (in *VlanObservation) DeepCopyInto(out *VlanObservation) {
 	}
 	if in.TenantID != nil {
 		in, out := &in.TenantID, &out.TenantID
-		*out = new(float64)
+		*out = new(string)
 		**out = **in
 	}
 	if in.Vid != nil {
@@ -3930,21 +4006,6 @@ func (in *VlanParameters) DeepCopyInto(out *VlanParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.GroupID != nil {
-		in, out := &in.GroupID, &out.GroupID
-		*out = new(float64)
-		**out = **in
-	}
-	if in.RoleID != nil {
-		in, out := &in.RoleID, &out.RoleID
-		*out = new(float64)
-		**out = **in
-	}
-	if in.SiteID != nil {
-		in, out := &in.SiteID, &out.SiteID
-		*out = new(float64)
-		**out = **in
-	}
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
 		*out = new(string)
@@ -3960,11 +4021,6 @@ func (in *VlanParameters) DeepCopyInto(out *VlanParameters) {
 				**out = **in
 			}
 		}
-	}
-	if in.TenantID != nil {
-		in, out := &in.TenantID, &out.TenantID
-		*out = new(float64)
-		**out = **in
 	}
 	if in.Vid != nil {
 		in, out := &in.Vid, &out.Vid
@@ -4140,6 +4196,16 @@ func (in *VrfParameters) DeepCopyInto(out *VrfParameters) {
 		in, out := &in.TenantID, &out.TenantID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.TenantIDRef != nil {
+		in, out := &in.TenantIDRef, &out.TenantIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TenantIDSelector != nil {
+		in, out := &in.TenantIDSelector, &out.TenantIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 

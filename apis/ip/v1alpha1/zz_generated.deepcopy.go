@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -171,6 +172,16 @@ func (in *AddressParameters) DeepCopyInto(out *AddressParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.InterfaceIDRef != nil {
+		in, out := &in.InterfaceIDRef, &out.InterfaceIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.InterfaceIDSelector != nil {
+		in, out := &in.InterfaceIDSelector, &out.InterfaceIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ObjectType != nil {
 		in, out := &in.ObjectType, &out.ObjectType
 		*out = new(string)
@@ -206,6 +217,16 @@ func (in *AddressParameters) DeepCopyInto(out *AddressParameters) {
 		in, out := &in.VrfID, &out.VrfID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.VrfIDRef != nil {
+		in, out := &in.VrfIDRef, &out.VrfIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VrfIDSelector != nil {
+		in, out := &in.VrfIDSelector, &out.VrfIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -396,6 +417,16 @@ func (in *IPRangeParameters) DeepCopyInto(out *IPRangeParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.RoleIDRef != nil {
+		in, out := &in.RoleIDRef, &out.RoleIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RoleIDSelector != nil {
+		in, out := &in.RoleIDSelector, &out.RoleIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.StartAddress != nil {
 		in, out := &in.StartAddress, &out.StartAddress
 		*out = new(string)
@@ -422,10 +453,30 @@ func (in *IPRangeParameters) DeepCopyInto(out *IPRangeParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.TenantIDRef != nil {
+		in, out := &in.TenantIDRef, &out.TenantIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TenantIDSelector != nil {
+		in, out := &in.TenantIDSelector, &out.TenantIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VrfID != nil {
 		in, out := &in.VrfID, &out.VrfID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.VrfIDRef != nil {
+		in, out := &in.VrfIDRef, &out.VrfIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VrfIDSelector != nil {
+		in, out := &in.VrfIDSelector, &out.VrfIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 

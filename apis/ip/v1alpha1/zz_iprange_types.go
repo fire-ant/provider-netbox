@@ -42,8 +42,18 @@ type IPRangeParameters struct {
 	// +kubebuilder:validation:Optional
 	EndAddress *string `json:"endAddress,omitempty" tf:"end_address,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Role
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
+
+	// Reference to a Role in ipam to populate roleId.
+	// +kubebuilder:validation:Optional
+	RoleIDRef *v1.Reference `json:"roleIdRef,omitempty" tf:"-"`
+
+	// Selector for a Role in ipam to populate roleId.
+	// +kubebuilder:validation:Optional
+	RoleIDSelector *v1.Selector `json:"roleIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	StartAddress *string `json:"startAddress,omitempty" tf:"start_address,omitempty"`
@@ -55,11 +65,31 @@ type IPRangeParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Tenant
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
+	// Reference to a Tenant in netbox to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDRef *v1.Reference `json:"tenantIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tenant in netbox to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Vrf
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VrfID *float64 `json:"vrfId,omitempty" tf:"vrf_id,omitempty"`
+
+	// Reference to a Vrf in netbox to populate vrfId.
+	// +kubebuilder:validation:Optional
+	VrfIDRef *v1.Reference `json:"vrfIdRef,omitempty" tf:"-"`
+
+	// Selector for a Vrf in netbox to populate vrfId.
+	// +kubebuilder:validation:Optional
+	VrfIDSelector *v1.Selector `json:"vrfIdSelector,omitempty" tf:"-"`
 }
 
 // IPRangeSpec defines the desired state of IPRange
