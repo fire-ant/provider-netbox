@@ -1,7 +1,7 @@
 apiVersion: device.netbox.upbound.io/v1alpha1
 kind: Role
 metadata:
-  name: test-role
+  name: rolea
 spec:
   forProvider:
     colorHex: ff00ff

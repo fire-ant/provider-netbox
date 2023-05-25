@@ -6,15 +6,16 @@ spec:
   deletionPolicy: Delete
   forProvider:
     comments: "this is a test"
+    roleIdRef:
+      name: rolea
+    siteIdRef:
+      name: sitea
     deviceTypeId: 2
-    roleId: 1
     serial: MYSERIAL
-    siteId: 1
     status: active
     tags: 
       - leaf
       - tor
-    tenantId: 1
     comments: "this is a test-device"
   providerConfigRef:
     name: default
