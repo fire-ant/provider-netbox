@@ -1,21 +1,12 @@
-apiVersion: netbox.netbox.upbound.io/v1alpha1
-kind: Device
+apiVersion: primary.netbox.upbound.io/v1alpha1
+kind: IP
 metadata: {}
 spec:
   deletionPolicy: string
   forProvider:
-    clusterId: number
-    comments: string
-    customFields:
-    locationId: number
-    platformId: number
-    rackFace: string
-    rackId: number
-    rackPosition: number
-    serial: string
-    status: string
-    tags: ["string"]
-    tenantId: number
+    ipAddressId: number
+    ipAddressVersion: number
+    virtualMachineId: number
   managementPolicy: string
   providerConfigRef:
     name: string
@@ -43,24 +34,10 @@ spec:
     namespace: string
 status:
   atProvider:
-    clusterId: number
-    comments: string
-    customFields:
-    deviceTypeId: string
     id: string
-    locationId: number
-    platformId: number
-    primaryIpv4: number
-    primaryIpv6: number
-    rackFace: string
-    rackId: number
-    rackPosition: number
-    roleId: string
-    serial: string
-    siteId: string
-    status: string
-    tags: ["string"]
-    tenantId: number
+    ipAddressId: number
+    ipAddressVersion: number
+    virtualMachineId: number
   conditions:
   - lastTransitionTime: string
     message: string

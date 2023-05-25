@@ -1,21 +1,32 @@
 apiVersion: netbox.netbox.upbound.io/v1alpha1
-kind: Device
+kind: Rack
 metadata: {}
 spec:
   deletionPolicy: string
   forProvider:
-    clusterId: number
+    assetTag: string
     comments: string
     customFields:
+    descUnits: true
+    description: string
+    facilityId: string
     locationId: number
-    platformId: number
-    rackFace: string
-    rackId: number
-    rackPosition: number
+    maxWeight: number
+    mountingDepth: number
+    outerDepth: number
+    outerUnit: string
+    outerWidth: number
+    roleId: number
     serial: string
+    siteId: number
     status: string
     tags: ["string"]
     tenantId: number
+    type: string
+    uHeight: number
+    weight: number
+    weightUnit: string
+    width: number
   managementPolicy: string
   providerConfigRef:
     name: string
@@ -43,24 +54,30 @@ spec:
     namespace: string
 status:
   atProvider:
-    clusterId: number
+    assetTag: string
     comments: string
     customFields:
-    deviceTypeId: string
+    descUnits: true
+    description: string
+    facilityId: string
     id: string
     locationId: number
-    platformId: number
-    primaryIpv4: number
-    primaryIpv6: number
-    rackFace: string
-    rackId: number
-    rackPosition: number
-    roleId: string
+    maxWeight: number
+    mountingDepth: number
+    outerDepth: number
+    outerUnit: string
+    outerWidth: number
+    roleId: number
     serial: string
-    siteId: string
+    siteId: number
     status: string
     tags: ["string"]
     tenantId: number
+    type: string
+    uHeight: number
+    weight: number
+    weightUnit: string
+    width: number
   conditions:
   - lastTransitionTime: string
     message: string

@@ -1,31 +1,22 @@
-apiVersion: device.netbox.upbound.io/v1alpha1
-kind: DeviceInterface
+apiVersion: virtual.netbox.upbound.io/v1alpha1
+kind: Machine
 metadata: {}
 spec:
   deletionPolicy: string
   forProvider:
-    description: string
+    clusterId: number
+    comments: string
+    customFields:
     deviceId: number
-    deviceIdRef:
-      name: string
-      policy:
-        resolution: string
-        resolve: string
-    deviceIdSelector:
-      matchControllerRef: true
-      matchLabels:
-      policy:
-        resolution: string
-        resolve: string
-    enabled: true
-    macAddress: string
-    mgmtonly: true
-    mode: string
-    mtu: number
-    taggedVlans: [number]
+    diskSizeGb: number
+    memoryMb: number
+    platformId: number
+    roleId: number
+    siteId: number
+    status: string
     tags: ["string"]
-    type: string
-    untaggedVlan: number
+    tenantId: number
+    vcpus: number
   managementPolicy: string
   providerConfigRef:
     name: string
@@ -53,18 +44,22 @@ spec:
     namespace: string
 status:
   atProvider:
-    description: string
+    clusterId: number
+    comments: string
+    customFields:
     deviceId: number
-    enabled: true
+    diskSizeGb: number
     id: string
-    macAddress: string
-    mgmtonly: true
-    mode: string
-    mtu: number
-    taggedVlans: [number]
+    memoryMb: number
+    platformId: number
+    primaryIpv4: number
+    primaryIpv6: number
+    roleId: number
+    siteId: number
+    status: string
     tags: ["string"]
-    type: string
-    untaggedVlan: number
+    tenantId: number
+    vcpus: number
   conditions:
   - lastTransitionTime: string
     message: string

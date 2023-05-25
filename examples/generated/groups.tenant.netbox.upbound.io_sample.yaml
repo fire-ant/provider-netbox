@@ -1,31 +1,12 @@
-apiVersion: device.netbox.upbound.io/v1alpha1
-kind: DeviceInterface
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Group
 metadata: {}
 spec:
   deletionPolicy: string
   forProvider:
     description: string
-    deviceId: number
-    deviceIdRef:
-      name: string
-      policy:
-        resolution: string
-        resolve: string
-    deviceIdSelector:
-      matchControllerRef: true
-      matchLabels:
-      policy:
-        resolution: string
-        resolve: string
-    enabled: true
-    macAddress: string
-    mgmtonly: true
-    mode: string
-    mtu: number
-    taggedVlans: [number]
-    tags: ["string"]
-    type: string
-    untaggedVlan: number
+    parentId: number
+    slug: string
   managementPolicy: string
   providerConfigRef:
     name: string
@@ -54,17 +35,9 @@ spec:
 status:
   atProvider:
     description: string
-    deviceId: number
-    enabled: true
     id: string
-    macAddress: string
-    mgmtonly: true
-    mode: string
-    mtu: number
-    taggedVlans: [number]
-    tags: ["string"]
-    type: string
-    untaggedVlan: number
+    parentId: number
+    slug: string
   conditions:
   - lastTransitionTime: string
     message: string

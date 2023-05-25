@@ -1,21 +1,13 @@
-apiVersion: netbox.netbox.upbound.io/v1alpha1
-kind: Device
+apiVersion: contact.netbox.upbound.io/v1alpha1
+kind: Assignment
 metadata: {}
 spec:
   deletionPolicy: string
   forProvider:
-    clusterId: number
-    comments: string
-    customFields:
-    locationId: number
-    platformId: number
-    rackFace: string
-    rackId: number
-    rackPosition: number
-    serial: string
-    status: string
-    tags: ["string"]
-    tenantId: number
+    contactId: number
+    contentType: string
+    objectId: number
+    roleId: number
   managementPolicy: string
   providerConfigRef:
     name: string
@@ -43,24 +35,11 @@ spec:
     namespace: string
 status:
   atProvider:
-    clusterId: number
-    comments: string
-    customFields:
-    deviceTypeId: string
+    contactId: number
+    contentType: string
     id: string
-    locationId: number
-    platformId: number
-    primaryIpv4: number
-    primaryIpv6: number
-    rackFace: string
-    rackId: number
-    rackPosition: number
-    roleId: string
-    serial: string
-    siteId: string
-    status: string
-    tags: ["string"]
-    tenantId: number
+    objectId: number
+    roleId: number
   conditions:
   - lastTransitionTime: string
     message: string
