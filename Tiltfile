@@ -114,6 +114,7 @@ def gitops_ui():
         )
 crossplane()
 netbox()
+#  test
 # zot()
 # flux_install()
 # gitops_ui()
