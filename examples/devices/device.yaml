@@ -1,0 +1,21 @@
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Device
+metadata:
+  name: test-device
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    comments: "this is a test"
+    roleIdRef:
+      name: rolea
+    siteIdRef:
+      name: sitea
+    deviceTypeId: 2
+    serial: MYSERIAL
+    status: active
+    tags: 
+      - leaf
+      - tor
+    comments: "this is a test-device"
+  providerConfigRef:
+    name: default

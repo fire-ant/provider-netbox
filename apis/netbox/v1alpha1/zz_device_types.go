@@ -20,7 +20,7 @@ type DeviceObservation struct {
 
 	CustomFields map[string]*string `json:"customFields,omitempty" tf:"custom_fields,omitempty"`
 
-	DeviceTypeID *float64 `json:"deviceTypeId,omitempty" tf:"device_type_id,omitempty"`
+	DeviceTypeID *string `json:"deviceTypeId,omitempty" tf:"device_type_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -38,11 +38,11 @@ type DeviceObservation struct {
 
 	RackPosition *float64 `json:"rackPosition,omitempty" tf:"rack_position,omitempty"`
 
-	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
+	RoleID *string `json:"roleId,omitempty" tf:"role_id,omitempty"`
 
 	Serial *string `json:"serial,omitempty" tf:"serial,omitempty"`
 
-	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
+	SiteID *string `json:"siteId,omitempty" tf:"site_id,omitempty"`
 
 	// Defaults to `active`.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
@@ -64,9 +64,6 @@ type DeviceParameters struct {
 	CustomFields map[string]*string `json:"customFields,omitempty" tf:"custom_fields,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	DeviceTypeID *float64 `json:"deviceTypeId,omitempty" tf:"device_type_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
 	LocationID *float64 `json:"locationId,omitempty" tf:"location_id,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -82,13 +79,7 @@ type DeviceParameters struct {
 	RackPosition *float64 `json:"rackPosition,omitempty" tf:"rack_position,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
 	Serial *string `json:"serial,omitempty" tf:"serial,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
 
 	// Defaults to `active`.
 	// +kubebuilder:validation:Optional
@@ -125,11 +116,8 @@ type DeviceStatus struct {
 type Device struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.deviceTypeId)",message="deviceTypeId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.roleId)",message="roleId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.siteId)",message="siteId is a required parameter"
-	Spec   DeviceSpec   `json:"spec"`
-	Status DeviceStatus `json:"status,omitempty"`
+	Spec              DeviceSpec   `json:"spec"`
+	Status            DeviceStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

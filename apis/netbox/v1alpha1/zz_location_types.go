@@ -37,8 +37,18 @@ type LocationParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
+
+	// Reference to a Site in netbox to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDRef *v1.Reference `json:"siteIdRef,omitempty" tf:"-"`
+
+	// Selector for a Site in netbox to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDSelector *v1.Selector `json:"siteIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
@@ -46,8 +56,18 @@ type LocationParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Tenant
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
+
+	// Reference to a Tenant in netbox to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDRef *v1.Reference `json:"tenantIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tenant in netbox to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 }
 
 // LocationSpec defines the desired state of Location

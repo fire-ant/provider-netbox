@@ -1,0 +1,86 @@
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Rack
+metadata: {}
+spec:
+  deletionPolicy: string
+  forProvider:
+    assetTag: string
+    comments: string
+    customFields:
+    descUnits: true
+    description: string
+    facilityId: string
+    locationId: number
+    maxWeight: number
+    mountingDepth: number
+    outerDepth: number
+    outerUnit: string
+    outerWidth: number
+    roleId: number
+    serial: string
+    siteId: number
+    status: string
+    tags: ["string"]
+    tenantId: number
+    type: string
+    uHeight: number
+    weight: number
+    weightUnit: string
+    width: number
+  managementPolicy: string
+  providerConfigRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  providerRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  publishConnectionDetailsTo:
+    configRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    metadata:
+      annotations:
+      labels:
+      type: string
+    name: string
+  writeConnectionSecretToRef:
+    name: string
+    namespace: string
+status:
+  atProvider:
+    assetTag: string
+    comments: string
+    customFields:
+    descUnits: true
+    description: string
+    facilityId: string
+    id: string
+    locationId: number
+    maxWeight: number
+    mountingDepth: number
+    outerDepth: number
+    outerUnit: string
+    outerWidth: number
+    roleId: number
+    serial: string
+    siteId: number
+    status: string
+    tags: ["string"]
+    tenantId: number
+    type: string
+    uHeight: number
+    weight: number
+    weightUnit: string
+    width: number
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string

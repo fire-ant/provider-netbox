@@ -65,13 +65,16 @@ The repository includes a devcontainer setup which can act as the sandbox enviro
 
 deploy a cluster:
 ```
-kind create cluster
+kind create cluster --name local-dev
 ```
 
 change kubeconfig to use internal alias
 ```
-kind export kubeconfig --internal
+kind export kubeconfig --name local-dev --internal
 ```
 
+
+use cty for crds:
+./cty generate -c package/crds/netbox.netbox.upbound.io_devices.yaml -o examples/generated/
 
 

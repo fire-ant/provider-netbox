@@ -9,6 +9,9 @@ def netbox():
         "postgresql.auth.postgresPassword=mypgsecret!",
         "postgresql.auth.Password=mypgsecret!",
         "redis.auth.password=myredissecret!",
+        "image.tag=v3.5.2",
+        "timeZone=GMT",
+        "dateTimeFormat=H:i:s",
     ]
         # "superuser.name=admin",
         # "superuser.password=admin",
@@ -50,17 +53,18 @@ def zot():
             )
 def crossplane():
     zvals=[]
-    helm_remote('crossplane',
-        namespace="crossplane-system",
-        create_namespace=True,
-        set=zvals,
-        repo_name='crossplane-stable',
-        repo_url='https://charts.crossplane.io/stable'
-        )
+    local_resource('crossplane',cmd='up uxp install -n upbound-system || true')
 #   install crds
     p_resources = listdir("package/crds", recursive=True)
     for resource in p_resources:
         k8s_yaml(resource)
+#  build and install provider
+    local_resource(
+        "build and install netbox-provider",
+        cmd="make build local.xpkg.deploy.provider.provider-netbox",
+        allow_parallel=True,
+        resource_deps=['crossplane']
+        )
 
 def flux_install(
     base_components="source-controller,kustomize-controller,helm-controller",
@@ -110,6 +114,7 @@ def gitops_ui():
         )
 crossplane()
 netbox()
-zot()
+#  test
+# zot()
 # flux_install()
 # gitops_ui()

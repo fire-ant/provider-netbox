@@ -22,7 +22,9 @@
 			"helm": "3.12.0"
 		},
 		"ghcr.io/jsburckhardt/devcontainer-features/flux:1": {
-
+		},
+		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
+			"command": "curl -sL https://cli.upbound.io | sh && sudo mv up /usr/local/bin/"
 		}
 	},
 	"runArgs": [
@@ -35,5 +37,14 @@
 		"TILT_DISABLE_ANALYTICS": "true",
 		"DO_NOT_TRACK": "1"
 	},
-	"remoteUser": "root"
+	"remoteUser": "root",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"upboundio.upbound@0.4.0",
+				"golang.go@0.38.0",
+				"tilt-dev.tiltfile@0.0.3"
+			]
+		}
+	}
 }

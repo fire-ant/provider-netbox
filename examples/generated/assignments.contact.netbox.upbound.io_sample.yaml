@@ -1,0 +1,48 @@
+apiVersion: contact.netbox.upbound.io/v1alpha1
+kind: Assignment
+metadata: {}
+spec:
+  deletionPolicy: string
+  forProvider:
+    contactId: number
+    contentType: string
+    objectId: number
+    roleId: number
+  managementPolicy: string
+  providerConfigRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  providerRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  publishConnectionDetailsTo:
+    configRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    metadata:
+      annotations:
+      labels:
+      type: string
+    name: string
+  writeConnectionSecretToRef:
+    name: string
+    namespace: string
+status:
+  atProvider:
+    contactId: number
+    contentType: string
+    id: string
+    objectId: number
+    roleId: number
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string

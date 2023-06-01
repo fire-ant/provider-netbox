@@ -1,0 +1,65 @@
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Location
+metadata:
+  name: green-a
+spec:
+  forProvider:
+    description: production
+    siteIdRef:
+      name: green
+    tenantIdRef:
+      name: tenantgreen
+    tags:
+      - new
+      - prod
+    
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Location
+metadata:
+  name: blue-a
+spec:
+  forProvider:
+    description: staging
+    siteIdRef:
+      name: blue
+    tenantIdRef:
+      name: tenantblue
+    tags:
+      - old
+      - qa 
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Location
+metadata:
+  name: red-c
+spec:
+  forProvider:
+    description: development
+    siteIdRef:
+      name: red
+    tenantIdRef:
+      name: tenantred
+    tags:
+      - new
+      - secondary
+      - dev
+    
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Location
+metadata:
+  name: red-a
+spec:
+  forProvider:
+    description: development
+    siteIdRef:
+      name: red
+    tenantIdRef:
+      name: tenantred
+    tags:
+      - new
+      - primary
+      - dev
+    

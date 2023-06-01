@@ -1,0 +1,39 @@
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: green
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: blue
+spec:
+  forProvider:
+    description: staging
+    facility: staging-closet
+    status: active
+    tags:
+      - old
+      - qa
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: red
+spec:
+  forProvider:
+    description: development
+    facility: dev-office
+    status: active
+    tags:
+      - new
+      - dev

@@ -1,0 +1,68 @@
+apiVersion: virtual.netbox.upbound.io/v1alpha1
+kind: Machine
+metadata: {}
+spec:
+  deletionPolicy: string
+  forProvider:
+    clusterId: number
+    comments: string
+    customFields:
+    deviceId: number
+    diskSizeGb: number
+    memoryMb: number
+    platformId: number
+    roleId: number
+    siteId: number
+    status: string
+    tags: ["string"]
+    tenantId: number
+    vcpus: number
+  managementPolicy: string
+  providerConfigRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  providerRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  publishConnectionDetailsTo:
+    configRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    metadata:
+      annotations:
+      labels:
+      type: string
+    name: string
+  writeConnectionSecretToRef:
+    name: string
+    namespace: string
+status:
+  atProvider:
+    clusterId: number
+    comments: string
+    customFields:
+    deviceId: number
+    diskSizeGb: number
+    id: string
+    memoryMb: number
+    platformId: number
+    primaryIpv4: number
+    primaryIpv6: number
+    roleId: number
+    siteId: number
+    status: string
+    tags: ["string"]
+    tenantId: number
+    vcpus: number
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string

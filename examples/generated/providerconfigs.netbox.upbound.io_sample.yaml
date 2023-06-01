@@ -1,0 +1,22 @@
+apiVersion: netbox.upbound.io/v1beta1
+kind: ProviderConfig
+metadata: {}
+spec:
+  credentials:
+    env:
+      name: string
+    fs:
+      path: string
+    secretRef:
+      key: string
+      name: string
+      namespace: string
+    source: string
+status:
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string
+  users: 1

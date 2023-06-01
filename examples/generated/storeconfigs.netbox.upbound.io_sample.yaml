@@ -1,0 +1,56 @@
+apiVersion: netbox.upbound.io/v1alpha1
+kind: StoreConfig
+metadata: {}
+spec:
+  defaultScope: string
+  kubernetes:
+    auth:
+      env:
+        name: string
+      fs:
+        path: string
+      secretRef:
+        key: string
+        name: string
+        namespace: string
+      source: string
+  plugin:
+    configRef:
+      apiVersion: netbox.upbound.io/v1alpha1
+      kind: StoreConfig
+      name: string
+    endpoint: string
+  type: string
+  vault:
+    auth:
+      method: string
+      token:
+        env:
+          name: string
+        fs:
+          path: string
+        secretRef:
+          key: string
+          name: string
+          namespace: string
+        source: string
+    caBundle:
+      env:
+        name: string
+      fs:
+        path: string
+      secretRef:
+        key: string
+        name: string
+        namespace: string
+      source: string
+    mountPath: string
+    server: string
+    version: string
+status:
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string
