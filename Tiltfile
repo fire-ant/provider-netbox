@@ -31,7 +31,7 @@ def netbox():
                 link('localhost:8888', 'http://localhost:8888')
             ]
             )
-    k8s_yaml('test/manifests/netbox-import-job.yaml')
+    k8s_yaml('patch/manifests/netbox-import-job.yaml')
     k8s_resource('netbox-import',resource_deps=['netbox'])
 
 
