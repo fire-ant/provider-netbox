@@ -25,13 +25,14 @@
 		},
 			"ghcr.io/devcontainers-contrib/features/gh-cli:1": {},
 			"ghcr.io/devcontainers-contrib/features/bash-command:1": {
-			"command": "curl -sL https://cli.upbound.io | sh && sudo mv up /usr/local/bin/ && curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh && mv kubectl-crossplane /usr/local/bin && go install golang.org/x/tools/cmd/goimports@latest"
+			"command": "curl -sL https://cli.upbound.io | sh && sudo mv up /usr/local/bin/ && curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh && mv kubectl-crossplane /usr/local/bin"
 		}
 	},
 	"runArgs": [
 		"--network=kind-sandbox"
 	],
 	"initializeCommand": "docker network create kind-sandbox || true",
+	"postCreateCommand": "go install golang.org/x/tools/cmd/goimports@latest",
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
 		"KIND_EXPERIMENTAL_DOCKER_NETWORK": "kind-sandbox",
