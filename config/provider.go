@@ -11,50 +11,50 @@ import (
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
 	"github.com/fire-ant/provider-netbox/config/circuits/circuit"
-	"github.com/fire-ant/provider-netbox/config/circuits/circuit_provider"
-	"github.com/fire-ant/provider-netbox/config/circuits/circuit_termination"
-	"github.com/fire-ant/provider-netbox/config/circuits/circuit_type"
+	"github.com/fire-ant/provider-netbox/config/circuits/circuitprovider"
+	"github.com/fire-ant/provider-netbox/config/circuits/circuittermination"
+	"github.com/fire-ant/provider-netbox/config/circuits/circuittype"
 	"github.com/fire-ant/provider-netbox/config/dcim/device"
-	"github.com/fire-ant/provider-netbox/config/dcim/device_interface"
-	"github.com/fire-ant/provider-netbox/config/dcim/device_role"
-	"github.com/fire-ant/provider-netbox/config/dcim/device_type"
+	"github.com/fire-ant/provider-netbox/config/dcim/deviceinterface"
+	"github.com/fire-ant/provider-netbox/config/dcim/devicerole"
+	"github.com/fire-ant/provider-netbox/config/dcim/devicetype"
 	"github.com/fire-ant/provider-netbox/config/dcim/location"
 	"github.com/fire-ant/provider-netbox/config/dcim/manufacturer"
 	"github.com/fire-ant/provider-netbox/config/dcim/platform"
 	"github.com/fire-ant/provider-netbox/config/dcim/rack"
-	"github.com/fire-ant/provider-netbox/config/dcim/rack_reservation"
-	"github.com/fire-ant/provider-netbox/config/dcim/rack_role"
+	"github.com/fire-ant/provider-netbox/config/dcim/rackreservation"
+	"github.com/fire-ant/provider-netbox/config/dcim/rackrole"
 	"github.com/fire-ant/provider-netbox/config/dcim/region"
 	"github.com/fire-ant/provider-netbox/config/dcim/site"
-	"github.com/fire-ant/provider-netbox/config/dcim/site_group"
-	"github.com/fire-ant/provider-netbox/config/extras/custom_field"
+	"github.com/fire-ant/provider-netbox/config/dcim/sitegroup"
+	"github.com/fire-ant/provider-netbox/config/extras/customfield"
 	"github.com/fire-ant/provider-netbox/config/extras/tag"
 	"github.com/fire-ant/provider-netbox/config/ipam/aggregate"
 	"github.com/fire-ant/provider-netbox/config/ipam/asn"
-	"github.com/fire-ant/provider-netbox/config/ipam/available_ip_address"
-	"github.com/fire-ant/provider-netbox/config/ipam/available_prefix"
-	"github.com/fire-ant/provider-netbox/config/ipam/ip_address"
-	"github.com/fire-ant/provider-netbox/config/ipam/ip_range"
-	"github.com/fire-ant/provider-netbox/config/ipam/ipam_role"
+	"github.com/fire-ant/provider-netbox/config/ipam/availableipaddress"
+	"github.com/fire-ant/provider-netbox/config/ipam/availableprefix"
+	"github.com/fire-ant/provider-netbox/config/ipam/ipaddress"
+	"github.com/fire-ant/provider-netbox/config/ipam/ipamrole"
+	"github.com/fire-ant/provider-netbox/config/ipam/iprange"
 	"github.com/fire-ant/provider-netbox/config/ipam/prefix"
 	"github.com/fire-ant/provider-netbox/config/ipam/rir"
-	"github.com/fire-ant/provider-netbox/config/ipam/route_target"
+	"github.com/fire-ant/provider-netbox/config/ipam/routetarget"
 	"github.com/fire-ant/provider-netbox/config/ipam/service"
 	"github.com/fire-ant/provider-netbox/config/ipam/vlan"
-	"github.com/fire-ant/provider-netbox/config/ipam/vlan_group"
+	"github.com/fire-ant/provider-netbox/config/ipam/vlangroup"
 	"github.com/fire-ant/provider-netbox/config/ipam/vrf"
 	"github.com/fire-ant/provider-netbox/config/tenancy/contact"
-	"github.com/fire-ant/provider-netbox/config/tenancy/contact_assignment"
-	"github.com/fire-ant/provider-netbox/config/tenancy/contact_group"
+	"github.com/fire-ant/provider-netbox/config/tenancy/contactassignment"
+	"github.com/fire-ant/provider-netbox/config/tenancy/contactgroup"
 	"github.com/fire-ant/provider-netbox/config/tenancy/tenant"
-	"github.com/fire-ant/provider-netbox/config/tenancy/tenant_group"
+	"github.com/fire-ant/provider-netbox/config/tenancy/tenantgroup"
 	"github.com/fire-ant/provider-netbox/config/tenancy/tenants"
 	"github.com/fire-ant/provider-netbox/config/virtualization/cluster"
-	"github.com/fire-ant/provider-netbox/config/virtualization/cluster_group"
-	"github.com/fire-ant/provider-netbox/config/virtualization/cluster_type"
-	"github.com/fire-ant/provider-netbox/config/virtualization/primary_ip"
-	"github.com/fire-ant/provider-netbox/config/virtualization/virt_interface"
-	"github.com/fire-ant/provider-netbox/config/virtualization/virtual_machine"
+	"github.com/fire-ant/provider-netbox/config/virtualization/clustergroup"
+	"github.com/fire-ant/provider-netbox/config/virtualization/clustertype"
+	"github.com/fire-ant/provider-netbox/config/virtualization/primaryip"
+	"github.com/fire-ant/provider-netbox/config/virtualization/virtinterface"
+	"github.com/fire-ant/provider-netbox/config/virtualization/virtualmachine"
 )
 
 const (
@@ -79,51 +79,51 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
-		circuit_type.Configure,
+		circuittype.Configure,
 		circuit.Configure,
-		circuit_provider.Configure,
-		circuit_termination.Configure,
+		circuitprovider.Configure,
+		circuittermination.Configure,
 		device.Configure,
-		device_role.Configure,
-		device_type.Configure,
-		device_interface.Configure,
+		devicerole.Configure,
+		devicetype.Configure,
+		deviceinterface.Configure,
 		location.Configure,
 		manufacturer.Configure,
 		platform.Configure,
 		rack.Configure,
-		rack_reservation.Configure,
-		rack_role.Configure,
+		rackreservation.Configure,
+		rackrole.Configure,
 		region.Configure,
 		site.Configure,
-		site_group.Configure,
-		custom_field.Configure,
+		sitegroup.Configure,
+		customfield.Configure,
 		tag.Configure,
 		aggregate.Configure,
 		asn.Configure,
-		available_ip_address.Configure,
-		available_prefix.Configure,
-		ip_address.Configure,
-		ip_range.Configure,
-		ipam_role.Configure,
+		availableipaddress.Configure,
+		availableprefix.Configure,
+		ipaddress.Configure,
+		iprange.Configure,
+		ipamrole.Configure,
 		prefix.Configure,
 		rir.Configure,
-		route_target.Configure,
+		routetarget.Configure,
 		service.Configure,
 		vlan.Configure,
-		vlan_group.Configure,
+		vlangroup.Configure,
 		vrf.Configure,
 		contact.Configure,
-		contact_assignment.Configure,
-		contact_group.Configure,
+		contactassignment.Configure,
+		contactgroup.Configure,
 		tenant.Configure,
-		tenant_group.Configure,
+		tenantgroup.Configure,
 		tenants.Configure,
 		cluster.Configure,
-		cluster_group.Configure,
-		cluster_type.Configure,
-		virt_interface.Configure,
-		primary_ip.Configure,
-		virtual_machine.Configure,
+		clustergroup.Configure,
+		clustertype.Configure,
+		virtinterface.Configure,
+		primaryip.Configure,
+		virtualmachine.Configure,
 	} {
 		configure(pc)
 	}

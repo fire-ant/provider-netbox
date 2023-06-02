@@ -25,8 +25,12 @@ const (
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal netbox credentials as JSON"
-	ServerURL               = "server_url"
-	Token                   = "api_token"
+)
+const (
+	// ServerURL endpoint
+	ServerURL = "server_url"
+	// Token for endpoint
+	Token = "api_token"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
