@@ -232,7 +232,7 @@ jobs:
 
       - name: Login to Upbound
         uses: docker/login-action@v2
-        if: env.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR != ''
+        if: env.ROUPBOUND_MARKETPLACE_PUSH_BOT_USR != ''
         with:
           registry: xpkg.upbound.io
           username: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR }}
@@ -286,7 +286,7 @@ jobs:
           path: _output/**
 
       - name: Upbound Login
-        run: .cache/tools/linux_x86_64/$(ls .cache/tools/linux_x86_64| grep up-)
+        run: .cache/tools/linux_x86_64/$(ls .cache/tools/linux_x86_64| grep up-) login
         env:
           UP_TOKEN: "${{ secrets.UPBOUND_TOKEN }}"
 
