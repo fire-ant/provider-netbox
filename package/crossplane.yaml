@@ -2,5 +2,3 @@ apiVersion: meta.pkg.crossplane.io/v1alpha1
 kind: Provider
 metadata:
   name: provider-netbox
-spec:
-  package: "fire-ant/provider-netbox:main"

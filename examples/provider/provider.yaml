@@ -1,0 +1,6 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-netbox
+spec:
+  package: "ghcr.io/fire-ant/provider-netbox:v0.0.1"
