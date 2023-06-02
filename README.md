@@ -78,3 +78,7 @@ use cty for crds:
 ./cty generate -c package/crds/netbox.netbox.upbound.io_devices.yaml -o examples/generated/
 
 
+use for uptest e2e:
+```
+make uptest PROVIDER_NAME=provider-netbox UPTEST_EXAMPLE_LIST=examples/sites/site.yaml
+```
