@@ -288,7 +288,7 @@ jobs:
       - name: Upbound Login
         run: .cache/tools/linux_x86_64/$(ls .cache/tools/linux_x86_64| grep up-)
         env:
-          UP_TOKEN: "${{ UPBOUND_TOKEN }}"
+          UP_TOKEN: "${{ secrets.UPBOUND_TOKEN }}"
 
       - name: Publish Artifacts
         run: make publish BRANCH_NAME=${GITHUB_REF##*/}
