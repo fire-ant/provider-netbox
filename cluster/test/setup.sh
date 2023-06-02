@@ -2,8 +2,23 @@
 set -aeuo pipefail
 
 echo "Running setup.sh"
-echo "Creating cloud credential secret..."
-${KUBECTL} -n upbound-system create secret generic provider-secret --from-literal=credentials="{\"token\":\"${UPTEST_CLOUD_CREDENTIALS}\"}" --dry-run=client -o yaml | ${KUBECTL} apply -f -
+echo "Creating netbox credential secret..."
+
+cat <<EOF | ${KUBECTL} apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: provider-secret
+  namespace: upbound-system
+type: Opaque
+stringData:
+  credentials: |
+   {
+      "server_url": "http://netbox.netbox-system.svc.cluster.local",
+      "api_token": "0123456789abcdef0123456789abcdef01234567"
+    }
+EOF
+
 
 echo "Waiting until provider is healthy..."
 ${KUBECTL} wait provider.pkg --all --for condition=Healthy --timeout 5m
@@ -24,3 +39,4 @@ spec:
       name: provider-secret
       namespace: upbound-system
       key: credentials
+EOF
