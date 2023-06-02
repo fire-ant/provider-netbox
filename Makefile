@@ -51,6 +51,8 @@ GO_SUBDIRS += cmd internal apis
 
 KIND_VERSION = v0.15.0
 UP_VERSION = v0.14.0
+USE_HELM3 = true
+HELM3_VERSION = v3.9.1
 UP_CHANNEL = stable
 UPTEST_VERSION = v0.2.1
 -include build/makelib/k8s_tools.mk
@@ -163,7 +165,11 @@ run: go.build
 # End to End Testing
 CROSSPLANE_NAMESPACE = upbound-system
 -include build/makelib/local.xpkg.mk
+ifeq ($(USE_DEVCON),true)
+-include patch/controlplane.mk
+else
 -include build/makelib/controlplane.mk
+endif
 
 uptest: $(UPTEST) $(KUBECTL) $(KUTTL)
 	@$(INFO) running automated tests
@@ -176,7 +182,25 @@ local-deploy: build controlplane.up local.xpkg.deploy.provider.$(PROJECT_NAME)
 	@$(KUBECTL) -n upbound-system wait --for=condition=Available deployment --all --timeout=5m
 	@$(OK) running locally built provider
 
-e2e: local-deploy uptest
+tools: $(HELM) $(UPTEST) $(KUBECTL) $(KUTTL) $(TERRAFORM) $(KIND)
+
+netbox: 
+	@$(HELM) repo add bootc https://charts.boo.tc
+	@$(HELM) upgrade --install netbox --create-namespace -n netbox-system \
+	--set postgresql.auth.postgresPassword=mypgsecret! \
+  --set postgresql.auth.Password=mypgsecret! \
+  --set redis.auth.password=myredissecret! \
+  --set image.tag=v3.5.2 \
+  --set timeZone=GMT \
+  --set dateTimeFormat="H:i:s" \
+	--set version="4.0.1" \
+  bootc/netbox
+	@$(KUBECTL) -n netbox-system wait deployment netbox --for condition=Available --timeout=300s
+	@$(KUBECTL) -n netbox-system apply -f patch/manifests/netbox-import-job.yaml
+	@$(OK) running locally deployed netbox instance
+
+
+e2e: local-deploy netbox uptest
 
 .PHONY: cobertura submodules fallthrough run crds.clean
 

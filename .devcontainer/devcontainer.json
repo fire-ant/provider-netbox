@@ -36,7 +36,8 @@
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
 		"KIND_EXPERIMENTAL_DOCKER_NETWORK": "kind-sandbox",
 		"TILT_DISABLE_ANALYTICS": "true",
-		"DO_NOT_TRACK": "1"
+		"DO_NOT_TRACK": "1",
+    "USE_DEVCON": "true"
 	},
 	"remoteUser": "root",
 	"customizations": {
