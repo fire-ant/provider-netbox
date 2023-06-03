@@ -8,6 +8,7 @@ import (
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_site", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
+		r.ShortGroup = "dcim"
 		// if s, ok := r.TerraformResource.Schema["id"]; ok {
 		// 	s.Type = schema.TypeString
 		// 	s.Computed = true

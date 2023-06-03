@@ -1,0 +1,69 @@
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Device
+metadata: {}
+spec:
+  deletionPolicy: string
+  forProvider:
+    clusterId: number
+    comments: string
+    customFields:
+    locationId: number
+    platformId: number
+    rackFace: string
+    rackId: number
+    rackPosition: number
+    serial: string
+    status: string
+    tags: ["string"]
+    tenantId: number
+  managementPolicy: string
+  providerConfigRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  providerRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  publishConnectionDetailsTo:
+    configRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    metadata:
+      annotations:
+      labels:
+      type: string
+    name: string
+  writeConnectionSecretToRef:
+    name: string
+    namespace: string
+status:
+  atProvider:
+    clusterId: number
+    comments: string
+    customFields:
+    deviceTypeId: string
+    id: string
+    locationId: number
+    platformId: number
+    primaryIpv4: number
+    primaryIpv6: number
+    rackFace: string
+    rackId: number
+    rackPosition: number
+    roleId: string
+    serial: string
+    siteId: string
+    status: string
+    tags: ["string"]
+    tenantId: number
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string

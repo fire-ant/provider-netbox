@@ -9,8 +9,13 @@ import (
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_aggregate", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
-		r.References["group_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Tenant",
+		r.ShortGroup = "ipam"
+		r.References["rir_id"] = config.Reference{
+			Type:      "Rir",
+			Extractor: common.ExtractResourceIDFuncPath,
+		}
+		r.References["tenant_id"] = config.Reference{
+			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 	})

@@ -6,6 +6,6 @@ import "github.com/upbound/upjet/pkg/config"
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_circuit_termination", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
-
+		r.ShortGroup = "circuits"
 	})
 }

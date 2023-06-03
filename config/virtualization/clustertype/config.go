@@ -7,6 +7,6 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_cluster_type", func(r *config.Resource) {
 		// r.ExternalName = config.NameAsIdentifier
 		r.Kind = "ClusterType"
-
+		r.ShortGroup = "virtualization"
 	})
 }

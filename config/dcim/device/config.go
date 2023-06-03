@@ -11,16 +11,20 @@ import (
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_device", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
+		r.ShortGroup = "dcim"
 		r.References["device_type_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/device/v1alpha1.DeviceType",
+			Type: "DeviceType",
+			// Type:      "github.com/fire-ant/provider-netbox/apis/device/v1alpha1.DeviceType",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 		r.References["role_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/device/v1alpha1.Role",
+			Type: "DeviceRole",
+			// Type:      "github.com/fire-ant/provider-netbox/apis/device/v1alpha1.Role",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 		r.References["site_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site",
+			Type: "Site",
+			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 		// r.LateInitializer = config.LateInitializer{

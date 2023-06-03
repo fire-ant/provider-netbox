@@ -9,24 +9,28 @@ import (
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_prefix", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
+		r.ShortGroup = "ipam"
 		r.References["tenant_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Tenant",
+			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 		r.References["site_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site",
+			Type:      "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 		r.References["role_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Role",
+			Type: "IpamRole",
+			// Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Role",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 		r.References["vlan_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Vlan",
+			Type: "Vlan",
+			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Vlan",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 		r.References["vrf_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Vrf",
+			Type: "Vrf",
+			// Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Vrf",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 	})

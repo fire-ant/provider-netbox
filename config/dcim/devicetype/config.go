@@ -12,8 +12,10 @@ func Configure(p *config.Provider) {
 		// this resource, which would be "netbox"
 		// r.ExternalName = config.NameAsIdentifier
 		r.Kind = "DeviceType"
-		r.References["device_type_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Manufacturer",
+		r.ShortGroup = "dcim"
+		r.References["manufacturer_id"] = config.Reference{
+			Type: "Manufacturer",
+			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Manufacturer",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 

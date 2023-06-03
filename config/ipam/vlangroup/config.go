@@ -9,8 +9,9 @@ import (
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_vlan_group", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
+		r.ShortGroup = "ipam"
 		r.References["scope_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site",
+			Type:      "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 	})

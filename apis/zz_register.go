@@ -10,45 +10,27 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/fire-ant/provider-netbox/apis/available/v1alpha1"
-	v1alpha1circuit "github.com/fire-ant/provider-netbox/apis/circuit/v1alpha1"
-	v1alpha1cluster "github.com/fire-ant/provider-netbox/apis/cluster/v1alpha1"
-	v1alpha1contact "github.com/fire-ant/provider-netbox/apis/contact/v1alpha1"
-	v1alpha1custom "github.com/fire-ant/provider-netbox/apis/custom/v1alpha1"
-	v1alpha1device "github.com/fire-ant/provider-netbox/apis/device/v1alpha1"
-	v1alpha1ip "github.com/fire-ant/provider-netbox/apis/ip/v1alpha1"
+	v1alpha1 "github.com/fire-ant/provider-netbox/apis/circuits/v1alpha1"
+	v1alpha1dcim "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1"
+	v1alpha1extras "github.com/fire-ant/provider-netbox/apis/extras/v1alpha1"
 	v1alpha1ipam "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1"
-	v1alpha1netbox "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1"
-	v1alpha1primary "github.com/fire-ant/provider-netbox/apis/primary/v1alpha1"
-	v1alpha1rack "github.com/fire-ant/provider-netbox/apis/rack/v1alpha1"
-	v1alpha1route "github.com/fire-ant/provider-netbox/apis/route/v1alpha1"
 	v1alpha1tenant "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1"
 	v1alpha1apis "github.com/fire-ant/provider-netbox/apis/v1alpha1"
 	v1beta1 "github.com/fire-ant/provider-netbox/apis/v1beta1"
-	v1alpha1virtual "github.com/fire-ant/provider-netbox/apis/virtual/v1alpha1"
-	v1alpha1vlan "github.com/fire-ant/provider-netbox/apis/vlan/v1alpha1"
+	v1alpha1virtualization "github.com/fire-ant/provider-netbox/apis/virtualization/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
-		v1alpha1circuit.SchemeBuilder.AddToScheme,
-		v1alpha1cluster.SchemeBuilder.AddToScheme,
-		v1alpha1contact.SchemeBuilder.AddToScheme,
-		v1alpha1custom.SchemeBuilder.AddToScheme,
-		v1alpha1device.SchemeBuilder.AddToScheme,
-		v1alpha1ip.SchemeBuilder.AddToScheme,
+		v1alpha1dcim.SchemeBuilder.AddToScheme,
+		v1alpha1extras.SchemeBuilder.AddToScheme,
 		v1alpha1ipam.SchemeBuilder.AddToScheme,
-		v1alpha1netbox.SchemeBuilder.AddToScheme,
-		v1alpha1primary.SchemeBuilder.AddToScheme,
-		v1alpha1rack.SchemeBuilder.AddToScheme,
-		v1alpha1route.SchemeBuilder.AddToScheme,
 		v1alpha1tenant.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
-		v1alpha1virtual.SchemeBuilder.AddToScheme,
-		v1alpha1vlan.SchemeBuilder.AddToScheme,
+		v1alpha1virtualization.SchemeBuilder.AddToScheme,
 	)
 }
 

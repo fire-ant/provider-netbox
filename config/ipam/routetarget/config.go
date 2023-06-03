@@ -9,8 +9,9 @@ import (
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_route_target", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
+		r.ShortGroup = "ipam"
 		r.References["tenant_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Tenant",
+			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant",
 			Extractor: common.ExtractResourceIDFuncPath,
 		}
 	})
