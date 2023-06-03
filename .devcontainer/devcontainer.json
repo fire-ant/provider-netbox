@@ -46,7 +46,9 @@
 			"extensions": [
 				"upboundio.upbound@0.4.0",
 				"golang.go@0.38.0",
-				"tilt-dev.tiltfile@0.0.3"
+				"tilt-dev.tiltfile@0.0.3",
+				"GitHub.vscode-pull-request-github",
+				"github.vscode-github-actions"
 			]
 		}
 	}
