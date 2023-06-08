@@ -5,9 +5,31 @@ spec:
   deletionPolicy: string
   forProvider:
     circuitId: number
+    circuitIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    circuitIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     customFields:
     portSpeed: number
     siteId: number
+    siteIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    siteIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     tags: ["string"]
     termSide: string
     upstreamSpeed: number

@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
-  name: providers.circuits.netbox.upbound.io
+  name: circuitproviders.circuits.netbox.upbound.io
 spec:
   group: circuits.netbox.upbound.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - netbox
-    kind: Provider
-    listKind: ProviderList
-    plural: providers
-    singular: provider
+    kind: CircuitProvider
+    listKind: CircuitProviderList
+    plural: circuitproviders
+    singular: circuitprovider
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Provider is the Schema for the Providers API. <no value>
+        description: CircuitProvider is the Schema for the CircuitProviders API. <no
+          value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProviderSpec defines the desired state of Provider
+            description: CircuitProviderSpec defines the desired state of CircuitProvider
             properties:
               deletionPolicy:
                 default: Delete
@@ -257,7 +258,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: ProviderStatus defines the observed state of Provider.
+            description: CircuitProviderStatus defines the observed state of CircuitProvider.
             properties:
               atProvider:
                 properties:

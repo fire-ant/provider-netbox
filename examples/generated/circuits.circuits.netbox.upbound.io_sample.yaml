@@ -6,9 +6,42 @@ spec:
   forProvider:
     cid: string
     providerId: number
+    providerIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    providerIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     status: string
     tenantId: number
+    tenantIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    tenantIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     typeId: number
+    typeIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    typeIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
   managementPolicy: string
   providerConfigRef:
     name: string

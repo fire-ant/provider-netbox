@@ -1,35 +1,12 @@
 apiVersion: dcim.netbox.upbound.io/v1alpha1
-kind: Site
+kind: Group
 metadata: {}
 spec:
   deletionPolicy: string
   forProvider:
-    asnIds: [number]
-    customFields:
     description: string
-    facility: string
-    groupId: number
-    latitude: number
-    longitude: number
-    physicalAddress: string
-    regionId: number
-    shippingAddress: string
+    parentId: number
     slug: string
-    status: string
-    tags: ["string"]
-    tenantId: number
-    tenantIdRef:
-      name: string
-      policy:
-        resolution: string
-        resolve: string
-    tenantIdSelector:
-      matchControllerRef: true
-      matchLabels:
-      policy:
-        resolution: string
-        resolve: string
-    timezone: string
   managementPolicy: string
   providerConfigRef:
     name: string
@@ -57,22 +34,10 @@ spec:
     namespace: string
 status:
   atProvider:
-    asnIds: [number]
-    customFields:
     description: string
-    facility: string
-    groupId: number
     id: string
-    latitude: number
-    longitude: number
-    physicalAddress: string
-    regionId: number
-    shippingAddress: string
+    parentId: number
     slug: string
-    status: string
-    tags: ["string"]
-    tenantId: number
-    timezone: string
   conditions:
   - lastTransitionTime: string
     message: string

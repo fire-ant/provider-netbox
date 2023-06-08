@@ -7,12 +7,48 @@ spec:
     clusterId: number
     comments: string
     customFields:
+    deviceTypeId: number
+    deviceTypeIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    deviceTypeIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     locationId: number
     platformId: number
     rackFace: string
     rackId: number
     rackPosition: number
+    roleId: number
+    roleIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    roleIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     serial: string
+    siteId: number
+    siteIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    siteIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     status: string
     tags: ["string"]
     tenantId: number
@@ -46,7 +82,7 @@ status:
     clusterId: number
     comments: string
     customFields:
-    deviceTypeId: string
+    deviceTypeId: number
     id: string
     locationId: number
     platformId: number
@@ -55,9 +91,9 @@ status:
     rackFace: string
     rackId: number
     rackPosition: number
-    roleId: string
+    roleId: number
     serial: string
-    siteId: string
+    siteId: number
     status: string
     tags: ["string"]
     tenantId: number
