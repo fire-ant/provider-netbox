@@ -1,0 +1,23 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Manufacturer
+metadata: 
+  name: newcorp
+spec:
+  forProvider:
+    slug: newcorp
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: DeviceType
+metadata:
+  name: test-devicetype
+spec:
+  forProvider:
+    model: new-switch
+    manufacturerIdRef:
+      name: newcorp
+    partNumber: "1234567"
+    uHeight: 2
+    tags: 
+      - new
+      - corp

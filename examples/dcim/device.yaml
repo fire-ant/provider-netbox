@@ -1,0 +1,76 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Manufacturer
+metadata: 
+  name: newcorp
+spec:
+  forProvider:
+    slug: newcorp
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Role
+metadata:
+  name: test-role
+spec:
+  forProvider:
+    colorHex: ff00ff
+  providerConfigRef:
+    name: default
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: DeviceType
+metadata:
+  name: test-devicetype
+spec:
+  forProvider:
+    model: new-switch
+    manufacturerIdRef:
+      name: newcorp
+    partNumber: "1234567"
+    uHeight: 2
+    tags: 
+      - new
+      - corp
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: test-site
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: DeviceRole
+metadata:
+  name: test-role
+spec:
+  forProvider:
+    colorHex: ff00ff
+  providerConfigRef:
+    name: default
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Device
+metadata:
+  name: test-device
+spec:
+  forProvider:
+    roleIdRef:
+      name: test-role
+    siteIdRef:
+      name: test-site
+    deviceTypeIdRef:
+      name: test-devicetype
+    serial: MYSERIAL
+    comments: "this is a test"
+    status: active
+    tags: 
+      - leaf
+      - tor
+    comments: "this is a test-device"
