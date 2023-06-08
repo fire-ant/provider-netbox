@@ -10,13 +10,14 @@ import (
 	"github.com/upbound/upjet/pkg/controller"
 
 	circuit "github.com/fire-ant/provider-netbox/internal/controller/circuits/circuit"
+	circuitprovider "github.com/fire-ant/provider-netbox/internal/controller/circuits/circuitprovider"
 	circuittype "github.com/fire-ant/provider-netbox/internal/controller/circuits/circuittype"
-	provider "github.com/fire-ant/provider-netbox/internal/controller/circuits/provider"
 	termination "github.com/fire-ant/provider-netbox/internal/controller/circuits/termination"
 	device "github.com/fire-ant/provider-netbox/internal/controller/dcim/device"
 	deviceinterface "github.com/fire-ant/provider-netbox/internal/controller/dcim/deviceinterface"
 	devicerole "github.com/fire-ant/provider-netbox/internal/controller/dcim/devicerole"
 	devicetype "github.com/fire-ant/provider-netbox/internal/controller/dcim/devicetype"
+	group "github.com/fire-ant/provider-netbox/internal/controller/dcim/group"
 	location "github.com/fire-ant/provider-netbox/internal/controller/dcim/location"
 	manufacturer "github.com/fire-ant/provider-netbox/internal/controller/dcim/manufacturer"
 	platform "github.com/fire-ant/provider-netbox/internal/controller/dcim/platform"
@@ -31,7 +32,7 @@ import (
 	asn "github.com/fire-ant/provider-netbox/internal/controller/ipam/asn"
 	availableipadrress "github.com/fire-ant/provider-netbox/internal/controller/ipam/availableipadrress"
 	availableprefix "github.com/fire-ant/provider-netbox/internal/controller/ipam/availableprefix"
-	group "github.com/fire-ant/provider-netbox/internal/controller/ipam/group"
+	groupipam "github.com/fire-ant/provider-netbox/internal/controller/ipam/group"
 	ipaddress "github.com/fire-ant/provider-netbox/internal/controller/ipam/ipaddress"
 	ipamrole "github.com/fire-ant/provider-netbox/internal/controller/ipam/ipamrole"
 	iprange "github.com/fire-ant/provider-netbox/internal/controller/ipam/iprange"
@@ -60,13 +61,14 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		circuit.Setup,
+		circuitprovider.Setup,
 		circuittype.Setup,
-		provider.Setup,
 		termination.Setup,
 		device.Setup,
 		deviceinterface.Setup,
 		devicerole.Setup,
 		devicetype.Setup,
+		group.Setup,
 		location.Setup,
 		manufacturer.Setup,
 		platform.Setup,
@@ -81,7 +83,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		asn.Setup,
 		availableipadrress.Setup,
 		availableprefix.Setup,
-		group.Setup,
+		groupipam.Setup,
 		ipaddress.Setup,
 		ipamrole.Setup,
 		iprange.Setup,
