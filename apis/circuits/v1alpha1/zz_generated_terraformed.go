@@ -87,18 +87,18 @@ func (tr *Circuit) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this Provider
-func (mg *Provider) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this CircuitProvider
+func (mg *CircuitProvider) GetTerraformResourceType() string {
 	return "netbox_circuit_provider"
 }
 
-// GetConnectionDetailsMapping for this Provider
-func (tr *Provider) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this CircuitProvider
+func (tr *CircuitProvider) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Provider
-func (tr *Provider) GetObservation() (map[string]any, error) {
+// GetObservation of this CircuitProvider
+func (tr *CircuitProvider) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -107,8 +107,8 @@ func (tr *Provider) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Provider
-func (tr *Provider) SetObservation(obs map[string]any) error {
+// SetObservation for this CircuitProvider
+func (tr *CircuitProvider) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -116,16 +116,16 @@ func (tr *Provider) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Provider
-func (tr *Provider) GetID() string {
+// GetID returns ID of underlying Terraform resource of this CircuitProvider
+func (tr *CircuitProvider) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Provider
-func (tr *Provider) GetParameters() (map[string]any, error) {
+// GetParameters of this CircuitProvider
+func (tr *CircuitProvider) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -134,8 +134,8 @@ func (tr *Provider) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Provider
-func (tr *Provider) SetParameters(params map[string]any) error {
+// SetParameters for this CircuitProvider
+func (tr *CircuitProvider) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -143,10 +143,10 @@ func (tr *Provider) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Provider using its observed tfState.
+// LateInitialize this CircuitProvider using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Provider) LateInitialize(attrs []byte) (bool, error) {
-	params := &ProviderParameters{}
+func (tr *CircuitProvider) LateInitialize(attrs []byte) (bool, error) {
+	params := &CircuitProviderParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -157,7 +157,7 @@ func (tr *Provider) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Provider) GetTerraformSchemaVersion() int {
+func (tr *CircuitProvider) GetTerraformSchemaVersion() int {
 	return 0
 }
 

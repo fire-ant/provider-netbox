@@ -33,8 +33,18 @@ type TerminationObservation struct {
 
 type TerminationParameters struct {
 
+	// +crossplane:generate:reference:type=Circuit
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	CircuitID *float64 `json:"circuitId,omitempty" tf:"circuit_id,omitempty"`
+
+	// Reference to a Circuit to populate circuitId.
+	// +kubebuilder:validation:Optional
+	CircuitIDRef *v1.Reference `json:"circuitIdRef,omitempty" tf:"-"`
+
+	// Selector for a Circuit to populate circuitId.
+	// +kubebuilder:validation:Optional
+	CircuitIDSelector *v1.Selector `json:"circuitIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	CustomFields map[string]*string `json:"customFields,omitempty" tf:"custom_fields,omitempty"`
@@ -42,8 +52,18 @@ type TerminationParameters struct {
 	// +kubebuilder:validation:Optional
 	PortSpeed *float64 `json:"portSpeed,omitempty" tf:"port_speed,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
+
+	// Reference to a Site in dcim to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDRef *v1.Reference `json:"siteIdRef,omitempty" tf:"-"`
+
+	// Selector for a Site in dcim to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDSelector *v1.Selector `json:"siteIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -79,8 +99,6 @@ type TerminationStatus struct {
 type Termination struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.circuitId)",message="circuitId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.siteId)",message="siteId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.termSide)",message="termSide is a required parameter"
 	Spec   TerminationSpec   `json:"spec"`
 	Status TerminationStatus `json:"status,omitempty"`

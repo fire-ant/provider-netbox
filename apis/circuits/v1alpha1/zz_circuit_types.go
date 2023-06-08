@@ -32,17 +32,47 @@ type CircuitParameters struct {
 	// +kubebuilder:validation:Optional
 	Cid *string `json:"cid,omitempty" tf:"cid,omitempty"`
 
+	// +crossplane:generate:reference:type=CircuitProvider
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProviderID *float64 `json:"providerId,omitempty" tf:"provider_id,omitempty"`
+
+	// Reference to a CircuitProvider to populate providerId.
+	// +kubebuilder:validation:Optional
+	ProviderIDRef *v1.Reference `json:"providerIdRef,omitempty" tf:"-"`
+
+	// Selector for a CircuitProvider to populate providerId.
+	// +kubebuilder:validation:Optional
+	ProviderIDSelector *v1.Selector `json:"providerIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
+	// Reference to a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDRef *v1.Reference `json:"tenantIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=CircuitType
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TypeID *float64 `json:"typeId,omitempty" tf:"type_id,omitempty"`
+
+	// Reference to a CircuitType to populate typeId.
+	// +kubebuilder:validation:Optional
+	TypeIDRef *v1.Reference `json:"typeIdRef,omitempty" tf:"-"`
+
+	// Selector for a CircuitType to populate typeId.
+	// +kubebuilder:validation:Optional
+	TypeIDSelector *v1.Selector `json:"typeIdSelector,omitempty" tf:"-"`
 }
 
 // CircuitSpec defines the desired state of Circuit
@@ -70,9 +100,7 @@ type Circuit struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.cid)",message="cid is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.providerId)",message="providerId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.status)",message="status is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.typeId)",message="typeId is a required parameter"
 	Spec   CircuitSpec   `json:"spec"`
 	Status CircuitStatus `json:"status,omitempty"`
 }

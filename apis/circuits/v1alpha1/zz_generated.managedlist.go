@@ -16,8 +16,8 @@ func (l *CircuitList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this CircuitTypeList.
-func (l *CircuitTypeList) GetItems() []resource.Managed {
+// GetItems of this CircuitProviderList.
+func (l *CircuitProviderList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -25,8 +25,8 @@ func (l *CircuitTypeList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this ProviderList.
-func (l *ProviderList) GetItems() []resource.Managed {
+// GetItems of this CircuitTypeList.
+func (l *CircuitTypeList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

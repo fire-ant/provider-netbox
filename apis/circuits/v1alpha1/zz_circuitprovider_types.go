@@ -13,63 +13,63 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ProviderObservation struct {
+type CircuitProviderObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
 }
 
-type ProviderParameters struct {
+type CircuitProviderParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Slug *string `json:"slug,omitempty" tf:"slug,omitempty"`
 }
 
-// ProviderSpec defines the desired state of Provider
-type ProviderSpec struct {
+// CircuitProviderSpec defines the desired state of CircuitProvider
+type CircuitProviderSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProviderParameters `json:"forProvider"`
+	ForProvider     CircuitProviderParameters `json:"forProvider"`
 }
 
-// ProviderStatus defines the observed state of Provider.
-type ProviderStatus struct {
+// CircuitProviderStatus defines the observed state of CircuitProvider.
+type CircuitProviderStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProviderObservation `json:"atProvider,omitempty"`
+	AtProvider        CircuitProviderObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Provider is the Schema for the Providers API. <no value>
+// CircuitProvider is the Schema for the CircuitProviders API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,netbox}
-type Provider struct {
+type CircuitProvider struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              ProviderSpec   `json:"spec"`
-	Status            ProviderStatus `json:"status,omitempty"`
+	Spec              CircuitProviderSpec   `json:"spec"`
+	Status            CircuitProviderStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProviderList contains a list of Providers
-type ProviderList struct {
+// CircuitProviderList contains a list of CircuitProviders
+type CircuitProviderList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Provider `json:"items"`
+	Items           []CircuitProvider `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Provider_Kind             = "Provider"
-	Provider_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Provider_Kind}.String()
-	Provider_KindAPIVersion   = Provider_Kind + "." + CRDGroupVersion.String()
-	Provider_GroupVersionKind = CRDGroupVersion.WithKind(Provider_Kind)
+	CircuitProvider_Kind             = "CircuitProvider"
+	CircuitProvider_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: CircuitProvider_Kind}.String()
+	CircuitProvider_KindAPIVersion   = CircuitProvider_Kind + "." + CRDGroupVersion.String()
+	CircuitProvider_GroupVersionKind = CRDGroupVersion.WithKind(CircuitProvider_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Provider{}, &ProviderList{})
+	SchemeBuilder.Register(&CircuitProvider{}, &CircuitProviderList{})
 }
