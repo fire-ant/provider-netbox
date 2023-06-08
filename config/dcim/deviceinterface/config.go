@@ -1,7 +1,6 @@
 package deviceinterface
 
 import (
-	"github.com/fire-ant/provider-netbox/config/common"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -14,9 +13,8 @@ func Configure(p *config.Provider) {
 		r.Kind = "DeviceInterface"
 		r.ShortGroup = "dcim"
 		r.References["device_id"] = config.Reference{
-			Type: "Device",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Device",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Type:      "Device",
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 	})
 }

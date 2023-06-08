@@ -90,8 +90,18 @@ type SiteParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
+
+	// Reference to a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDRef *v1.Reference `json:"tenantIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Timezone *string `json:"timezone,omitempty" tf:"timezone,omitempty"`

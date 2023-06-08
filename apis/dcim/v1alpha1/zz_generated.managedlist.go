@@ -43,6 +43,15 @@ func (l *DeviceTypeList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this GroupList.
+func (l *GroupList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this LocationList.
 func (l *LocationList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
