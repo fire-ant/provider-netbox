@@ -1,57 +1,35 @@
 ---
 apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: Prefix
+kind: IPRange
 metadata: 
-  name: testprefix
+  name: testiprange
 spec:
   forProvider:
     description: test
-    isPool: true
-    markUtilized: true
-    prefix: 10.64.0.0/16
+    startAddress: 192.168.0.100/24 
+    endAddress: 192.168.0.200/24 
     status: active
     tags: 
       - test
-      - prefix
-      - id
----
-apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: AvailableIPAdrress
-metadata: 
-  name: testavailableipaddress-prefix-id-only
-spec:
-  forProvider:
-    description: test
-    dnsName: test.example.com
-    prefixIdRef:
-      name: testprefix
-    role: primary
-    status: active
-    tags: 
-      - test
-      - prefix
+      - iprange
       - id
 # ---
 # apiVersion: ipam.netbox.upbound.io/v1alpha1
-# kind: AvailableIPAdrress
+# kind: IPRange
 # metadata: 
-#   name: testavailableipaddress-with-ids
+#   name: testiprange
 # spec:
 #   forProvider:
-#     description: string
-#     dnsName: string
-#     interfaceIdRef:
-#       name: string
-#     ipRangeIdRef:
-#       name: string
-#     prefixIdRef:
-#       name: string
-#     role: primary
+#     description: test
+#     startAddress: 192.168.0.100/24 
+#     endAddress: 192.168.0.200/24 
 #     status: active
 #     tags: 
 #       - test
-#       - prefix
+#       - iprange
 #       - id
+#     roleIdRef:
+#       name: string
 #     tenantIdRef:
 #       name: string
 #     vrfIdRef:

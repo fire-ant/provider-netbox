@@ -1,58 +1,24 @@
 ---
 apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: Prefix
-metadata: 
-  name: testprefix
+kind: Vlan
+metadata:
+  name: test-vlan-pri
 spec:
   forProvider:
-    description: test
-    isPool: true
-    markUtilized: true
-    prefix: 10.64.0.0/16
-    status: active
-    tags: 
-      - test
-      - prefix
-      - id
+    vid: 10
 ---
 apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: AvailableIPAdrress
-metadata: 
-  name: testavailableipaddress-prefix-id-only
+kind: Vlan
+metadata:
+  name: test-vlan-sec
 spec:
   forProvider:
-    description: test
-    dnsName: test.example.com
-    prefixIdRef:
-      name: testprefix
-    role: primary
-    status: active
-    tags: 
-      - test
-      - prefix
-      - id
-# ---
-# apiVersion: ipam.netbox.upbound.io/v1alpha1
-# kind: AvailableIPAdrress
-# metadata: 
-#   name: testavailableipaddress-with-ids
-# spec:
-#   forProvider:
-#     description: string
-#     dnsName: string
-#     interfaceIdRef:
-#       name: string
-#     ipRangeIdRef:
-#       name: string
-#     prefixIdRef:
-#       name: string
-#     role: primary
-#     status: active
-#     tags: 
-#       - test
-#       - prefix
-#       - id
-#     tenantIdRef:
-#       name: string
-#     vrfIdRef:
-#       name: string
+    vid: 20
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vlan
+metadata:
+  name: test-vlan-ter
+spec:
+  forProvider:
+    vid: 30

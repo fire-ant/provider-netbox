@@ -7,8 +7,8 @@ spec:
   forProvider:
     description: test
     isPool: true
-    markUtilized: true
-    prefix: 10.64.0.0/16
+    markUtilized: false
+    prefix: 10.64.10.0/24
     status: active
     tags: 
       - test
@@ -18,13 +18,31 @@ spec:
 apiVersion: ipam.netbox.upbound.io/v1alpha1
 kind: AvailablePrefix
 metadata: 
-  name: testavailableprefix-prefix-id-only
+  name: testavailableprefix-prefix-id-only-0
 spec:
   forProvider:
-    description: test
+    description: test-0
     isPool: true
-    markUtilized: true
-    prefixLength: 24
+    markUtilized: false
+    prefixLength: 28
+    parentPrefixIdRef:
+      name: testprefix
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: AvailablePrefix
+metadata: 
+  name: testavailableprefix-prefix-id-only-1
+spec:
+  forProvider:
+    description: test-1
+    isPool: true
+    markUtilized: false
+    prefixLength: 28
     parentPrefixIdRef:
       name: testprefix
     status: active

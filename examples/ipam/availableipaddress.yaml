@@ -7,7 +7,7 @@ spec:
   forProvider:
     description: test
     isPool: true
-    markUtilized: true
+    markUtilized: false
     prefix: 10.64.0.0/16
     status: active
     tags: 
@@ -16,21 +16,60 @@ spec:
       - id
 ---
 apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: AvailableIPAdrress
+kind: AvailableIPAddress
 metadata: 
-  name: testavailableipaddress-prefix-id-only
+  name: testavailableipaddress-prefix-id-only-0
 spec:
   forProvider:
     description: test
     dnsName: test.example.com
     prefixIdRef:
       name: testprefix
-    role: primary
+    status: reserved
+    role: secondary
+tags: 
+      - test
+      - prefix
+      - id
+      - "0"
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: AvailableIPAddress
+metadata: 
+  name: testavailableipaddress-prefix-id-only-1
+spec:
+  forProvider:
+    description: test
+    dnsName: test.example.com
+    prefixIdRef:
+      name: testprefix
+    status: reserved
+    role: secondary
     status: active
     tags: 
       - test
       - prefix
       - id
+      - "1"
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: AvailableIPAddress
+metadata: 
+  name: testavailableipaddress-prefix-id-only-2
+spec:
+  forProvider:
+    description: test
+    dnsName: test.example.com
+    prefixIdRef:
+      name: testprefix
+    status: reserved
+    role: secondary
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+      - "2"
 # ---
 # apiVersion: ipam.netbox.upbound.io/v1alpha1
 # kind: AvailableIPAdrress

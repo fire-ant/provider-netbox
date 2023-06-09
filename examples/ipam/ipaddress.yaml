@@ -1,58 +1,38 @@
 ---
 apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: Prefix
+kind: IPAddress
 metadata: 
-  name: testprefix
+  name: testipaddress-no-ids
 spec:
   forProvider:
-    description: test
-    isPool: true
-    markUtilized: true
-    prefix: 10.64.0.0/16
+    description: testipaddress-no-ids
+    dnsName: ipaddress.example.com
+    ipAddress: 192.168.0.100/24
+    objectType: dcim.interface 
+    role: vip
     status: active
     tags: 
       - test
-      - prefix
-      - id
----
-apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: AvailableIPAdrress
-metadata: 
-  name: testavailableipaddress-prefix-id-only
-spec:
-  forProvider:
-    description: test
-    dnsName: test.example.com
-    prefixIdRef:
-      name: testprefix
-    role: primary
-    status: active
-    tags: 
-      - test
-      - prefix
-      - id
+      - ipaddress
+      - ids
 # ---
 # apiVersion: ipam.netbox.upbound.io/v1alpha1
-# kind: AvailableIPAdrress
+# kind: IPAddress
 # metadata: 
-#   name: testavailableipaddress-with-ids
+#   name:
 # spec:
+#   deletionPolicy: string
 #   forProvider:
 #     description: string
 #     dnsName: string
 #     interfaceIdRef:
 #       name: string
-#     ipRangeIdRef:
-#       name: string
-#     prefixIdRef:
-#       name: string
-#     role: primary
-#     status: active
-#     tags: 
-#       - test
-#       - prefix
-#       - id
-#     tenantIdRef:
-#       name: string
+#     ipAddress: string
+#     objectType: string
+#     role: string
+#     status: string
+#     tags: ["string"]
+#     tenantId: number
 #     vrfIdRef:
 #       name: string
+  

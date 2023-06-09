@@ -20,15 +20,3 @@ spec:
   forProvider: 
     siteIdRef:
       name: testsite
----
-apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: Service
-metadata: 
-  name: testservice
-spec:
-  forProvider:
-    ports: 
-      - 22
-    protocol: tcp
-    virtualMachineIdRef:
-      name: testmachine
