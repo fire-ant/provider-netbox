@@ -54,8 +54,18 @@ type AvailablePrefixParameters struct {
 	// +kubebuilder:validation:Optional
 	MarkUtilized *bool `json:"markUtilized,omitempty" tf:"mark_utilized,omitempty"`
 
+	// +crossplane:generate:reference:type=Prefix
+	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ParentPrefixID *float64 `json:"parentPrefixId,omitempty" tf:"parent_prefix_id,omitempty"`
+
+	// Reference to a Prefix to populate parentPrefixId.
+	// +kubebuilder:validation:Optional
+	ParentPrefixIDRef *v1.Reference `json:"parentPrefixIdRef,omitempty" tf:"-"`
+
+	// Selector for a Prefix to populate parentPrefixId.
+	// +kubebuilder:validation:Optional
+	ParentPrefixIDSelector *v1.Selector `json:"parentPrefixIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
@@ -156,7 +166,6 @@ type AvailablePrefixStatus struct {
 type AvailablePrefix struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.parentPrefixId)",message="parentPrefixId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.prefixLength)",message="prefixLength is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.status)",message="status is a required parameter"
 	Spec   AvailablePrefixSpec   `json:"spec"`

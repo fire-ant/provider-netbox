@@ -872,6 +872,16 @@ func (in *AvailablePrefixParameters) DeepCopyInto(out *AvailablePrefixParameters
 		*out = new(float64)
 		**out = **in
 	}
+	if in.ParentPrefixIDRef != nil {
+		in, out := &in.ParentPrefixIDRef, &out.ParentPrefixIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ParentPrefixIDSelector != nil {
+		in, out := &in.ParentPrefixIDSelector, &out.ParentPrefixIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.PrefixLength != nil {
 		in, out := &in.PrefixLength, &out.PrefixLength
 		*out = new(float64)

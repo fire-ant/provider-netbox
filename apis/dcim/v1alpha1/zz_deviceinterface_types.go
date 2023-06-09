@@ -46,7 +46,7 @@ type DeviceInterfaceParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// +crossplane:generate:reference:type=Device
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	DeviceID *float64 `json:"deviceId,omitempty" tf:"device_id,omitempty"`
 

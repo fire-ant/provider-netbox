@@ -33,7 +33,7 @@ type DeviceTypeObservation struct {
 type DeviceTypeParameters struct {
 
 	// +crossplane:generate:reference:type=Manufacturer
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ManufacturerID *float64 `json:"manufacturerId,omitempty" tf:"manufacturer_id,omitempty"`
 

@@ -182,6 +182,22 @@ func (mg *AvailablePrefix) ResolveReferences(ctx context.Context, c client.Reade
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.ParentPrefixID),
+		Extract:      common.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.ParentPrefixIDRef,
+		Selector:     mg.Spec.ForProvider.ParentPrefixIDSelector,
+		To: reference.To{
+			List:    &PrefixList{},
+			Managed: &Prefix{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ParentPrefixID")
+	}
+	mg.Spec.ForProvider.ParentPrefixID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ParentPrefixIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.RoleID),
 		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.RoleIDRef,

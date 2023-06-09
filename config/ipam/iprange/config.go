@@ -8,7 +8,7 @@ import (
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_ip_range", func(r *config.Resource) {
-		// r.ExternalName = config.NameAsIdentifier
+		r.ExternalName = config.IdentifierFromProvider
 		r.Kind = "IPRange"
 		r.ShortGroup = "ipam"
 		r.References["role_id"] = config.Reference{

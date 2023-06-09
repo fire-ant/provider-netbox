@@ -1,0 +1,9 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Rir
+metadata: 
+  name: testrir
+spec:
+  forProvider:
+    description: test
+    slug: test
