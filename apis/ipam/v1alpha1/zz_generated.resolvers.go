@@ -11,8 +11,8 @@ import (
 	v1alpha11 "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1"
 	v1alpha1 "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1"
 	v1alpha12 "github.com/fire-ant/provider-netbox/apis/virtualization/v1alpha1"
-	common "github.com/fire-ant/provider-netbox/config/common"
 	errors "github.com/pkg/errors"
+	resource "github.com/upbound/upjet/pkg/resource"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
@@ -25,7 +25,7 @@ func (mg *Aggregate) ResolveReferences(ctx context.Context, c client.Reader) err
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.RirID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.RirIDRef,
 		Selector:     mg.Spec.ForProvider.RirIDSelector,
 		To: reference.To{
@@ -41,7 +41,7 @@ func (mg *Aggregate) ResolveReferences(ctx context.Context, c client.Reader) err
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
@@ -67,7 +67,7 @@ func (mg *Asn) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.RirID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.RirIDRef,
 		Selector:     mg.Spec.ForProvider.RirIDSelector,
 		To: reference.To{
@@ -84,16 +84,16 @@ func (mg *Asn) ResolveReferences(ctx context.Context, c client.Reader) error {
 	return nil
 }
 
-// ResolveReferences of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this AvailableIPAddress.
+func (mg *AvailableIPAddress) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.IPRangeID),
-		Extract:      common.ExtractResourceID(),
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.IPRangeID),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.IPRangeIDRef,
 		Selector:     mg.Spec.ForProvider.IPRangeIDSelector,
 		To: reference.To{
@@ -104,12 +104,12 @@ func (mg *AvailableIPAdrress) ResolveReferences(ctx context.Context, c client.Re
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.IPRangeID")
 	}
-	mg.Spec.ForProvider.IPRangeID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.IPRangeID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.IPRangeIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.InterfaceID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.InterfaceIDRef,
 		Selector:     mg.Spec.ForProvider.InterfaceIDSelector,
 		To: reference.To{
@@ -124,8 +124,8 @@ func (mg *AvailableIPAdrress) ResolveReferences(ctx context.Context, c client.Re
 	mg.Spec.ForProvider.InterfaceIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.PrefixID),
-		Extract:      common.ExtractResourceID(),
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PrefixID),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.PrefixIDRef,
 		Selector:     mg.Spec.ForProvider.PrefixIDSelector,
 		To: reference.To{
@@ -136,12 +136,12 @@ func (mg *AvailableIPAdrress) ResolveReferences(ctx context.Context, c client.Re
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.PrefixID")
 	}
-	mg.Spec.ForProvider.PrefixID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.PrefixID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.PrefixIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
@@ -157,7 +157,7 @@ func (mg *AvailableIPAdrress) ResolveReferences(ctx context.Context, c client.Re
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VrfID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.VrfIDRef,
 		Selector:     mg.Spec.ForProvider.VrfIDSelector,
 		To: reference.To{
@@ -183,7 +183,7 @@ func (mg *AvailablePrefix) ResolveReferences(ctx context.Context, c client.Reade
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.ParentPrefixID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.ParentPrefixIDRef,
 		Selector:     mg.Spec.ForProvider.ParentPrefixIDSelector,
 		To: reference.To{
@@ -199,7 +199,7 @@ func (mg *AvailablePrefix) ResolveReferences(ctx context.Context, c client.Reade
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.RoleID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.RoleIDRef,
 		Selector:     mg.Spec.ForProvider.RoleIDSelector,
 		To: reference.To{
@@ -215,7 +215,7 @@ func (mg *AvailablePrefix) ResolveReferences(ctx context.Context, c client.Reade
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.SiteID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.SiteIDRef,
 		Selector:     mg.Spec.ForProvider.SiteIDSelector,
 		To: reference.To{
@@ -231,7 +231,7 @@ func (mg *AvailablePrefix) ResolveReferences(ctx context.Context, c client.Reade
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
@@ -247,7 +247,7 @@ func (mg *AvailablePrefix) ResolveReferences(ctx context.Context, c client.Reade
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VlanID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.VlanIDRef,
 		Selector:     mg.Spec.ForProvider.VlanIDSelector,
 		To: reference.To{
@@ -263,7 +263,7 @@ func (mg *AvailablePrefix) ResolveReferences(ctx context.Context, c client.Reade
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VrfID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.VrfIDRef,
 		Selector:     mg.Spec.ForProvider.VrfIDSelector,
 		To: reference.To{
@@ -289,7 +289,7 @@ func (mg *Group) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.ScopeID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.ScopeIDRef,
 		Selector:     mg.Spec.ForProvider.ScopeIDSelector,
 		To: reference.To{
@@ -315,7 +315,7 @@ func (mg *IPAddress) ResolveReferences(ctx context.Context, c client.Reader) err
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.InterfaceID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.InterfaceIDRef,
 		Selector:     mg.Spec.ForProvider.InterfaceIDSelector,
 		To: reference.To{
@@ -331,7 +331,7 @@ func (mg *IPAddress) ResolveReferences(ctx context.Context, c client.Reader) err
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VrfID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.VrfIDRef,
 		Selector:     mg.Spec.ForProvider.VrfIDSelector,
 		To: reference.To{
@@ -357,7 +357,7 @@ func (mg *IPRange) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.RoleID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.RoleIDRef,
 		Selector:     mg.Spec.ForProvider.RoleIDSelector,
 		To: reference.To{
@@ -373,7 +373,7 @@ func (mg *IPRange) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
@@ -389,7 +389,7 @@ func (mg *IPRange) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VrfID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.VrfIDRef,
 		Selector:     mg.Spec.ForProvider.VrfIDSelector,
 		To: reference.To{
@@ -415,7 +415,7 @@ func (mg *Prefix) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.RoleID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.RoleIDRef,
 		Selector:     mg.Spec.ForProvider.RoleIDSelector,
 		To: reference.To{
@@ -431,7 +431,7 @@ func (mg *Prefix) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.SiteID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.SiteIDRef,
 		Selector:     mg.Spec.ForProvider.SiteIDSelector,
 		To: reference.To{
@@ -447,7 +447,7 @@ func (mg *Prefix) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
@@ -463,7 +463,7 @@ func (mg *Prefix) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VlanID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.VlanIDRef,
 		Selector:     mg.Spec.ForProvider.VlanIDSelector,
 		To: reference.To{
@@ -479,7 +479,7 @@ func (mg *Prefix) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VrfID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.VrfIDRef,
 		Selector:     mg.Spec.ForProvider.VrfIDSelector,
 		To: reference.To{
@@ -505,7 +505,7 @@ func (mg *Service) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VirtualMachineID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.VirtualMachineIDRef,
 		Selector:     mg.Spec.ForProvider.VirtualMachineIDSelector,
 		To: reference.To{
@@ -531,7 +531,7 @@ func (mg *Target) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
@@ -557,7 +557,7 @@ func (mg *Vlan) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.GroupID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.GroupIDRef,
 		Selector:     mg.Spec.ForProvider.GroupIDSelector,
 		To: reference.To{
@@ -573,7 +573,7 @@ func (mg *Vlan) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.RoleID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.RoleIDRef,
 		Selector:     mg.Spec.ForProvider.RoleIDSelector,
 		To: reference.To{
@@ -589,7 +589,7 @@ func (mg *Vlan) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.SiteID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.SiteIDRef,
 		Selector:     mg.Spec.ForProvider.SiteIDSelector,
 		To: reference.To{
@@ -605,7 +605,7 @@ func (mg *Vlan) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
@@ -631,7 +631,7 @@ func (mg *Vrf) ResolveReferences(ctx context.Context, c client.Reader) error {
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{

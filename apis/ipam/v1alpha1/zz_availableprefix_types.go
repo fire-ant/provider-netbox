@@ -55,7 +55,7 @@ type AvailablePrefixParameters struct {
 	MarkUtilized *bool `json:"markUtilized,omitempty" tf:"mark_utilized,omitempty"`
 
 	// +crossplane:generate:reference:type=Prefix
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ParentPrefixID *float64 `json:"parentPrefixId,omitempty" tf:"parent_prefix_id,omitempty"`
 
@@ -71,7 +71,7 @@ type AvailablePrefixParameters struct {
 	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
 	// +crossplane:generate:reference:type=IpamRole
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
 
@@ -84,7 +84,7 @@ type AvailablePrefixParameters struct {
 	RoleIDSelector *v1.Selector `json:"roleIdSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
 
@@ -103,7 +103,7 @@ type AvailablePrefixParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
@@ -116,7 +116,7 @@ type AvailablePrefixParameters struct {
 	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=Vlan
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 
@@ -129,7 +129,7 @@ type AvailablePrefixParameters struct {
 	VlanIDSelector *v1.Selector `json:"vlanIdSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=Vrf
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VrfID *float64 `json:"vrfId,omitempty" tf:"vrf_id,omitempty"`
 

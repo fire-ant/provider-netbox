@@ -50,7 +50,7 @@ type IPAddressParameters struct {
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
 	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.DeviceInterface
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	InterfaceID *float64 `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
 
@@ -79,7 +79,7 @@ type IPAddressParameters struct {
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
 	// +crossplane:generate:reference:type=Vrf
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VrfID *float64 `json:"vrfId,omitempty" tf:"vrf_id,omitempty"`
 

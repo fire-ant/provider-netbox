@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type AvailableIPAdrressObservation struct {
+type AvailableIPAddressObservation struct {
 	DNSName *string `json:"dnsName,omitempty" tf:"dns_name,omitempty"`
 
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -22,11 +22,11 @@ type AvailableIPAdrressObservation struct {
 
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
-	IPRangeID *float64 `json:"ipRangeId,omitempty" tf:"ip_range_id,omitempty"`
+	IPRangeID *string `json:"ipRangeId,omitempty" tf:"ip_range_id,omitempty"`
 
 	InterfaceID *float64 `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
 
-	PrefixID *float64 `json:"prefixId,omitempty" tf:"prefix_id,omitempty"`
+	PrefixID *string `json:"prefixId,omitempty" tf:"prefix_id,omitempty"`
 
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
@@ -40,7 +40,7 @@ type AvailableIPAdrressObservation struct {
 	VrfID *float64 `json:"vrfId,omitempty" tf:"vrf_id,omitempty"`
 }
 
-type AvailableIPAdrressParameters struct {
+type AvailableIPAddressParameters struct {
 
 	// +kubebuilder:validation:Optional
 	DNSName *string `json:"dnsName,omitempty" tf:"dns_name,omitempty"`
@@ -49,9 +49,9 @@ type AvailableIPAdrressParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// +crossplane:generate:reference:type=IPRange
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
-	IPRangeID *float64 `json:"ipRangeId,omitempty" tf:"ip_range_id,omitempty"`
+	IPRangeID *string `json:"ipRangeId,omitempty" tf:"ip_range_id,omitempty"`
 
 	// Reference to a IPRange to populate ipRangeId.
 	// +kubebuilder:validation:Optional
@@ -62,7 +62,7 @@ type AvailableIPAdrressParameters struct {
 	IPRangeIDSelector *v1.Selector `json:"ipRangeIdSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.DeviceInterface
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	InterfaceID *float64 `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
 
@@ -75,9 +75,9 @@ type AvailableIPAdrressParameters struct {
 	InterfaceIDSelector *v1.Selector `json:"interfaceIdSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=Prefix
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
-	PrefixID *float64 `json:"prefixId,omitempty" tf:"prefix_id,omitempty"`
+	PrefixID *string `json:"prefixId,omitempty" tf:"prefix_id,omitempty"`
 
 	// Reference to a Prefix to populate prefixId.
 	// +kubebuilder:validation:Optional
@@ -98,7 +98,7 @@ type AvailableIPAdrressParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
@@ -111,7 +111,7 @@ type AvailableIPAdrressParameters struct {
 	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=Vrf
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VrfID *float64 `json:"vrfId,omitempty" tf:"vrf_id,omitempty"`
 
@@ -124,51 +124,51 @@ type AvailableIPAdrressParameters struct {
 	VrfIDSelector *v1.Selector `json:"vrfIdSelector,omitempty" tf:"-"`
 }
 
-// AvailableIPAdrressSpec defines the desired state of AvailableIPAdrress
-type AvailableIPAdrressSpec struct {
+// AvailableIPAddressSpec defines the desired state of AvailableIPAddress
+type AvailableIPAddressSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     AvailableIPAdrressParameters `json:"forProvider"`
+	ForProvider     AvailableIPAddressParameters `json:"forProvider"`
 }
 
-// AvailableIPAdrressStatus defines the observed state of AvailableIPAdrress.
-type AvailableIPAdrressStatus struct {
+// AvailableIPAddressStatus defines the observed state of AvailableIPAddress.
+type AvailableIPAddressStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        AvailableIPAdrressObservation `json:"atProvider,omitempty"`
+	AtProvider        AvailableIPAddressObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// AvailableIPAdrress is the Schema for the AvailableIPAdrresss API. <no value>
+// AvailableIPAddress is the Schema for the AvailableIPAddresss API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,netbox}
-type AvailableIPAdrress struct {
+type AvailableIPAddress struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              AvailableIPAdrressSpec   `json:"spec"`
-	Status            AvailableIPAdrressStatus `json:"status,omitempty"`
+	Spec              AvailableIPAddressSpec   `json:"spec"`
+	Status            AvailableIPAddressStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// AvailableIPAdrressList contains a list of AvailableIPAdrresss
-type AvailableIPAdrressList struct {
+// AvailableIPAddressList contains a list of AvailableIPAddresss
+type AvailableIPAddressList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []AvailableIPAdrress `json:"items"`
+	Items           []AvailableIPAddress `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	AvailableIPAdrress_Kind             = "AvailableIPAdrress"
-	AvailableIPAdrress_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: AvailableIPAdrress_Kind}.String()
-	AvailableIPAdrress_KindAPIVersion   = AvailableIPAdrress_Kind + "." + CRDGroupVersion.String()
-	AvailableIPAdrress_GroupVersionKind = CRDGroupVersion.WithKind(AvailableIPAdrress_Kind)
+	AvailableIPAddress_Kind             = "AvailableIPAddress"
+	AvailableIPAddress_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: AvailableIPAddress_Kind}.String()
+	AvailableIPAddress_KindAPIVersion   = AvailableIPAddress_Kind + "." + CRDGroupVersion.String()
+	AvailableIPAddress_GroupVersionKind = CRDGroupVersion.WithKind(AvailableIPAddress_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&AvailableIPAdrress{}, &AvailableIPAdrressList{})
+	SchemeBuilder.Register(&AvailableIPAddress{}, &AvailableIPAddressList{})
 }

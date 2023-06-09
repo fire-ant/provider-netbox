@@ -159,79 +159,79 @@ func (mg *Asn) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this AvailableIPAddress.
+func (mg *AvailableIPAddress) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this AvailableIPAddress.
+func (mg *AvailableIPAddress) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicy of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) GetManagementPolicy() xpv1.ManagementPolicy {
+// GetManagementPolicy of this AvailableIPAddress.
+func (mg *AvailableIPAddress) GetManagementPolicy() xpv1.ManagementPolicy {
 	return mg.Spec.ManagementPolicy
 }
 
-// GetProviderConfigReference of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this AvailableIPAddress.
+func (mg *AvailableIPAddress) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this AvailableIPAdrress.
+GetProviderReference of this AvailableIPAddress.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *AvailableIPAdrress) GetProviderReference() *xpv1.Reference {
+func (mg *AvailableIPAddress) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this AvailableIPAddress.
+func (mg *AvailableIPAddress) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this AvailableIPAddress.
+func (mg *AvailableIPAddress) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this AvailableIPAddress.
+func (mg *AvailableIPAddress) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this AvailableIPAddress.
+func (mg *AvailableIPAddress) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicy of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) SetManagementPolicy(r xpv1.ManagementPolicy) {
+// SetManagementPolicy of this AvailableIPAddress.
+func (mg *AvailableIPAddress) SetManagementPolicy(r xpv1.ManagementPolicy) {
 	mg.Spec.ManagementPolicy = r
 }
 
-// SetProviderConfigReference of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this AvailableIPAddress.
+func (mg *AvailableIPAddress) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this AvailableIPAdrress.
+SetProviderReference of this AvailableIPAddress.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *AvailableIPAdrress) SetProviderReference(r *xpv1.Reference) {
+func (mg *AvailableIPAddress) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this AvailableIPAddress.
+func (mg *AvailableIPAddress) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this AvailableIPAdrress.
-func (mg *AvailableIPAdrress) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this AvailableIPAddress.
+func (mg *AvailableIPAddress) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 

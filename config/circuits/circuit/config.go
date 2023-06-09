@@ -1,7 +1,6 @@
 package circuit
 
 import (
-	"github.com/fire-ant/provider-netbox/config/common"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -12,15 +11,15 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "circuits"
 		r.References["provider_id"] = config.Reference{
 			Type:      "CircuitProvider",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["type_id"] = config.Reference{
 			Type:      "CircuitType",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["tenant_id"] = config.Reference{
 			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		// if s, ok := r.TerraformResource.Schema["tenant_id"]; ok {
 		// 	s.Type = schema.TypeInt

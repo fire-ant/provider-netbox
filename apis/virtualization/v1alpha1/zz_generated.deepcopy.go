@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -825,6 +826,16 @@ func (in *MachineParameters) DeepCopyInto(out *MachineParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Comments != nil {
 		in, out := &in.Comments, &out.Comments
 		*out = new(string)
@@ -850,6 +861,16 @@ func (in *MachineParameters) DeepCopyInto(out *MachineParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.DeviceIDRef != nil {
+		in, out := &in.DeviceIDRef, &out.DeviceIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DeviceIDSelector != nil {
+		in, out := &in.DeviceIDSelector, &out.DeviceIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.DiskSizeGb != nil {
 		in, out := &in.DiskSizeGb, &out.DiskSizeGb
 		*out = new(float64)
@@ -865,15 +886,45 @@ func (in *MachineParameters) DeepCopyInto(out *MachineParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.PlatformIDRef != nil {
+		in, out := &in.PlatformIDRef, &out.PlatformIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PlatformIDSelector != nil {
+		in, out := &in.PlatformIDSelector, &out.PlatformIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.RoleID != nil {
 		in, out := &in.RoleID, &out.RoleID
 		*out = new(float64)
 		**out = **in
 	}
+	if in.RoleIDRef != nil {
+		in, out := &in.RoleIDRef, &out.RoleIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RoleIDSelector != nil {
+		in, out := &in.RoleIDSelector, &out.RoleIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SiteID != nil {
 		in, out := &in.SiteID, &out.SiteID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.SiteIDRef != nil {
+		in, out := &in.SiteIDRef, &out.SiteIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SiteIDSelector != nil {
+		in, out := &in.SiteIDSelector, &out.SiteIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
@@ -895,6 +946,16 @@ func (in *MachineParameters) DeepCopyInto(out *MachineParameters) {
 		in, out := &in.TenantID, &out.TenantID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.TenantIDRef != nil {
+		in, out := &in.TenantIDRef, &out.TenantIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TenantIDSelector != nil {
+		in, out := &in.TenantIDSelector, &out.TenantIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Vcpus != nil {
 		in, out := &in.Vcpus, &out.Vcpus

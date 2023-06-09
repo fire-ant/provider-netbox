@@ -1,7 +1,6 @@
 package availableprefix
 
 import (
-	"github.com/fire-ant/provider-netbox/config/common"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/upbound/upjet/pkg/config"
 )
@@ -14,27 +13,27 @@ func Configure(p *config.Provider) {
 		r.Kind = "AvailablePrefix"
 		r.References["role_id"] = config.Reference{
 			Type:      "IpamRole",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["site_id"] = config.Reference{
 			Type:      "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["tenant_id"] = config.Reference{
 			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["vlan_id"] = config.Reference{
 			Type:      "Vlan",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["vrf_id"] = config.Reference{
 			Type:      "Vrf",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["parent_prefix_id"] = config.Reference{
 			Type:      "Prefix",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		if s, ok := r.TerraformResource.Schema["parent_prefix_id"]; ok {
 			s.Type = schema.TypeFloat

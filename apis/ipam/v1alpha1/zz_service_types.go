@@ -37,7 +37,7 @@ type ServiceParameters struct {
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
 	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/virtualization/v1alpha1.Machine
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VirtualMachineID *float64 `json:"virtualMachineId,omitempty" tf:"virtual_machine_id,omitempty"`
 

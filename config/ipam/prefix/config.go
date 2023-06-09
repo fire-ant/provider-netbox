@@ -1,7 +1,6 @@
 package prefix
 
 import (
-	"github.com/fire-ant/provider-netbox/config/common"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -12,26 +11,26 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "ipam"
 		r.References["tenant_id"] = config.Reference{
 			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["site_id"] = config.Reference{
 			Type:      "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["role_id"] = config.Reference{
 			Type: "IpamRole",
 			// Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Role",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["vlan_id"] = config.Reference{
 			Type: "Vlan",
 			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Vlan",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["vrf_id"] = config.Reference{
 			Type: "Vrf",
 			// Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Vrf",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 	})
 }

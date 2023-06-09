@@ -1,7 +1,6 @@
 package location
 
 import (
-	"github.com/fire-ant/provider-netbox/config/common"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -13,11 +12,11 @@ func Configure(p *config.Provider) {
 		r.References["site_id"] = config.Reference{
 			Type: "Site",
 			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["tenant_id"] = config.Reference{
 			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 	})
 }

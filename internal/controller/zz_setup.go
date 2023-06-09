@@ -30,7 +30,7 @@ import (
 	tag "github.com/fire-ant/provider-netbox/internal/controller/extras/tag"
 	aggregate "github.com/fire-ant/provider-netbox/internal/controller/ipam/aggregate"
 	asn "github.com/fire-ant/provider-netbox/internal/controller/ipam/asn"
-	availableipadrress "github.com/fire-ant/provider-netbox/internal/controller/ipam/availableipadrress"
+	availableipaddress "github.com/fire-ant/provider-netbox/internal/controller/ipam/availableipaddress"
 	availableprefix "github.com/fire-ant/provider-netbox/internal/controller/ipam/availableprefix"
 	groupipam "github.com/fire-ant/provider-netbox/internal/controller/ipam/group"
 	ipaddress "github.com/fire-ant/provider-netbox/internal/controller/ipam/ipaddress"
@@ -81,7 +81,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		tag.Setup,
 		aggregate.Setup,
 		asn.Setup,
-		availableipadrress.Setup,
+		availableipaddress.Setup,
 		availableprefix.Setup,
 		groupipam.Setup,
 		ipaddress.Setup,

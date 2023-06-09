@@ -161,18 +161,18 @@ func (tr *Asn) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this AvailableIPAdrress
-func (mg *AvailableIPAdrress) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this AvailableIPAddress
+func (mg *AvailableIPAddress) GetTerraformResourceType() string {
 	return "netbox_available_ip_address"
 }
 
-// GetConnectionDetailsMapping for this AvailableIPAdrress
-func (tr *AvailableIPAdrress) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this AvailableIPAddress
+func (tr *AvailableIPAddress) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this AvailableIPAdrress
-func (tr *AvailableIPAdrress) GetObservation() (map[string]any, error) {
+// GetObservation of this AvailableIPAddress
+func (tr *AvailableIPAddress) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -181,8 +181,8 @@ func (tr *AvailableIPAdrress) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this AvailableIPAdrress
-func (tr *AvailableIPAdrress) SetObservation(obs map[string]any) error {
+// SetObservation for this AvailableIPAddress
+func (tr *AvailableIPAddress) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -190,16 +190,16 @@ func (tr *AvailableIPAdrress) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this AvailableIPAdrress
-func (tr *AvailableIPAdrress) GetID() string {
+// GetID returns ID of underlying Terraform resource of this AvailableIPAddress
+func (tr *AvailableIPAddress) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this AvailableIPAdrress
-func (tr *AvailableIPAdrress) GetParameters() (map[string]any, error) {
+// GetParameters of this AvailableIPAddress
+func (tr *AvailableIPAddress) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -208,8 +208,8 @@ func (tr *AvailableIPAdrress) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this AvailableIPAdrress
-func (tr *AvailableIPAdrress) SetParameters(params map[string]any) error {
+// SetParameters for this AvailableIPAddress
+func (tr *AvailableIPAddress) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -217,10 +217,10 @@ func (tr *AvailableIPAdrress) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this AvailableIPAdrress using its observed tfState.
+// LateInitialize this AvailableIPAddress using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *AvailableIPAdrress) LateInitialize(attrs []byte) (bool, error) {
-	params := &AvailableIPAdrressParameters{}
+func (tr *AvailableIPAddress) LateInitialize(attrs []byte) (bool, error) {
+	params := &AvailableIPAddressParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -231,7 +231,7 @@ func (tr *AvailableIPAdrress) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *AvailableIPAdrress) GetTerraformSchemaVersion() int {
+func (tr *AvailableIPAddress) GetTerraformSchemaVersion() int {
 	return 0
 }
 

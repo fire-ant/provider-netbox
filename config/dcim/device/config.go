@@ -1,7 +1,6 @@
 package device
 
 import (
-	"github.com/fire-ant/provider-netbox/config/common"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"github.com/upbound/upjet/pkg/config"
@@ -15,17 +14,17 @@ func Configure(p *config.Provider) {
 		r.References["device_type_id"] = config.Reference{
 			Type: "DeviceType",
 			// Type:      "github.com/fire-ant/provider-netbox/apis/device/v1alpha1.DeviceType",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["role_id"] = config.Reference{
 			Type: "DeviceRole",
 			// Type:      "github.com/fire-ant/provider-netbox/apis/device/v1alpha1.Role",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["site_id"] = config.Reference{
 			Type: "Site",
 			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		// r.LateInitializer = config.LateInitializer{
 		// 	IgnoredFields: []string{"site_id"},

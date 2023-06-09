@@ -33,7 +33,7 @@ type CircuitParameters struct {
 	Cid *string `json:"cid,omitempty" tf:"cid,omitempty"`
 
 	// +crossplane:generate:reference:type=CircuitProvider
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProviderID *float64 `json:"providerId,omitempty" tf:"provider_id,omitempty"`
 
@@ -49,7 +49,7 @@ type CircuitParameters struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
@@ -62,7 +62,7 @@ type CircuitParameters struct {
 	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=CircuitType
-	// +crossplane:generate:reference:extractor=github.com/fire-ant/provider-netbox/config/common.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TypeID *float64 `json:"typeId,omitempty" tf:"type_id,omitempty"`
 

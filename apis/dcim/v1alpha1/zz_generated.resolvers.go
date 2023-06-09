@@ -9,7 +9,6 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	v1alpha1 "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1"
-	common "github.com/fire-ant/provider-netbox/config/common"
 	errors "github.com/pkg/errors"
 	resource "github.com/upbound/upjet/pkg/resource"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -76,7 +75,7 @@ func (mg *Location) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.SiteID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.SiteIDRef,
 		Selector:     mg.Spec.ForProvider.SiteIDSelector,
 		To: reference.To{
@@ -92,7 +91,7 @@ func (mg *Location) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{

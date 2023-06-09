@@ -10,7 +10,6 @@ import (
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	v1alpha11 "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1"
 	v1alpha1 "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1"
-	common "github.com/fire-ant/provider-netbox/config/common"
 	errors "github.com/pkg/errors"
 	resource "github.com/upbound/upjet/pkg/resource"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -25,7 +24,7 @@ func (mg *Circuit) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.ProviderID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.ProviderIDRef,
 		Selector:     mg.Spec.ForProvider.ProviderIDSelector,
 		To: reference.To{
@@ -41,7 +40,7 @@ func (mg *Circuit) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TenantIDRef,
 		Selector:     mg.Spec.ForProvider.TenantIDSelector,
 		To: reference.To{
@@ -57,7 +56,7 @@ func (mg *Circuit) ResolveReferences(ctx context.Context, c client.Reader) error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TypeID),
-		Extract:      common.ExtractResourceID(),
+		Extract:      resource.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.TypeIDRef,
 		Selector:     mg.Spec.ForProvider.TypeIDSelector,
 		To: reference.To{

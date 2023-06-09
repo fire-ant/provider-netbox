@@ -1,7 +1,6 @@
 package vlangroup
 
 import (
-	"github.com/fire-ant/provider-netbox/config/common"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -12,7 +11,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "ipam"
 		r.References["scope_id"] = config.Reference{
 			Type:      "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 	})
 }

@@ -54,8 +54,18 @@ type MachineObservation struct {
 type MachineParameters struct {
 
 	// At least one of `site_id` or `cluster_id` must be given.
+	// +crossplane:generate:reference:type=Cluster
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Reference to a Cluster to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDRef *v1.Reference `json:"clusterIdRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Comments *string `json:"comments,omitempty" tf:"comments,omitempty"`
@@ -63,8 +73,18 @@ type MachineParameters struct {
 	// +kubebuilder:validation:Optional
 	CustomFields map[string]*string `json:"customFields,omitempty" tf:"custom_fields,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Device
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	DeviceID *float64 `json:"deviceId,omitempty" tf:"device_id,omitempty"`
+
+	// Reference to a Device in dcim to populate deviceId.
+	// +kubebuilder:validation:Optional
+	DeviceIDRef *v1.Reference `json:"deviceIdRef,omitempty" tf:"-"`
+
+	// Selector for a Device in dcim to populate deviceId.
+	// +kubebuilder:validation:Optional
+	DeviceIDSelector *v1.Selector `json:"deviceIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	DiskSizeGb *float64 `json:"diskSizeGb,omitempty" tf:"disk_size_gb,omitempty"`
@@ -72,15 +92,45 @@ type MachineParameters struct {
 	// +kubebuilder:validation:Optional
 	MemoryMb *float64 `json:"memoryMb,omitempty" tf:"memory_mb,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Platform
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	PlatformID *float64 `json:"platformId,omitempty" tf:"platform_id,omitempty"`
 
+	// Reference to a Platform in dcim to populate platformId.
+	// +kubebuilder:validation:Optional
+	PlatformIDRef *v1.Reference `json:"platformIdRef,omitempty" tf:"-"`
+
+	// Selector for a Platform in dcim to populate platformId.
+	// +kubebuilder:validation:Optional
+	PlatformIDSelector *v1.Selector `json:"platformIdSelector,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Role
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
 
+	// Reference to a Role in dcim to populate roleId.
+	// +kubebuilder:validation:Optional
+	RoleIDRef *v1.Reference `json:"roleIdRef,omitempty" tf:"-"`
+
+	// Selector for a Role in dcim to populate roleId.
+	// +kubebuilder:validation:Optional
+	RoleIDSelector *v1.Selector `json:"roleIdSelector,omitempty" tf:"-"`
+
 	// At least one of `site_id` or `cluster_id` must be given.
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
+
+	// Reference to a Site in dcim to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDRef *v1.Reference `json:"siteIdRef,omitempty" tf:"-"`
+
+	// Selector for a Site in dcim to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDSelector *v1.Selector `json:"siteIdSelector,omitempty" tf:"-"`
 
 	// Valid values are `offline`, `active`, `planned`, `staged`, `failed` and `decommissioning`. Defaults to `active`.
 	// +kubebuilder:validation:Optional
@@ -89,8 +139,18 @@ type MachineParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
+
+	// Reference to a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDRef *v1.Reference `json:"tenantIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Vcpus *float64 `json:"vcpus,omitempty" tf:"vcpus,omitempty"`
