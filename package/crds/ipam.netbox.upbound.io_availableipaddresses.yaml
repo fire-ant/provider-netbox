@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
-  name: availableipadrresses.ipam.netbox.upbound.io
+  name: availableipaddresses.ipam.netbox.upbound.io
 spec:
   group: ipam.netbox.upbound.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - netbox
-    kind: AvailableIPAdrress
-    listKind: AvailableIPAdrressList
-    plural: availableipadrresses
-    singular: availableipadrress
+    kind: AvailableIPAddress
+    listKind: AvailableIPAddressList
+    plural: availableipaddresses
+    singular: availableipaddress
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: AvailableIPAdrress is the Schema for the AvailableIPAdrresss
+        description: AvailableIPAddress is the Schema for the AvailableIPAddresss
           API. <no value>
         properties:
           apiVersion:
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: AvailableIPAdrressSpec defines the desired state of AvailableIPAdrress
+            description: AvailableIPAddressSpec defines the desired state of AvailableIPAddress
             properties:
               deletionPolicy:
                 default: Delete
@@ -150,7 +150,7 @@ spec:
                         type: object
                     type: object
                   ipRangeId:
-                    type: number
+                    type: string
                   ipRangeIdRef:
                     description: Reference to a IPRange to populate ipRangeId.
                     properties:
@@ -225,7 +225,7 @@ spec:
                         type: object
                     type: object
                   prefixId:
-                    type: number
+                    type: string
                   prefixIdRef:
                     description: Reference to a Prefix to populate prefixId.
                     properties:
@@ -646,7 +646,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: AvailableIPAdrressStatus defines the observed state of AvailableIPAdrress.
+            description: AvailableIPAddressStatus defines the observed state of AvailableIPAddress.
             properties:
               atProvider:
                 properties:
@@ -661,9 +661,9 @@ spec:
                   ipAddress:
                     type: string
                   ipRangeId:
-                    type: number
+                    type: string
                   prefixId:
-                    type: number
+                    type: string
                   role:
                     type: string
                   status:

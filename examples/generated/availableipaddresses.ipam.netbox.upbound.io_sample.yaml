@@ -1,5 +1,5 @@
 apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: AvailableIPAdrress
+kind: AvailableIPAddress
 metadata: {}
 spec:
   deletionPolicy: string
