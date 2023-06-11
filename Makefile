@@ -184,7 +184,7 @@ local-deploy: build controlplane.up local.xpkg.deploy.provider.$(PROJECT_NAME)
 
 tools: $(HELM) $(UPTEST) $(KUBECTL) $(KUTTL) $(TERRAFORM) $(KIND)
 
-netbox: 
+netbox:
 	@$(HELM) repo add bootc https://charts.boo.tc
 	@$(HELM) upgrade --install netbox --create-namespace -n netbox-system \
 	--set postgresql.auth.postgresPassword=mypgsecret! \
