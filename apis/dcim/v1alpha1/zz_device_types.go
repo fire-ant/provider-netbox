@@ -20,7 +20,7 @@ type DeviceObservation struct {
 
 	CustomFields map[string]*string `json:"customFields,omitempty" tf:"custom_fields,omitempty"`
 
-	DeviceTypeID *string `json:"deviceTypeId,omitempty" tf:"device_type_id,omitempty"`
+	DeviceTypeID *float64 `json:"deviceTypeId,omitempty" tf:"device_type_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -38,11 +38,11 @@ type DeviceObservation struct {
 
 	RackPosition *float64 `json:"rackPosition,omitempty" tf:"rack_position,omitempty"`
 
-	RoleID *string `json:"roleId,omitempty" tf:"role_id,omitempty"`
+	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
 
 	Serial *string `json:"serial,omitempty" tf:"serial,omitempty"`
 
-	SiteID *string `json:"siteId,omitempty" tf:"site_id,omitempty"`
+	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
 
 	// Defaults to `active`.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
@@ -63,6 +63,19 @@ type DeviceParameters struct {
 	// +kubebuilder:validation:Optional
 	CustomFields map[string]*string `json:"customFields,omitempty" tf:"custom_fields,omitempty"`
 
+	// +crossplane:generate:reference:type=DeviceType
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
+	// +kubebuilder:validation:Optional
+	DeviceTypeID *float64 `json:"deviceTypeId,omitempty" tf:"device_type_id,omitempty"`
+
+	// Reference to a DeviceType to populate deviceTypeId.
+	// +kubebuilder:validation:Optional
+	DeviceTypeIDRef *v1.Reference `json:"deviceTypeIdRef,omitempty" tf:"-"`
+
+	// Selector for a DeviceType to populate deviceTypeId.
+	// +kubebuilder:validation:Optional
+	DeviceTypeIDSelector *v1.Selector `json:"deviceTypeIdSelector,omitempty" tf:"-"`
+
 	// +kubebuilder:validation:Optional
 	LocationID *float64 `json:"locationId,omitempty" tf:"location_id,omitempty"`
 
@@ -78,8 +91,34 @@ type DeviceParameters struct {
 	// +kubebuilder:validation:Optional
 	RackPosition *float64 `json:"rackPosition,omitempty" tf:"rack_position,omitempty"`
 
+	// +crossplane:generate:reference:type=DeviceRole
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
+	// +kubebuilder:validation:Optional
+	RoleID *float64 `json:"roleId,omitempty" tf:"role_id,omitempty"`
+
+	// Reference to a DeviceRole to populate roleId.
+	// +kubebuilder:validation:Optional
+	RoleIDRef *v1.Reference `json:"roleIdRef,omitempty" tf:"-"`
+
+	// Selector for a DeviceRole to populate roleId.
+	// +kubebuilder:validation:Optional
+	RoleIDSelector *v1.Selector `json:"roleIdSelector,omitempty" tf:"-"`
+
 	// +kubebuilder:validation:Optional
 	Serial *string `json:"serial,omitempty" tf:"serial,omitempty"`
+
+	// +crossplane:generate:reference:type=Site
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
+	// +kubebuilder:validation:Optional
+	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
+
+	// Reference to a Site to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDRef *v1.Reference `json:"siteIdRef,omitempty" tf:"-"`
+
+	// Selector for a Site to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDSelector *v1.Selector `json:"siteIdSelector,omitempty" tf:"-"`
 
 	// Defaults to `active`.
 	// +kubebuilder:validation:Optional

@@ -375,7 +375,7 @@ func (in *DeviceObservation) DeepCopyInto(out *DeviceObservation) {
 	}
 	if in.DeviceTypeID != nil {
 		in, out := &in.DeviceTypeID, &out.DeviceTypeID
-		*out = new(string)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -420,7 +420,7 @@ func (in *DeviceObservation) DeepCopyInto(out *DeviceObservation) {
 	}
 	if in.RoleID != nil {
 		in, out := &in.RoleID, &out.RoleID
-		*out = new(string)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Serial != nil {
@@ -430,7 +430,7 @@ func (in *DeviceObservation) DeepCopyInto(out *DeviceObservation) {
 	}
 	if in.SiteID != nil {
 		in, out := &in.SiteID, &out.SiteID
-		*out = new(string)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -494,6 +494,21 @@ func (in *DeviceParameters) DeepCopyInto(out *DeviceParameters) {
 			(*out)[key] = outVal
 		}
 	}
+	if in.DeviceTypeID != nil {
+		in, out := &in.DeviceTypeID, &out.DeviceTypeID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DeviceTypeIDRef != nil {
+		in, out := &in.DeviceTypeIDRef, &out.DeviceTypeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DeviceTypeIDSelector != nil {
+		in, out := &in.DeviceTypeIDSelector, &out.DeviceTypeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.LocationID != nil {
 		in, out := &in.LocationID, &out.LocationID
 		*out = new(float64)
@@ -519,10 +534,40 @@ func (in *DeviceParameters) DeepCopyInto(out *DeviceParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.RoleID != nil {
+		in, out := &in.RoleID, &out.RoleID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.RoleIDRef != nil {
+		in, out := &in.RoleIDRef, &out.RoleIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RoleIDSelector != nil {
+		in, out := &in.RoleIDSelector, &out.RoleIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Serial != nil {
 		in, out := &in.Serial, &out.Serial
 		*out = new(string)
 		**out = **in
+	}
+	if in.SiteID != nil {
+		in, out := &in.SiteID, &out.SiteID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.SiteIDRef != nil {
+		in, out := &in.SiteIDRef, &out.SiteIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SiteIDSelector != nil {
+		in, out := &in.SiteIDSelector, &out.SiteIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
