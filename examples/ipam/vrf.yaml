@@ -1,5 +1,5 @@
 ---
-apiVersion: netbox.netbox.upbound.io/v1alpha1
+apiVersion: ipam.netbox.upbound.io/v1alpha1
 kind: Tenant
 metadata:
   name: tenantred
@@ -11,7 +11,7 @@ spec:
       - test
       - tryout
 ---
-apiVersion: netbox.netbox.upbound.io/v1alpha1
+apiVersion: ipam.netbox.upbound.io/v1alpha1
 kind: Vrf
 metadata: 
   name: green
@@ -22,7 +22,7 @@ spec:
       - green
       - production
 ---
-apiVersion: netbox.netbox.upbound.io/v1alpha1
+apiVersion: ipam.netbox.upbound.io/v1alpha1
 kind: Vrf
 metadata: 
   name: blue
@@ -33,7 +33,7 @@ spec:
       - blue
       - staging
 ---
-apiVersion: netbox.netbox.upbound.io/v1alpha1
+apiVersion: ipam.netbox.upbound.io/v1alpha1
 kind: Vrf
 metadata: 
   name: red
