@@ -1,47 +1,29 @@
-apiVersion: ipam.netbox.upbound.io/v1alpha1
-kind: IPAddress
+apiVersion: primaryip.netbox.upbound.io/v1alpha1
+kind: PrimaryIp
 metadata: {}
 spec:
   deletionPolicy: string
   forProvider:
-    description: string
-    dnsName: string
-    interfaceId: number
-    interfaceIdRef:
+    ipAddressId: number
+    ipAddressIdRef:
       name: string
       policy:
         resolution: string
         resolve: string
-    interfaceIdSelector:
+    ipAddressIdSelector:
       matchControllerRef: true
       matchLabels:
       policy:
         resolution: string
         resolve: string
-    ipAddress: string
-    objectType: string
-    role: string
-    status: string
-    tags: ["string"]
-    tenantId: number
-    tenantIdRef:
+    ipAddressVersion: number
+    virtualMachineId: number
+    virtualMachineIdRef:
       name: string
       policy:
         resolution: string
         resolve: string
-    tenantIdSelector:
-      matchControllerRef: true
-      matchLabels:
-      policy:
-        resolution: string
-        resolve: string
-    vrfId: number
-    vrfIdRef:
-      name: string
-      policy:
-        resolution: string
-        resolve: string
-    vrfIdSelector:
+    virtualMachineIdSelector:
       matchControllerRef: true
       matchLabels:
       policy:
@@ -74,17 +56,10 @@ spec:
     namespace: string
 status:
   atProvider:
-    description: string
-    dnsName: string
     id: string
-    interfaceId: number
-    ipAddress: string
-    objectType: string
-    role: string
-    status: string
-    tags: ["string"]
-    tenantId: number
-    vrfId: number
+    ipAddressId: number
+    ipAddressVersion: number
+    virtualMachineId: number
   conditions:
   - lastTransitionTime: string
     message: string

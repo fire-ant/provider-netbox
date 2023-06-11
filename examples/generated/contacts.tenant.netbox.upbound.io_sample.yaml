@@ -6,6 +6,17 @@ spec:
   forProvider:
     email: string
     groupId: number
+    groupIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    groupIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     phone: string
     tags: ["string"]
   managementPolicy: string

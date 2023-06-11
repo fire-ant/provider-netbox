@@ -18,7 +18,7 @@ spec:
       policy:
         resolution: string
         resolve: string
-    ipRangeId: number
+    ipRangeId: string
     ipRangeIdRef:
       name: string
       policy:
@@ -30,7 +30,7 @@ spec:
       policy:
         resolution: string
         resolve: string
-    prefixId: number
+    prefixId: string
     prefixIdRef:
       name: string
       policy:
@@ -101,8 +101,8 @@ status:
     id: string
     interfaceId: number
     ipAddress: string
-    ipRangeId: number
-    prefixId: number
+    ipRangeId: string
+    prefixId: string
     role: string
     status: string
     tags: ["string"]

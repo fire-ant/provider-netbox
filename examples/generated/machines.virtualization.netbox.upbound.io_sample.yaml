@@ -5,17 +5,83 @@ spec:
   deletionPolicy: string
   forProvider:
     clusterId: number
+    clusterIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    clusterIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     comments: string
     customFields:
     deviceId: number
+    deviceIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    deviceIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     diskSizeGb: number
     memoryMb: number
     platformId: number
+    platformIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    platformIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     roleId: number
+    roleIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    roleIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     siteId: number
+    siteIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    siteIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     status: string
     tags: ["string"]
     tenantId: number
+    tenantIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    tenantIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     vcpus: number
   managementPolicy: string
   providerConfigRef:

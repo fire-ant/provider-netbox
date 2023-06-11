@@ -8,6 +8,17 @@ spec:
     isPool: true
     markUtilized: true
     parentPrefixId: number
+    parentPrefixIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    parentPrefixIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     prefixLength: number
     roleId: number
     roleIdRef:

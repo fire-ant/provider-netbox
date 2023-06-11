@@ -5,10 +5,54 @@ spec:
   deletionPolicy: string
   forProvider:
     clusterGroupId: number
+    clusterGroupIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    clusterGroupIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     clusterTypeId: number
+    clusterTypeIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    clusterTypeIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     siteId: number
+    siteIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    siteIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
     tags: ["string"]
     tenantId: number
+    tenantIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    tenantIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
   managementPolicy: string
   providerConfigRef:
     name: string

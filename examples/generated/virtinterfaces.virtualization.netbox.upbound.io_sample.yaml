@@ -14,6 +14,17 @@ spec:
     type: string
     untaggedVlan: number
     virtualMachineId: number
+    virtualMachineIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    virtualMachineIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
   managementPolicy: string
   providerConfigRef:
     name: string
