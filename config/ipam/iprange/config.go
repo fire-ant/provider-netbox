@@ -11,8 +11,7 @@ func Configure(p *config.Provider) {
 		r.Kind = "IPRange"
 		r.ShortGroup = "ipam"
 		r.References["role_id"] = config.Reference{
-			Type: "IpamRole",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Role",
+			Type:      "IpamRole",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["tenant_id"] = config.Reference{
@@ -20,8 +19,7 @@ func Configure(p *config.Provider) {
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["vrf_id"] = config.Reference{
-			Type: "Vrf",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Vrf",
+			Type:      "Vrf",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 	})

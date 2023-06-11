@@ -2,8 +2,6 @@ package primaryip
 
 import "github.com/upbound/upjet/pkg/config"
 
-//	Issue implementing this code as it breaks api structure by implication go import cycle
-//
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_primary_ip", func(r *config.Resource) {

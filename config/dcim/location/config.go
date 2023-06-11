@@ -10,8 +10,7 @@ func Configure(p *config.Provider) {
 		r.ExternalName = config.NameAsIdentifier
 		r.ShortGroup = "dcim"
 		r.References["site_id"] = config.Reference{
-			Type: "Site",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Site",
+			Type:      "Site",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["tenant_id"] = config.Reference{

@@ -19,21 +19,9 @@ func Configure(p *config.Provider) {
 			Type:      "Prefix",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
-		if s, ok := r.TerraformResource.Schema["prefix_id"]; ok {
-			s.Type = schema.TypeString
-			s.Optional = true
-			s.Computed = true
-		}
-		// 	IgnoredFields: []string{"ip_address", "prefix_id"},
-		// }
 		r.References["ip_range_id"] = config.Reference{
 			Type:      "IPRange",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
-		}
-		if s, ok := r.TerraformResource.Schema["ip_range_id"]; ok {
-			s.Type = schema.TypeString
-			s.Optional = true
-			s.Computed = true
 		}
 		r.References["interface_id"] = config.Reference{
 			Type:      "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.DeviceInterface",
@@ -42,7 +30,16 @@ func Configure(p *config.Provider) {
 		r.References["vrf_id"] = config.Reference{
 			Type:      "Vrf",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
-			// Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("vrf_id",true)`,
+		}
+		if s, ok := r.TerraformResource.Schema["prefix_id"]; ok {
+			s.Type = schema.TypeString
+			s.Optional = true
+			s.Computed = true
+		}
+		if s, ok := r.TerraformResource.Schema["ip_range_id"]; ok {
+			s.Type = schema.TypeString
+			s.Optional = true
+			s.Computed = true
 		}
 	})
 }

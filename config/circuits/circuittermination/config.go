@@ -16,7 +16,6 @@ func Configure(p *config.Provider) {
 		r.References["circuit_id"] = config.Reference{
 			Type:      "Circuit",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
-			// Extractor:         "github.com/upbound/upjet/pkg/resource.ExtractParamPath(\"cid\", false)",
 		}
 	})
 }
