@@ -9,7 +9,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_device_interface", func(r *config.Resource) {
 		// We need to override the default group that upjet generated for
 		// this resource, which would be "netbox"
-		// r.ExternalName = config.NameAsIdentifier
+		r.ExternalName = config.NameAsIdentifier
 		r.Kind = "DeviceInterface"
 		r.ShortGroup = "dcim"
 		r.References["device_id"] = config.Reference{

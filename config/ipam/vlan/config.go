@@ -18,13 +18,11 @@ func Configure(p *config.Provider) {
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["role_id"] = config.Reference{
-			Type: "IpamRole",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Role",
+			Type:      "IpamRole",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["group_id"] = config.Reference{
-			Type: "Group",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/vlan/v1alpha1.Group",
+			Type:      "Group",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		// if s, ok := r.TerraformResource.Schema["tenant_id"]; ok {

@@ -11,8 +11,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "tenant"
 		r.Kind = "Tenant"
 		r.References["group_id"] = config.Reference{
-			Type: "Group",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Group",
+			Type:      "TenantGroup",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 

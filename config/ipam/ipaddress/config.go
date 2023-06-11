@@ -11,17 +11,15 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "ipam"
 		r.Kind = "IPAddress"
 		r.References["interface_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.DeviceInterface",
+			Type:      "github.com/fire-ant/provider-netbox/apis/virtualization/v1alpha1.VirtInterface",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
-		r.References["vlan_id"] = config.Reference{
-			Type: "Vlan",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/netbox/v1alpha1.Vlan",
+		r.References["tenant_id"] = config.Reference{
+			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["vrf_id"] = config.Reference{
-			Type: "Vrf",
-			// Type:      "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1.Vrf",
+			Type:      "Vrf",
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 	})
