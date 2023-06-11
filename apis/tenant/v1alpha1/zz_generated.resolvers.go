@@ -13,8 +13,8 @@ import (
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
-// ResolveReferences of this Tenant.
-func (mg *Tenant) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this Contact.
+func (mg *Contact) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -28,6 +28,32 @@ func (mg *Tenant) ResolveReferences(ctx context.Context, c client.Reader) error 
 		To: reference.To{
 			List:    &GroupList{},
 			Managed: &Group{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.GroupID")
+	}
+	mg.Spec.ForProvider.GroupID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.GroupIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this Tenant.
+func (mg *Tenant) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.GroupID),
+		Extract:      resource.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.GroupIDRef,
+		Selector:     mg.Spec.ForProvider.GroupIDSelector,
+		To: reference.To{
+			List:    &TenantGroupList{},
+			Managed: &TenantGroup{},
 		},
 	})
 	if err != nil {

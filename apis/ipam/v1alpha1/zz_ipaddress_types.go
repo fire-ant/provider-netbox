@@ -49,16 +49,16 @@ type IPAddressParameters struct {
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.DeviceInterface
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/virtualization/v1alpha1.VirtInterface
 	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	InterfaceID *float64 `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
 
-	// Reference to a DeviceInterface in dcim to populate interfaceId.
+	// Reference to a VirtInterface in virtualization to populate interfaceId.
 	// +kubebuilder:validation:Optional
 	InterfaceIDRef *v1.Reference `json:"interfaceIdRef,omitempty" tf:"-"`
 
-	// Selector for a DeviceInterface in dcim to populate interfaceId.
+	// Selector for a VirtInterface in virtualization to populate interfaceId.
 	// +kubebuilder:validation:Optional
 	InterfaceIDSelector *v1.Selector `json:"interfaceIdSelector,omitempty" tf:"-"`
 
@@ -75,8 +75,18 @@ type IPAddressParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
+
+	// Reference to a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDRef *v1.Reference `json:"tenantIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 
 	// +crossplane:generate:reference:type=Vrf
 	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()

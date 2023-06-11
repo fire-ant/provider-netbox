@@ -1443,6 +1443,16 @@ func (in *IPAddressParameters) DeepCopyInto(out *IPAddressParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.TenantIDRef != nil {
+		in, out := &in.TenantIDRef, &out.TenantIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.TenantIDSelector != nil {
+		in, out := &in.TenantIDSelector, &out.TenantIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VrfID != nil {
 		in, out := &in.VrfID, &out.VrfID
 		*out = new(float64)

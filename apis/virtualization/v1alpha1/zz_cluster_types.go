@@ -29,20 +29,60 @@ type ClusterObservation struct {
 
 type ClusterParameters struct {
 
+	// +crossplane:generate:reference:type=Group
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ClusterGroupID *float64 `json:"clusterGroupId,omitempty" tf:"cluster_group_id,omitempty"`
 
+	// Reference to a Group to populate clusterGroupId.
+	// +kubebuilder:validation:Optional
+	ClusterGroupIDRef *v1.Reference `json:"clusterGroupIdRef,omitempty" tf:"-"`
+
+	// Selector for a Group to populate clusterGroupId.
+	// +kubebuilder:validation:Optional
+	ClusterGroupIDSelector *v1.Selector `json:"clusterGroupIdSelector,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=ClusterType
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ClusterTypeID *float64 `json:"clusterTypeId,omitempty" tf:"cluster_type_id,omitempty"`
 
+	// Reference to a ClusterType to populate clusterTypeId.
+	// +kubebuilder:validation:Optional
+	ClusterTypeIDRef *v1.Reference `json:"clusterTypeIdRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterType to populate clusterTypeId.
+	// +kubebuilder:validation:Optional
+	ClusterTypeIDSelector *v1.Selector `json:"clusterTypeIdSelector,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.Site
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	SiteID *float64 `json:"siteId,omitempty" tf:"site_id,omitempty"`
+
+	// Reference to a Site in dcim to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDRef *v1.Reference `json:"siteIdRef,omitempty" tf:"-"`
+
+	// Selector for a Site in dcim to populate siteId.
+	// +kubebuilder:validation:Optional
+	SiteIDSelector *v1.Selector `json:"siteIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Tenant
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TenantID *float64 `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
+
+	// Reference to a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDRef *v1.Reference `json:"tenantIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tenant in tenant to populate tenantId.
+	// +kubebuilder:validation:Optional
+	TenantIDSelector *v1.Selector `json:"tenantIdSelector,omitempty" tf:"-"`
 }
 
 // ClusterSpec defines the desired state of Cluster
@@ -69,9 +109,8 @@ type ClusterStatus struct {
 type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.clusterTypeId)",message="clusterTypeId is a required parameter"
-	Spec   ClusterSpec   `json:"spec"`
-	Status ClusterStatus `json:"status,omitempty"`
+	Spec              ClusterSpec   `json:"spec"`
+	Status            ClusterStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

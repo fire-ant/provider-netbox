@@ -319,8 +319,8 @@ func (mg *IPAddress) ResolveReferences(ctx context.Context, c client.Reader) err
 		Reference:    mg.Spec.ForProvider.InterfaceIDRef,
 		Selector:     mg.Spec.ForProvider.InterfaceIDSelector,
 		To: reference.To{
-			List:    &v1alpha11.DeviceInterfaceList{},
-			Managed: &v1alpha11.DeviceInterface{},
+			List:    &v1alpha12.VirtInterfaceList{},
+			Managed: &v1alpha12.VirtInterface{},
 		},
 	})
 	if err != nil {
@@ -328,6 +328,22 @@ func (mg *IPAddress) ResolveReferences(ctx context.Context, c client.Reader) err
 	}
 	mg.Spec.ForProvider.InterfaceID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.InterfaceIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
+		Extract:      resource.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.TenantIDRef,
+		Selector:     mg.Spec.ForProvider.TenantIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.TenantList{},
+			Managed: &v1alpha1.Tenant{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.TenantID")
+	}
+	mg.Spec.ForProvider.TenantID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.TenantIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VrfID),

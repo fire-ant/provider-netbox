@@ -14,6 +14,7 @@ import (
 	v1alpha1dcim "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1"
 	v1alpha1extras "github.com/fire-ant/provider-netbox/apis/extras/v1alpha1"
 	v1alpha1ipam "github.com/fire-ant/provider-netbox/apis/ipam/v1alpha1"
+	v1alpha1primaryip "github.com/fire-ant/provider-netbox/apis/primaryip/v1alpha1"
 	v1alpha1tenant "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1"
 	v1alpha1apis "github.com/fire-ant/provider-netbox/apis/v1alpha1"
 	v1beta1 "github.com/fire-ant/provider-netbox/apis/v1beta1"
@@ -27,6 +28,7 @@ func init() {
 		v1alpha1dcim.SchemeBuilder.AddToScheme,
 		v1alpha1extras.SchemeBuilder.AddToScheme,
 		v1alpha1ipam.SchemeBuilder.AddToScheme,
+		v1alpha1primaryip.SchemeBuilder.AddToScheme,
 		v1alpha1tenant.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,

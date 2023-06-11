@@ -68,8 +68,18 @@ type VirtInterfaceParameters struct {
 	// +kubebuilder:validation:Optional
 	UntaggedVlan *float64 `json:"untaggedVlan,omitempty" tf:"untagged_vlan,omitempty"`
 
+	// +crossplane:generate:reference:type=Machine
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VirtualMachineID *float64 `json:"virtualMachineId,omitempty" tf:"virtual_machine_id,omitempty"`
+
+	// Reference to a Machine to populate virtualMachineId.
+	// +kubebuilder:validation:Optional
+	VirtualMachineIDRef *v1.Reference `json:"virtualMachineIdRef,omitempty" tf:"-"`
+
+	// Selector for a Machine to populate virtualMachineId.
+	// +kubebuilder:validation:Optional
+	VirtualMachineIDSelector *v1.Selector `json:"virtualMachineIdSelector,omitempty" tf:"-"`
 }
 
 // VirtInterfaceSpec defines the desired state of VirtInterface
@@ -96,9 +106,8 @@ type VirtInterfaceStatus struct {
 type VirtInterface struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.virtualMachineId)",message="virtualMachineId is a required parameter"
-	Spec   VirtInterfaceSpec   `json:"spec"`
-	Status VirtInterfaceStatus `json:"status,omitempty"`
+	Spec              VirtInterfaceSpec   `json:"spec"`
+	Status            VirtInterfaceStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

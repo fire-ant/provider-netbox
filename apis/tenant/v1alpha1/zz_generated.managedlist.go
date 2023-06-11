@@ -34,6 +34,15 @@ func (l *GroupList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this RoleList.
+func (l *RoleList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this TenantGroupList.
 func (l *TenantGroupList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

@@ -15,6 +15,80 @@ import (
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+// ResolveReferences of this Cluster.
+func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.ClusterGroupID),
+		Extract:      resource.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.ClusterGroupIDRef,
+		Selector:     mg.Spec.ForProvider.ClusterGroupIDSelector,
+		To: reference.To{
+			List:    &GroupList{},
+			Managed: &Group{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ClusterGroupID")
+	}
+	mg.Spec.ForProvider.ClusterGroupID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ClusterGroupIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.ClusterTypeID),
+		Extract:      resource.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.ClusterTypeIDRef,
+		Selector:     mg.Spec.ForProvider.ClusterTypeIDSelector,
+		To: reference.To{
+			List:    &ClusterTypeList{},
+			Managed: &ClusterType{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ClusterTypeID")
+	}
+	mg.Spec.ForProvider.ClusterTypeID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ClusterTypeIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.SiteID),
+		Extract:      resource.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.SiteIDRef,
+		Selector:     mg.Spec.ForProvider.SiteIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.SiteList{},
+			Managed: &v1alpha1.Site{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.SiteID")
+	}
+	mg.Spec.ForProvider.SiteID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.SiteIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.TenantID),
+		Extract:      resource.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.TenantIDRef,
+		Selector:     mg.Spec.ForProvider.TenantIDSelector,
+		To: reference.To{
+			List:    &v1alpha11.TenantList{},
+			Managed: &v1alpha11.Tenant{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.TenantID")
+	}
+	mg.Spec.ForProvider.TenantID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.TenantIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this Machine.
 func (mg *Machine) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
@@ -117,6 +191,32 @@ func (mg *Machine) ResolveReferences(ctx context.Context, c client.Reader) error
 	}
 	mg.Spec.ForProvider.TenantID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.TenantIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this VirtInterface.
+func (mg *VirtInterface) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.VirtualMachineID),
+		Extract:      resource.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.VirtualMachineIDRef,
+		Selector:     mg.Spec.ForProvider.VirtualMachineIDSelector,
+		To: reference.To{
+			List:    &MachineList{},
+			Managed: &Machine{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.VirtualMachineID")
+	}
+	mg.Spec.ForProvider.VirtualMachineID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.VirtualMachineIDRef = rsp.ResolvedReference
 
 	return nil
 }

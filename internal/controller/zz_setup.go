@@ -42,16 +42,17 @@ import (
 	target "github.com/fire-ant/provider-netbox/internal/controller/ipam/target"
 	vlan "github.com/fire-ant/provider-netbox/internal/controller/ipam/vlan"
 	vrf "github.com/fire-ant/provider-netbox/internal/controller/ipam/vrf"
+	primaryip "github.com/fire-ant/provider-netbox/internal/controller/primaryip/primaryip"
 	providerconfig "github.com/fire-ant/provider-netbox/internal/controller/providerconfig"
 	assignment "github.com/fire-ant/provider-netbox/internal/controller/tenant/assignment"
 	contact "github.com/fire-ant/provider-netbox/internal/controller/tenant/contact"
 	grouptenant "github.com/fire-ant/provider-netbox/internal/controller/tenant/group"
+	roletenant "github.com/fire-ant/provider-netbox/internal/controller/tenant/role"
 	tenant "github.com/fire-ant/provider-netbox/internal/controller/tenant/tenant"
 	tenantgroup "github.com/fire-ant/provider-netbox/internal/controller/tenant/tenantgroup"
 	cluster "github.com/fire-ant/provider-netbox/internal/controller/virtualization/cluster"
 	clustertype "github.com/fire-ant/provider-netbox/internal/controller/virtualization/clustertype"
 	groupvirtualization "github.com/fire-ant/provider-netbox/internal/controller/virtualization/group"
-	ip "github.com/fire-ant/provider-netbox/internal/controller/virtualization/ip"
 	machine "github.com/fire-ant/provider-netbox/internal/controller/virtualization/machine"
 	virtinterface "github.com/fire-ant/provider-netbox/internal/controller/virtualization/virtinterface"
 )
@@ -93,16 +94,17 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		target.Setup,
 		vlan.Setup,
 		vrf.Setup,
+		primaryip.Setup,
 		providerconfig.Setup,
 		assignment.Setup,
 		contact.Setup,
 		grouptenant.Setup,
+		roletenant.Setup,
 		tenant.Setup,
 		tenantgroup.Setup,
 		cluster.Setup,
 		clustertype.Setup,
 		groupvirtualization.Setup,
-		ip.Setup,
 		machine.Setup,
 		virtinterface.Setup,
 	} {

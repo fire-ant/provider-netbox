@@ -30,8 +30,18 @@ type ContactParameters struct {
 	// +kubebuilder:validation:Optional
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
+	// +crossplane:generate:reference:type=Group
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	GroupID *float64 `json:"groupId,omitempty" tf:"group_id,omitempty"`
+
+	// Reference to a Group to populate groupId.
+	// +kubebuilder:validation:Optional
+	GroupIDRef *v1.Reference `json:"groupIdRef,omitempty" tf:"-"`
+
+	// Selector for a Group to populate groupId.
+	// +kubebuilder:validation:Optional
+	GroupIDSelector *v1.Selector `json:"groupIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Phone *string `json:"phone,omitempty" tf:"phone,omitempty"`
