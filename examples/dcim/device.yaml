@@ -1,7 +1,7 @@
 ---
 apiVersion: dcim.netbox.upbound.io/v1alpha1
 kind: Manufacturer
-metadata: 
+metadata:
   name: newcorp
 spec:
   forProvider:
@@ -28,7 +28,7 @@ spec:
       name: newcorp
     partNumber: "1234567"
     uHeight: 2
-    tags: 
+    tags:
       - new
       - corp
 ---
@@ -68,9 +68,8 @@ spec:
     deviceTypeIdRef:
       name: test-devicetype
     serial: MYSERIAL
-    comments: "this is a test"
     status: active
-    tags: 
+    tags:
       - leaf
       - tor
     comments: "this is a test-device"
