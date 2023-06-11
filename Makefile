@@ -195,7 +195,7 @@ netbox:
   --set dateTimeFormat="H:i:s" \
 	--set version="4.0.1" \
   bootc/netbox
-	@$(KUBECTL) -n netbox-system wait deployment netbox --for condition=Available --timeout=300s
+	@$(KUBECTL) -n netbox-system wait deployment netbox --for condition=Available --timeout=400s
 	@$(OK) running locally deployed netbox instance
 # @$(KUBECTL) -n netbox-system apply -f patch/manifests/netbox-import-job.yaml - do not need to seed tests with predicates
 
