@@ -1,0 +1,66 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: testsite
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: Machine
+metadata:
+  name: testmachine
+spec:
+  forProvider:
+    siteIdRef:
+      name: testsite
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: VirtInterface
+metadata:
+  name: testinterface
+spec:
+  forProvider:
+    virtualMachineIdRef:
+      name: testmachine
+    description:
+    enabled: true
+    macAddress: DE:AD:BE:EF:00:00
+    mode: access
+    mtu: 1500
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: IPAddress
+metadata: 
+  name: testipaddress
+spec:
+  forProvider:
+    description: testipaddress
+    dnsName: ipaddress.example.com
+    ipAddress: 192.168.0.100/24
+    objectType: virtualization.vminterface
+    role: vip
+    status: active
+    tags: 
+      - test
+      - ipaddress
+      - ids
+    interfaceIdRef:
+      name: testinterface
+---
+apiVersion: primaryip.netbox.upbound.io/v1alpha1
+kind: PrimaryIp
+metadata: 
+  name: testprimaryip
+spec:
+  forProvider:
+    ipAddressIdRef:
+      name: testipaddress
+    virtualMachineIdRef:
+      name: testmachine

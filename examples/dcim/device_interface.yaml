@@ -70,10 +70,9 @@ spec:
     serial: MYSERIAL
     comments: "this is a test"
     status: active
-    tags: 
+    tags:
       - leaf
       - tor
-    comments: "this is a test-device"
 ---
 apiVersion: ipam.netbox.upbound.io/v1alpha1
 kind: Vlan

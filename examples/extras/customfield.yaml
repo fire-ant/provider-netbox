@@ -1,0 +1,18 @@
+apiVersion: extras.netbox.upbound.io/v1alpha1
+kind: Field
+metadata: 
+  name: testfield-tenant
+spec:
+  forProvider:
+    # contentTypes: 
+    #   - tenant,edgecore
+    #   - tenancy,edgecore
+    default: none
+    description: a field for tenant selection
+    groupName: tenants
+    label: tenant
+    required: false
+    type: text
+    validationMaximum: 100
+    validationMinimum: 1
+    weight: 10

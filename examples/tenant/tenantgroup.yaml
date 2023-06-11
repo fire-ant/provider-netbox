@@ -1,0 +1,9 @@
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: TenantGroup
+metadata: 
+  name: testtenantgroup
+spec:
+  forProvider:
+    slug: testtenantgroup
+    description: test
