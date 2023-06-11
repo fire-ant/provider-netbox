@@ -1,0 +1,13 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Region
+metadata:
+  name: test-region
+spec:
+  forProvider:
+    description: "test region"
+    slug: test-region
+    # parent:
+    #   name: test-sitegroup
+    #   kind: SiteGroup
+ 

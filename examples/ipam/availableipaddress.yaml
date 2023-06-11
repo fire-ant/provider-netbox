@@ -1,0 +1,97 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Prefix
+metadata: 
+  name: testprefix
+spec:
+  forProvider:
+    description: test
+    isPool: true
+    markUtilized: false
+    prefix: 10.64.0.0/16
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: AvailableIPAddress
+metadata: 
+  name: testavailableipaddress-prefix-id-only-0
+spec:
+  forProvider:
+    description: test
+    dnsName: test.example.com
+    prefixIdRef:
+      name: testprefix
+    status: reserved
+    role: secondary
+tags: 
+      - test
+      - prefix
+      - id
+      - "0"
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: AvailableIPAddress
+metadata: 
+  name: testavailableipaddress-prefix-id-only-1
+spec:
+  forProvider:
+    description: test
+    dnsName: test.example.com
+    prefixIdRef:
+      name: testprefix
+    status: reserved
+    role: secondary
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+      - "1"
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: AvailableIPAddress
+metadata: 
+  name: testavailableipaddress-prefix-id-only-2
+spec:
+  forProvider:
+    description: test
+    dnsName: test.example.com
+    prefixIdRef:
+      name: testprefix
+    status: reserved
+    role: secondary
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+      - "2"
+# ---
+# apiVersion: ipam.netbox.upbound.io/v1alpha1
+# kind: AvailableIPAdrress
+# metadata: 
+#   name: testavailableipaddress-with-ids
+# spec:
+#   forProvider:
+#     description: string
+#     dnsName: string
+#     interfaceIdRef:
+#       name: string
+#     ipRangeIdRef:
+#       name: string
+#     prefixIdRef:
+#       name: string
+#     role: primary
+#     status: active
+#     tags: 
+#       - test
+#       - prefix
+#       - id
+#     tenantIdRef:
+#       name: string
+#     vrfIdRef:
+#       name: string

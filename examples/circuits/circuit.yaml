@@ -1,0 +1,53 @@
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: CircuitProvider
+metadata: 
+  name: testprovider
+spec:
+  forProvider:
+    slug: basetestprovider
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: CircuitType
+metadata: 
+  name: testcircuittype
+spec:
+  forProvider:
+    slug: testcircuittype
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata: 
+  name: testtenant
+spec:
+  forProvider:
+    slug: basetesttenant
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: Circuit
+metadata: 
+  name: circuitnotestedid
+spec:
+  forProvider:
+    cid: "11111"
+    status: active
+    providerIdRef:
+      name: testprovider
+    typeIdRef:
+      name: testcircuittype
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: Circuit
+metadata: 
+  name: circuittestedids
+spec:
+  forProvider:
+    cid: "22222"
+    status: active
+    providerIdRef:
+      name: testprovider
+    tenantIdRef:
+      name: testtenant
+    typeIdRef:
+      name: testcircuittype
+    

@@ -1,0 +1,8 @@
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Role
+metadata: 
+  name: testcontactrole
+spec:
+  forProvider:
+    slug: testcontactrole

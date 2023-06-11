@@ -1,0 +1,55 @@
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata:
+  name: testtenant
+spec:
+  forProvider:
+    slug: testtenant
+    description: test0
+    tags:
+      - test
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: testsite
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: ClusterType
+metadata:
+  name: testclustertype
+spec:
+  forProvider:
+    slug: testclustertype
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: Group
+metadata:
+  name: testclustergroup
+spec:
+  forProvider:
+    slug: testclustergroup
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: Cluster
+metadata:
+  name: testcluster
+spec:
+  forProvider:
+    clusterGroupIdRef:
+      name: testclustergroup
+    clusterTypeIdRef:
+      name: testclustertype
+    tenantIdRef:
+      name: testtenant
+    siteIdRef:
+      name: testsite

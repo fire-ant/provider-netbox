@@ -1,0 +1,47 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Rir
+metadata: 
+  name: testrir
+spec:
+  forProvider:
+    description: test
+    slug: test
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata: 
+  name: testtenant
+spec:
+  forProvider:
+    slug: testtenant
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Aggregate
+metadata: 
+  name: testaggregate-rir-id-only
+spec:
+  forProvider:
+    description: RFC1918 space
+    prefix: 10.0.0.0/8
+    rirIdRef:
+      name: testrir
+    tags: 
+      - test
+      - prefix    
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Aggregate
+metadata: 
+  name: testaggregate-with-ids
+spec:
+  forProvider:
+    description: RFC1918 space
+    prefix: 19.168.0.0/24
+    rirIdRef:
+      name: testrir
+    tags: 
+      - test
+      - prefix    
+    tenantIdRef:
+      name: testtenant

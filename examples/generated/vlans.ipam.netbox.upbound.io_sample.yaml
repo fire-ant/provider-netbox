@@ -1,0 +1,100 @@
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vlan
+metadata: {}
+spec:
+  deletionPolicy: string
+  forProvider:
+    description: string
+    groupId: number
+    groupIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    groupIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
+    roleId: number
+    roleIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    roleIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
+    siteId: number
+    siteIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    siteIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
+    status: string
+    tags: ["string"]
+    tenantId: number
+    tenantIdRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    tenantIdSelector:
+      matchControllerRef: true
+      matchLabels:
+      policy:
+        resolution: string
+        resolve: string
+    vid: number
+  managementPolicy: string
+  providerConfigRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  providerRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  publishConnectionDetailsTo:
+    configRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    metadata:
+      annotations:
+      labels:
+      type: string
+    name: string
+  writeConnectionSecretToRef:
+    name: string
+    namespace: string
+status:
+  atProvider:
+    description: string
+    groupId: number
+    id: string
+    roleId: number
+    siteId: number
+    status: string
+    tags: ["string"]
+    tenantId: number
+    vid: number
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string

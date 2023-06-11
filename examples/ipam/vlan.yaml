@@ -1,0 +1,24 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vlan
+metadata:
+  name: test-vlan-pri
+spec:
+  forProvider:
+    vid: 10
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vlan
+metadata:
+  name: test-vlan-sec
+spec:
+  forProvider:
+    vid: 20
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vlan
+metadata:
+  name: test-vlan-ter
+spec:
+  forProvider:
+    vid: 30

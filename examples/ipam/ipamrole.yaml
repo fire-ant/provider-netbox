@@ -1,0 +1,10 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: IpamRole
+metadata: 
+  name: testipamrole
+spec:
+  forProvider:
+    description: test
+    slug: testipamrole
+    weight: 100

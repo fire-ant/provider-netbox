@@ -1,0 +1,8 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Platfrom
+metadata: 
+  name: new-platform
+spec:
+  forProvider:
+    slug: new-platform

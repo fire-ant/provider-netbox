@@ -43,16 +43,16 @@ import (
 	"github.com/fire-ant/provider-netbox/config/ipam/vlan"
 	"github.com/fire-ant/provider-netbox/config/ipam/vlangroup"
 	"github.com/fire-ant/provider-netbox/config/ipam/vrf"
+	"github.com/fire-ant/provider-netbox/config/primaryip/primaryip"
 	"github.com/fire-ant/provider-netbox/config/tenancy/contact"
 	"github.com/fire-ant/provider-netbox/config/tenancy/contactassignment"
 	"github.com/fire-ant/provider-netbox/config/tenancy/contactgroup"
+	"github.com/fire-ant/provider-netbox/config/tenancy/contactrole"
 	"github.com/fire-ant/provider-netbox/config/tenancy/tenant"
 	"github.com/fire-ant/provider-netbox/config/tenancy/tenantgroup"
-	"github.com/fire-ant/provider-netbox/config/tenancy/tenants"
 	"github.com/fire-ant/provider-netbox/config/virtualization/cluster"
 	"github.com/fire-ant/provider-netbox/config/virtualization/clustergroup"
 	"github.com/fire-ant/provider-netbox/config/virtualization/clustertype"
-	"github.com/fire-ant/provider-netbox/config/virtualization/primaryip"
 	"github.com/fire-ant/provider-netbox/config/virtualization/virtinterface"
 	"github.com/fire-ant/provider-netbox/config/virtualization/virtualmachine"
 )
@@ -115,9 +115,9 @@ func GetProvider() *ujconfig.Provider {
 		contact.Configure,
 		contactassignment.Configure,
 		contactgroup.Configure,
+		contactrole.Configure,
 		tenant.Configure,
 		tenantgroup.Configure,
-		tenants.Configure,
 		cluster.Configure,
 		clustergroup.Configure,
 		clustertype.Configure,

@@ -1,0 +1,10 @@
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: CircuitProvider
+metadata: 
+  labels:
+    testing.upbound.io/example-name: test-provider
+  name: test-provider
+spec:
+  forProvider:
+    slug: base-test-provider

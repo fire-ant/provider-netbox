@@ -1,0 +1,8 @@
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: Group
+metadata:
+  name: testclustergroup
+spec:
+  forProvider:
+    slug: testclustergroup

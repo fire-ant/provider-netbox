@@ -1,0 +1,63 @@
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: CircuitProvider
+metadata: 
+  name: testprovider
+spec:
+  forProvider:
+    slug: basetestprovider
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: CircuitType
+metadata: 
+  name: testcircuittype
+spec:
+  forProvider:
+    slug: testcircuittype
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: Circuit
+metadata: 
+  name: test-circuit
+spec:
+  forProvider:
+    cid: "11111"
+    status: active
+    providerIdRef:
+      name: testprovider
+    typeIdRef:
+      name: testcircuittype
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata: 
+  labels:
+    testing.upbound.io/example-name: test-site
+  name: test-site
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: circuits.netbox.upbound.io/v1alpha1
+kind: Termination
+metadata: 
+  labels:
+    testing.upbound.io/example-name:  test-circuittermination-no-tested-id
+  name: test-circuittermination-no-tested-id
+spec:
+  forProvider:
+    portSpeed: 1000
+    tags: 
+    - "testtag"
+    termSide: Z
+    upstreamSpeed: 1000
+    circuitIdRef:
+      name: test-circuit
+    siteIdRef:
+      name: test-site
+    

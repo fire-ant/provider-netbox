@@ -1,0 +1,9 @@
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: SiteGroup
+metadata:
+  name: test-sitegroup
+spec:
+  forProvider:
+    description: "test sitegroup"
+    slug: test-sitegroup
+    

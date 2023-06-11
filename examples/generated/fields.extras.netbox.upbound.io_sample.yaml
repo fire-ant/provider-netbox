@@ -1,0 +1,64 @@
+apiVersion: extras.netbox.upbound.io/v1alpha1
+kind: Field
+metadata: {}
+spec:
+  deletionPolicy: string
+  forProvider:
+    choices: ["string"]
+    contentTypes: ["string"]
+    default: string
+    description: string
+    groupName: string
+    label: string
+    required: true
+    type: string
+    validationMaximum: number
+    validationMinimum: number
+    validationRegex: string
+    weight: number
+  managementPolicy: string
+  providerConfigRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  providerRef:
+    name: string
+    policy:
+      resolution: string
+      resolve: string
+  publishConnectionDetailsTo:
+    configRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    metadata:
+      annotations:
+      labels:
+      type: string
+    name: string
+  writeConnectionSecretToRef:
+    name: string
+    namespace: string
+status:
+  atProvider:
+    choices: ["string"]
+    contentTypes: ["string"]
+    default: string
+    description: string
+    groupName: string
+    id: string
+    label: string
+    required: true
+    type: string
+    validationMaximum: number
+    validationMinimum: number
+    validationRegex: string
+    weight: number
+  conditions:
+  - lastTransitionTime: string
+    message: string
+    reason: string
+    status: string
+    type: string

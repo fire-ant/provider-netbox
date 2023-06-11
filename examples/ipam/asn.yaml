@@ -1,0 +1,23 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Rir
+metadata: 
+  name: testrir
+spec:
+  forProvider:
+    description: test
+    slug: test
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Asn
+metadata: 
+  name: testasn-with-ids
+spec:
+  forProvider:
+    asn: 55555
+    rirIdRef:
+      name: testrir
+    tags: 
+      - test
+      - "55555"
+# TODO investigate why idemptoent retries fail with apply failed: [POST /ipam/asns/][400] ipam_asns_create default  map[asn:[ASN with this ASN already exists.]]

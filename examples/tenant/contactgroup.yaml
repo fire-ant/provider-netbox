@@ -1,0 +1,35 @@
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Group
+metadata: 
+  name: testgroup
+spec:
+  forProvider:
+    description: testgroup
+    parentId: 20
+    slug: testgroup
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Contact
+metadata: 
+  name: testcontact
+spec:
+  forProvider:
+    email: example@example.com
+    phone: "+447777123456"
+    tags: 
+      - test
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Contact
+metadata: 
+  name: testcontact
+spec:
+  forProvider:
+    email: example@example.com
+    groupIdRef: 
+      name: testgroup
+    phone: "+447777123456"
+    tags: 
+      - test
+
+  

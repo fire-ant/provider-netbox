@@ -1,0 +1,36 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: IPRange
+metadata: 
+  name: testiprange
+spec:
+  forProvider:
+    description: test
+    startAddress: 192.168.0.100/24 
+    endAddress: 192.168.0.200/24 
+    status: active
+    tags: 
+      - test
+      - iprange
+      - id
+# ---
+# apiVersion: ipam.netbox.upbound.io/v1alpha1
+# kind: IPRange
+# metadata: 
+#   name: testiprange
+# spec:
+#   forProvider:
+#     description: test
+#     startAddress: 192.168.0.100/24 
+#     endAddress: 192.168.0.200/24 
+#     status: active
+#     tags: 
+#       - test
+#       - iprange
+#       - id
+#     roleIdRef:
+#       name: string
+#     tenantIdRef:
+#       name: string
+#     vrfIdRef:
+#       name: string

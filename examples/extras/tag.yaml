@@ -1,0 +1,13 @@
+apiVersion: extras.netbox.upbound.io/v1alpha1
+kind: Tag
+metadata: 
+  name: testtag-no-ids
+spec:
+  forProvider:
+    colorHex: "#ff0000"
+    description: testtag
+    slug: testtag
+    tags:    
+      - test
+      - tag
+      - ids
