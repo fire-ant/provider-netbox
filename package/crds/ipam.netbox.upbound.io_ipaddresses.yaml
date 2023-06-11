@@ -74,8 +74,8 @@ spec:
                   interfaceId:
                     type: number
                   interfaceIdRef:
-                    description: Reference to a VirtInterface in virtualization to
-                      populate interfaceId.
+                    description: Reference to a ObjectTypeSelector() in ipam to populate
+                      interfaceId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -109,8 +109,8 @@ spec:
                     - name
                     type: object
                   interfaceIdSelector:
-                    description: Selector for a VirtInterface in virtualization to
-                      populate interfaceId.
+                    description: Selector for a ObjectTypeSelector() in ipam to populate
+                      interfaceId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -501,6 +501,8 @@ spec:
             x-kubernetes-validations:
             - message: ipAddress is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.ipAddress)
+            - message: objectType is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.objectType)
             - message: status is a required parameter
               rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.status)
           status:

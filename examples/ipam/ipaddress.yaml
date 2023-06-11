@@ -1,5 +1,74 @@
 ---
 apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Manufacturer
+metadata: 
+  name: newcorp
+spec:
+  forProvider:
+    slug: newcorp
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: DeviceType
+metadata:
+  name: test-devicetype
+spec:
+  forProvider:
+    model: new-switch
+    manufacturerIdRef:
+      name: newcorp
+    partNumber: "1234567"
+    uHeight: 2
+    tags: 
+      - new
+      - corp
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: DeviceRole
+metadata:
+  name: test-role
+spec:
+  forProvider:
+    colorHex: ff00ff
+  providerConfigRef:
+    name: default
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Device
+metadata:
+  name: test-device
+spec:
+  forProvider:
+    roleIdRef:
+      name: test-role
+    siteIdRef:
+      name: test-site
+    deviceTypeIdRef:
+      name: test-devicetype
+    serial: MYSERIAL
+    comments: "this is a test"
+    status: active
+    tags:
+      - leaf
+      - tor
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: DeviceInterface
+metadata:
+  name: test-device-interface
+spec:
+  forProvider:
+    enabled: true
+    deviceIdRef:
+      name: test-device
+    macAddress: DE:AD:BE:EF:00:00
+    mgmtonly: false
+    mode: access
+    mtu: 1500
+    tags:
+      - thing
+    type: 1000base-t
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
 kind: Site
 metadata:
   name: testsite
@@ -91,7 +160,30 @@ spec:
       - ids
     vrfIdRef:
       name: green
-    interfaceIdRef:
-      name: testinterface
+    # interfaceIdRef:
+    #   name: testinterface
+    tenantIdRef:
+      name: testtenant
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: IPAddress
+metadata:
+  name: testipaddress-with-ids
+spec:
+  forProvider:
+    description: testipaddress-no-ids
+    dnsName: ipaddress.example.com
+    objectType: virtualization.interface
+    ipAddress: 192.168.0.101/24
+    role: vip
+    status: active
+    tags:
+      - test
+      - ipaddress
+      - ids
+    vrfIdRef:
+      name: green
+    # interfaceIdRef:
+    #   name: testinterface
     tenantIdRef:
       name: testtenant
