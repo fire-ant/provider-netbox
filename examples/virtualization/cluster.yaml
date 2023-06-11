@@ -1,11 +1,14 @@
 ---
-api: tenant.netbox.upbound.io/v1alpha1
+apiVersion: tenant.netbox.upbound.io/v1alpha1
 kind: Tenant
 metadata:
   name: testtenant
 spec:
   forProvider:
     slug: testtenant
+    description: test0
+    tags:
+      - test
 ---
 apiVersion: dcim.netbox.upbound.io/v1alpha1
 kind: Site
