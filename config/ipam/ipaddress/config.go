@@ -45,7 +45,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "ipam"
 		r.Kind = "IPAddress"
 		r.References["interface_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/dcim/v1alpha1.DeviceInterface",
+			Type:      PathObjectTypeSelector,
 			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 		r.References["tenant_id"] = config.Reference{
