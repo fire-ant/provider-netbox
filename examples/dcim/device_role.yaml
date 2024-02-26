@@ -1,0 +1,10 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: DeviceRole
+metadata:
+  name: test-role
+spec:
+  forProvider:
+    colorHex: ff00ff
+  providerConfigRef:
+    name: default

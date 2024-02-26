@@ -1,0 +1,8 @@
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: ClusterType
+metadata:
+  name: testclustertype
+spec:
+  forProvider:
+    slug: testclustertype

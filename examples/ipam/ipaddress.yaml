@@ -1,0 +1,97 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: testsite
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: Machine
+metadata:
+  name: testmachine
+spec:
+  forProvider:
+    siteIdRef:
+      name: testsite
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: VirtInterface
+metadata:
+  name: testinterface
+spec:
+  forProvider:
+    virtualMachineIdRef:
+      name: testmachine
+    description:
+    enabled: true
+    macAddress: DE:AD:BE:EF:00:00
+    mode: access
+    mtu: 1500
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vrf
+metadata:
+  name: green
+spec:
+  forProvider:
+    description: where the money is
+    tags:
+      - green
+      - production
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata:
+  name: testtenant
+spec:
+  forProvider:
+    slug: testtenant
+    description: test
+    tags:
+      - test
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: IPAddress
+metadata: 
+  name: testipaddress-no-ids
+spec:
+  forProvider:
+    description: testipaddress-no-ids
+    dnsName: ipaddress.example.com
+    ipAddress: 192.168.0.100/24
+    role: vip
+    status: active
+    tags:
+      - test
+      - ipaddress
+      - ids
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: IPAddress
+metadata:
+  name: testipaddress-with-ids
+spec:
+  forProvider:
+    description: testipaddress-no-ids
+    dnsName: ipaddress.example.com
+    objectType: dcim.interface
+    ipAddress: 192.168.0.100/24
+    role: vip
+    status: active
+    tags:
+      - test
+      - ipaddress
+      - ids
+    vrfIdRef:
+      name: green
+    interfaceIdRef:
+      name: testinterface
+    tenantIdRef:
+      name: testtenant

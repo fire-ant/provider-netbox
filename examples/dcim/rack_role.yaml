@@ -1,0 +1,46 @@
+---
+apiVersion: device.netbox.upbound.io/v1alpha1
+kind: Role
+metadata:
+  name: rolea
+spec:
+  forProvider:
+    colorHex: ff00ff
+  providerConfigRef:
+    name: default
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: sitea
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Device
+metadata:
+  name: test-device
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    comments: "this is a test"
+    roleIdRef:
+      name: rolea
+    siteIdRef:
+      name: sitea
+    deviceTypeRef:
+      name: devicetypea 
+    serial: MYSERIAL
+    status: active
+    tags: 
+      - leaf
+      - tor
+    comments: "this is a test-device"
+  providerConfigRef:
+    name: default

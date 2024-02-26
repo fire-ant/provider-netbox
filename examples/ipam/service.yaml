@@ -1,0 +1,34 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: testsite
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: virtualization.netbox.upbound.io/v1alpha1
+kind: Machine
+metadata: 
+  name: testmachine
+spec:
+  forProvider: 
+    siteIdRef:
+      name: testsite
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Service
+metadata: 
+  name: testservice
+spec:
+  forProvider:
+    ports: 
+      - 22
+    protocol: tcp
+    virtualMachineIdRef:
+      name: testmachine

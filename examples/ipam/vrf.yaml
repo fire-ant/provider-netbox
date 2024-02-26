@@ -1,0 +1,47 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata:
+  name: tenantred
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    description: A new tenant turn up
+    tags:
+      - test
+      - tryout
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vrf
+metadata: 
+  name: green
+spec:
+  forProvider:
+    description: where the money is
+    tags: 
+      - green
+      - production
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vrf
+metadata: 
+  name: blue
+spec:
+  forProvider:
+    description: where the pain is
+    tags: 
+      - blue
+      - staging
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Vrf
+metadata: 
+  name: red
+spec:
+  forProvider:
+    description: where the poop is
+    tags: 
+      - red
+      - development
+    tenantIdRef:
+      name: tenantred

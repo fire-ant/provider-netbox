@@ -1,7 +1,6 @@
 package tenant
 
 import (
-	"github.com/fire-ant/provider-netbox/config/common"
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -9,9 +8,11 @@ import (
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_tenant", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
+		r.ShortGroup = "tenant"
+		r.Kind = "Tenant"
 		r.References["group_id"] = config.Reference{
-			Type:      "github.com/fire-ant/provider-netbox/apis/tenant/v1alpha1.Group",
-			Extractor: common.ExtractResourceIDFuncPath,
+			Type:      "TenantGroup",
+			Extractor: "github.com/upbound/upjet/pkg/resource.ExtractResourceID()",
 		}
 
 	})

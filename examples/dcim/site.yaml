@@ -1,0 +1,64 @@
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Group
+metadata:
+  name: test-sitegroup
+spec:
+  forProvider:
+    description: "test sitegroup"
+    slug: test-sitegroup
+    
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata: 
+  name: testtenant
+spec:
+  forProvider:
+    slug: basetesttenant
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Region
+metadata:
+  name: test-region
+spec:
+  forProvider:
+    description: "test region"
+    slug: test-region
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: test-site-no-ids
+spec:
+  forProvider:
+    description: development
+    facility: dev-office
+    status: active
+    tags:
+      - new
+      - dev
+    latitude: 50.0
+    longitude: 50.0
+    physicalAddress: "Someplace"
+    physicalAddress: "Someplace to ship"
+    timezone: GMT
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: test-site-with-ids
+spec:
+  forProvider:
+    description: staging
+    facility: staging-closet
+    status: active
+    tenantIdRef:
+      name: testtenant
+    siteGroupIdRef:
+      name: test-sitegroup
+    regionIdRef:
+      name: test-region
+    tags:
+      - old
+      - qa

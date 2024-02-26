@@ -6,6 +6,7 @@ import "github.com/upbound/upjet/pkg/config"
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("netbox_circuit_provider", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
-
+		r.Kind = "CircuitProvider"
+		r.ShortGroup = "circuits"
 	})
 }

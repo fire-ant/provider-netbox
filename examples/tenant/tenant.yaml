@@ -1,0 +1,33 @@
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: TenantGroup
+metadata: 
+  name: testtenantgroup
+spec:
+  forProvider:
+    slug: testtenantgroup
+    description: test
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata: 
+  name: testtenant-no-ids
+spec:
+  forProvider:
+    slug: testtenant-no-ids
+    description: test0
+    tags: 
+      - test0
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata: 
+  name: testtenant-with-ids
+spec:
+  forProvider:
+    slug: testtenant-with-ids
+    description: test1
+    groupIdRef: 
+      name: testtenantgroup
+    tags: 
+      - test1

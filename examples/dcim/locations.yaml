@@ -1,0 +1,51 @@
+---
+apiVersion: tenant.netbox.upbound.io/v1alpha1
+kind: Tenant
+metadata: 
+  name: testtenant
+spec:
+  forProvider:
+    slug: basetesttenant
+---
+apiVersion: dcim.netbox.upbound.io/v1alpha1
+kind: Site
+metadata:
+  name: testsite
+spec:
+  forProvider:
+    description: production
+    facility: prod-colo
+    status: active
+    tags:
+      - new
+      - test
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Location
+metadata:
+  name: test-location-no-ids
+spec:
+  forProvider:
+    description: development
+    tags:
+      - new
+      - secondary
+      - dev
+---
+apiVersion: netbox.netbox.upbound.io/v1alpha1
+kind: Location
+metadata:
+  name: test-location-with-ids
+spec:
+  forProvider:
+    description: development
+    siteIdRef:
+      name: testsite
+    slug: red-a
+    tenantIdRef:
+      name: testtenant
+    tags:
+      - new
+      - primary
+      - dev
+    

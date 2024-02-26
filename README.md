@@ -27,7 +27,7 @@ EOF
 
 Notice that in this example Provider resource is referencing ControllerConfig with debug enabled.
 
-You can see the API reference [here](https://doc.crds.dev/github.com/fire-ant/provider-netbox).
+You can see the API reference [here](https://doc.crds.dev/github.com/fire-ant/provider-netbox/apis).
 
 ## Developing
 
@@ -73,10 +73,12 @@ change kubeconfig to use internal alias
 kind export kubeconfig --name local-dev --internal
 ```
 
+# Dev
 
-use cty for crds:
-./cty generate -c package/crds/netbox.netbox.upbound.io_devices.yaml -o examples/generated/
-
+use [cty](https://github.com/Skarlso/crd-to-sample-yaml) for crds:
+```
+./scripts/cty.sh
+```
 
 use for uptest e2e:
 ```

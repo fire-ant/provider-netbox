@@ -1,0 +1,76 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Prefix
+metadata: 
+  name: testprefix
+spec:
+  forProvider:
+    description: test
+    isPool: true
+    markUtilized: false
+    prefix: 10.64.10.0/24
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: AvailablePrefix
+metadata: 
+  name: testavailableprefix-prefix-id-only-0
+spec:
+  forProvider:
+    description: test-0
+    isPool: true
+    markUtilized: false
+    prefixLength: 28
+    parentPrefixIdRef:
+      name: testprefix
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: AvailablePrefix
+metadata: 
+  name: testavailableprefix-prefix-id-only-1
+spec:
+  forProvider:
+    description: test-1
+    isPool: true
+    markUtilized: false
+    prefixLength: 28
+    parentPrefixIdRef:
+      name: testprefix
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+# ---
+# apiVersion: ipam.netbox.upbound.io/v1alpha1
+# kind: AvailablePrefix
+# metadata: {}
+# spec:
+#   forProvider:
+#     description: string
+#     isPool: true
+#     markUtilized: true
+#     prefixLength: number
+#     parentPrefixIdRef:
+#       name: string
+#     roleIdRef:
+#       name: string
+#     siteIdRef:
+#       name: string
+#     status: string
+#     tags: ["string"]
+#     tenantIdRef:
+#       name: string
+#     vlanIdRef:
+#       name: string
+#     vrfIdRef:
+#       name: string

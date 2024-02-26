@@ -184,7 +184,7 @@ local-deploy: build controlplane.up local.xpkg.deploy.provider.$(PROJECT_NAME)
 
 tools: $(HELM) $(UPTEST) $(KUBECTL) $(KUTTL) $(TERRAFORM) $(KIND)
 
-netbox: 
+netbox:
 	@$(HELM) repo add bootc https://charts.boo.tc
 	@$(HELM) upgrade --install netbox --create-namespace -n netbox-system \
 	--set postgresql.auth.postgresPassword=mypgsecret! \
@@ -195,9 +195,9 @@ netbox:
   --set dateTimeFormat="H:i:s" \
 	--set version="4.0.1" \
   bootc/netbox
-	@$(KUBECTL) -n netbox-system wait deployment netbox --for condition=Available --timeout=300s
-	@$(KUBECTL) -n netbox-system apply -f patch/manifests/netbox-import-job.yaml
+	@$(KUBECTL) -n netbox-system wait deployment netbox --for condition=Available --timeout=400s
 	@$(OK) running locally deployed netbox instance
+# @$(KUBECTL) -n netbox-system apply -f patch/manifests/netbox-import-job.yaml - do not need to seed tests with predicates
 
 
 e2e: local-deploy netbox uptest

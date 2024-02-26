@@ -1,0 +1,41 @@
+---
+apiVersion: ipam.netbox.upbound.io/v1alpha1
+kind: Prefix
+metadata: 
+  name: testprefix-no-ids
+spec:
+  forProvider:
+    description: test
+    isPool: true
+    markUtilized: true
+    prefix: 10.64.0.0/16
+    status: active
+    tags: 
+      - test
+      - prefix
+      - id
+# ---
+# apiVersion: ipam.netbox.upbound.io/v1alpha1
+# kind: Prefix
+# metadata: {}
+# spec:
+#   forProvider:
+#     description: string
+#     isPool: true
+#     markUtilized: true
+#     prefix: string
+#     roleIdRef:
+#       name: string
+#     siteIdRef:
+#       name: string
+#     status: active
+#     tags: 
+#       - test
+#       - prefix
+#       - id
+#     tenantIdRef:
+#       name: string
+#     vlanIdRef:
+#       name: string
+#     vrfIdRef:
+#       name: string
